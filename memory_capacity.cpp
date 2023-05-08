@@ -3,17 +3,33 @@
 #include <stdlib.h>
 #include <cmath>
 #include <random>
+#include <cstring>
+#include <algorithm>
+#include <vector>
 
 int main(int argc, char *argv[])
 {
   uint_least32_t master_seed = 123456;
   int seed_offset = 0;
-  if (argc==2) {
+  bool allow_multapses = true;
+  
+  if (argc==2 || argc==3) {
     sscanf(argv[1], "%d", &seed_offset);
   }
   else {
-    printf("Usage: %s rnd_seed_offset\n", argv[0]);
+    printf("Usage: %s rnd_seed_offset [-nm]\n", argv[0]);
     exit(0);
+  }
+  if (argc==3) {
+    if (strcmp(argv[2], "-nm")==0) {
+      allow_multapses = false;
+      std::cout << "Multapses disabled.\n";
+    }
+    else {
+      printf("Unrecognized argument. Usage: %s rnd_seed_offset [-nm]\n",
+	     argv[0]);
+      exit(0);
+    }
   }
 
   // generate RNGs
@@ -104,18 +120,42 @@ int main(int argc, char *argv[])
   // connection array (N2, iC)
   // conn_index[i2][iC] = i1 = index of the neuron of pop 1 connected
   // to i2 through connection iC of neuron i2 of pop 2
-  int **conn_index = new int*[N2];
+  //int **conn_index = new int*[N2];
+  std::vector<std::vector<int> > conn_index;
+  std::vector<int> int_range;
+  if (!allow_multapses) { 
+    for (int i=0; i<N1; i++) {
+      int_range.push_back(i);
+    }
+  }
+  
   // w[i2][iC] = weight of the connection iC of neuron i2
   double **w = new double*[N2];
   for (int i2=0; i2<N2; i2++) {
-    conn_index[i2] = new int[iC];
-    w[i2] = new double[iC];
-    for (int ic=0; ic<iC; ic++) {
-      conn_index[i2][ic] = rnd_int(rnd_gen);
-      w[i2][ic] = W0;
+    if (i2%10000 == 0) {
+      std::cout << i2 << " / " << N2 << "\n";
     }
+    std::vector<int> ci;
+    //conn_index[i2] = new int[iC];
+    w[i2] = new double[iC];
+    if (allow_multapses) {
+      for (int ic=0; ic<iC; ic++) {
+	ci.push_back(rnd_int(rnd_gen));
+	w[i2][ic] = W0;
+      }
+    }
+    else {
+      for (int ic=0; ic<iC; ic++) {
+	std::uniform_int_distribution<> rnd_j1(ic, N1-1);
+	int j1 = rnd_j1(rnd_gen);
+	std::swap(int_range[ic], int_range[j1]);
+	ci.push_back(int_range[ic]);
+	w[i2][ic] = W0;
+      }
+    }
+    conn_index.push_back(ci);
   }
-
+ 
   // Training phase
 
   double **rate_L1 = new double*[T];
