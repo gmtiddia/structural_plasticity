@@ -1,7 +1,9 @@
-# multapses can be allowed or forbidden
-allow_multapses true
+# use discrete rates or lognormal distribution (0:false, 1:true)
+lognormal_rate 0
+# multapses can be allowed or forbidden (0:false, 1:true)
+allow_multapses 1
 # step (in n. of examples) for connection recombination (0: no recombination)
-change_conn_step 0
+change_conn_step 20
 # number of training examples
 T 1000
 # connections per layer-2-neuron, i.e. indegree
@@ -18,10 +20,14 @@ N2 100000
 W0 0.1
 # consolidated weight
 Wc 1.0
-# low rate [Hz]
-rl 2.0
-# high rate [Hz]
-rh 50.0
+# low rate for layer 1 [Hz]
+rl1 2.0
+# high rate for layer 1 [Hz]
+rh1 50.0
+# low rate for layer 2 [Hz]
+rl2 2.0
+# high rate for layer 2 [Hz]
+rh2 50.0
 # master seed for random number generation
 master_seed 123456
 
