@@ -1,0 +1,27 @@
+# multapses can be allowed or forbidden
+allow_multapses true
+# step (in n. of examples) for connection recombination (0: no recombination)
+change_conn_step 0
+# number of training examples
+T 1000
+# connections per layer-2-neuron, i.e. indegree
+C 10000
+# probability of high rate for layer 1
+p1 1.0e-3
+# probability of high rate for layer 2
+p2 1.0e-3
+# number of neurons in pop 1
+N1 100000
+# number of neurons in pop 2
+N2 100000  
+# baseline weight
+W0 0.1
+# consolidated weight
+Wc 1.0
+# low rate [Hz]
+rl 2.0
+# high rate [Hz]
+rh 50.0
+# master seed for random number generation
+master_seed 123456
+
