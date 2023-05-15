@@ -9,8 +9,17 @@
 #include <algorithm>
 #include <vector>
 
+float my_erfinvf (float a);
+
+double erfm1(double x)
+{
+  return sqrt(2.0)*my_erfinvf((float)(2.0*x - 1.0));
+}
+
 namespace sim_params
 {
+  // use discrete rates or lognormal distribution
+  bool lognormal_rate = false;
   // multapses can be allowed or forbidden
   bool allow_multapses = true;
   // step (in n. of examples) for connection recombination (0: no recombination)
@@ -33,10 +42,14 @@ namespace sim_params
   double W0 = 0.1;
   // consolidated weight
   double Wc = 1.0;
-  // low rate [Hz]
-  double rl = 2.0;
-  // high rate [Hz]
-  double rh = 50.0;
+  // low rate for layer 1 [Hz]
+  double rl1 = 2.0;
+  // high rate for layer 1 [Hz]
+  double rh1 = 50.0;
+  // low rate for layer 2 [Hz]
+  double rl2 = 2.0;
+  // high rate for layer 2 [Hz]
+  double rh2 = 50.0;
   uint_least32_t master_seed = 123456;
   
   int readParams(char *filename);
@@ -89,46 +102,87 @@ int main(int argc, char *argv[])
   // probability of having consolidated the
   // connection at least for one instance
   double p = 1.0 - pow(1.0 - p1*p2, T);
-  // rate
-  double r = p1*rh + (1.0 - p1)*rl;
+
+  double q1 = 1.0 - p1;
+  // average rate layer 1
+  double rm1 = p1*rh1 + q1*rl1;
+
+  double q2 = 1.0 - p2;
+  // average rate layer 2
+  double rm2 = p2*rh2 + q2*rl2;
+
+  // rate lognormal distribution parameters for layer 1
+  double sigma_ln1 = erfm1(q1) - erfm1(q1*rl1/rm1);
+  double mu_ln1 = log(rm1) - sigma_ln1*sigma_ln1/2.0;
+  double yt_ln1 = erfm1(q1)*sigma_ln1 + mu_ln1;
+  double rt1;
+  if(lognormal_rate) {
+    rt1 = exp(yt_ln1);
+  }
+  else {
+    rt1 = (rh1 + rl1) / 2.0;
+  }
+  std::normal_distribution<double> rnd_normal1(mu_ln1, sigma_ln1);
+
+  // rate lognormal distribution parameters for layer 2
+  double sigma_ln2 = erfm1(q2) - erfm1(q2*rl2/rm2);
+  double mu_ln2 = log(rm2) - sigma_ln2*sigma_ln2/2.0;
+  double yt_ln2 = erfm1(q2)*sigma_ln2 + mu_ln2;
+  double rt2;
+  if(lognormal_rate) {
+    rt2 = exp(yt_ln2);
+  }
+  else {
+    rt2 = (rh2 + rl2) / 2.0;
+  }
+  std::normal_distribution<double> rnd_normal2(mu_ln2, sigma_ln2);
+
+  
   // average consolidated connections
   double k = p*C;
-  // <r^2>
-  double r2 = p1*rh*rh + (1.0 - p1)*rl*rl;
-  // rate variance
-  double sigma2r = r2 - r*r;
+  // <r^2> for layer 1 (we do not need it for layer 2)
+  double rsq1 = p1*rh1*rh1 + (1.0 - p1)*rl1*rl1;
+  // rate variance layer 1
+  double var_r1;
+  if (lognormal_rate) {
+    var_r1 = (exp(sigma_ln1*sigma_ln1) -1.0)
+      * exp(2.0*mu_ln1 + sigma_ln1*sigma_ln1);
+  }
+  else {
+    var_r1 = rsq1 - rm1*rm1;
+  }
   // calculation for variance of k
   double k2 = C*(C - 1)*pow(1.0 - (2.0 - p1)*p1*p2, T)
     - C*(2*C - 1)*pow(1.0 - p1*p2, T) + C*C;
-  double sigma2k = k2 - k*k;
+  double var_k = k2 - k*k;
   
   // theoretical estimation of Sb, S2 and sigma^2 Sb
-  double Sbt = Wc*k*r + W0*(C-k)*r;
-  double S2t = rh*Wc*p1*C + rl*(1.0-p1)*(W0*C + (Wc - W0)*k);
-  double S2t_chc = rh*Wc*p1*C + r*(1.0-p1)*(W0*C + (Wc - W0)*k);
-  double sigma2St = (Wc*Wc*k + W0*W0*(C-k))*sigma2r
-    + (Wc - W0)*(Wc - W0)*r*r*sigma2k;
+  double Sbt = Wc*k*rm1 + W0*(C-k)*rm1;
+  double S2t = rh1*Wc*p1*C + rl1*(1.0-p1)*(W0*C + (Wc - W0)*k);
+  double S2t_chc = rh1*Wc*p1*C + rm1*(1.0-p1)*(W0*C + (Wc - W0)*k);
+  double var_St = (Wc*Wc*k + W0*W0*(C-k))*var_r1
+    + (Wc - W0)*(Wc - W0)*rm1*rm1*var_k;
 
   // print of theoretical estimations
   printf("p: %.9lf\n", p);
-  printf("sigma2r (theoretical): %.4lf\n", sigma2r);
-  printf("sigma2k (theoretical): %.4lf\n", sigma2k);
+  printf("sigma2r layer 1 (theoretical): %.4lf\n", var_r1);
+  printf("sigma2k (theoretical): %.4lf\n", var_k);
   printf("S2 (theoretical): %.4lf\n", S2t);
   printf("S2 with connection recombination (theoretical): %.4lf\n", S2t_chc);
   printf("Sb (theoretical):  %.4lf\n", Sbt);
-  printf("sigma2S (theoretical): %.4lf\n", sigma2St);
+  printf("sigma2S (theoretical): %.4lf\n", var_St);
   //std::cout << (Wc*Wc*k + W0*W0*(C-k))*sigma2r << "\n";
   //std::cout << (Wc - W0)*(Wc - W0)*r*r*sigma2k << "\n";
 
   // same but saved in the header file
   fprintf(fp_head, "p: %.9lf\n", p);
-  fprintf(fp_head, "sigma2r (theoretical): %.4lf\n", sigma2r);
-  fprintf(fp_head, "sigma2k (theoretical): %.4lf\n", sigma2k);
+  fprintf(fp_head, "sigma2r layer 1 (theoretical): %.4lf\n", var_r1);
+  fprintf(fp_head, "sigma2k (theoretical): %.4lf\n", var_k);
   fprintf(fp_head, "S2 (theoretical): %.4lf\n", S2t);
   fprintf(fp_head, "S2 with connection recombination (theoretical): %.4lf\n",
 	  S2t_chc);
   fprintf(fp_head, "Sb (theoretical):  %.4lf\n", Sbt);
-  fprintf(fp_head, "sigma2S (theoretical): %.4lf\n", sigma2St);
+  fprintf(fp_head, "sigma2S (theoretical): %.4lf\n", var_St);
   
   // Inizialization of connection and weight arrays
   // connection array (N2, iC)
@@ -183,29 +237,40 @@ int main(int argc, char *argv[])
     rate_L2[ie] = new double[N2];
     // extract rate and select between rh and rl for pop 1 neurons
     for (int i1=0; i1<N1; i1++) {
-      if (rnd_uniform(rnd_gen) < p1) {
-	rate_L1[ie][i1] = rh;
+      if (lognormal_rate) {
+	rate_L1[ie][i1] = exp(rnd_normal1(rnd_gen));
       }
       else {
-	rate_L1[ie][i1] = rl;
+	if (rnd_uniform(rnd_gen) < p1) {
+	  rate_L1[ie][i1] = rh1;
+	}
+	else {
+	  rate_L1[ie][i1] = rl1;
+	}
       }
     }
     
     // extract rate and select between rh and rl for pop 2 neurons
     for (int i2=0; i2<N2; i2++) {
-      if (rnd_uniform(rnd_gen) < p2) {
-	rate_L2[ie][i2] = rh;
+      if (lognormal_rate) {
+	rate_L2[ie][i2] =  exp(rnd_normal2(rnd_gen));
+      }
+      else {
+	if (rnd_uniform(rnd_gen) < p2) {
+	  rate_L2[ie][i2] = rh2;
+	}
+	else {
+	  rate_L2[ie][i2] = rl2;
+	}
+      }
+      if (rate_L2[ie][i2] > rt2) {
 	for (int ic=0; ic<iC; ic++) {
 	  int i1 = conn_index[i2][ic];
-    // if r = rh for this neuron of pop 2
-	  if (rate_L1[ie][i1] > rh - eps) {
-      // synaptic consolidation
+	  if (rate_L1[ie][i1] > rt1) {
+	    // synaptic consolidation
 	    w[i2][ic] = Wc;
 	  }
 	}
-      }
-      else {
-	rate_L2[ie][i2] = rl;
       }
     }
     
@@ -248,7 +313,7 @@ int main(int argc, char *argv[])
       // signal of neurons not representing the item (i.e. background)
       double Sb = 0.0;
       // consider neurons of pop 2 at high rate (S2)
-      if (rate_L2[ie][i2] > rh - eps) {
+      if (rate_L2[ie][i2] > rt2) {
       	P2++;
         // loop for each connection of neuron of pop 2
         for (int ic=0; ic<iC; ic++) {
@@ -315,7 +380,12 @@ namespace sim_params {
       if (s[0]=='#' || s=="") {
 	continue;
       }
-      if (s=="allow_multapses") {
+      if (s=="lognormal_rate") {
+	ss >> lognormal_rate;
+	std::cout  << std::boolalpha
+		   << "lognormal_rate: " << lognormal_rate << "\n";
+      }
+      else if (s=="allow_multapses") {
 	ss >> allow_multapses;
 	std::cout  << std::boolalpha
 		   << "allow_multapses: " << allow_multapses << "\n";
@@ -356,13 +426,21 @@ namespace sim_params {
 	ss >> Wc;
 	std::cout << "Wc: " << Wc << "\n";
       }
-      else if (s=="rl") {
-	ss >> rl;
-	std::cout << "rl: " << rl << "\n";
+      else if (s=="rl1") {
+	ss >> rl1;
+	std::cout << "rl1: " << rl1 << "\n";
       }
-      else if (s=="rh") {
-	ss >> rh;
-	std::cout << "rh: " << rh << "\n";
+      else if (s=="rh1") {
+	ss >> rh1;
+	std::cout << "rh1: " << rh1 << "\n";
+      }
+      else if (s=="rl2") {
+	ss >> rl2;
+	std::cout << "rl2: " << rl2 << "\n";
+      }
+      else if (s=="rh2") {
+	ss >> rh2;
+	std::cout << "rh2: " << rh2 << "\n";
       }
       else if (s=="master_seed") {
 	ss >> master_seed;
