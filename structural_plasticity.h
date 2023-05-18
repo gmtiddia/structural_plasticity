@@ -60,7 +60,20 @@ class simulation
   // number of test examples between saving the status
   int test_block_size;
   // random number generator (Mersenne Twister MT 19937)
-  std::mt19937 rnd_gen;
+  //std::mt19937 rnd_gen;
+  // random number generators for different parts of the simulation
+  // separated for reproducibility purpose in simulation rounds
+  std::mt19937 rnd_gen_network;
+  std::mt19937 rnd_gen_train_set;
+  std::mt19937 rnd_gen_train;
+  std::mt19937 rnd_gen_test;
+  // Arbitrary offsets, fixed for reproducibility in simulation rounds.
+  // Must be larger than 9999. No need to change them
+  // they are added to the master seed and to seed_offset
+  int seed_offset_network;
+  int seed_offset_train_set;
+  int seed_offset_train;
+  int seed_offset_test;
   static const int max_file_name_size = 1000;
   // network file name
   char network_file_name[max_file_name_size];
@@ -173,6 +186,8 @@ public:
   int loadNetwork();
   // create network
   int createNetwork();
+  // destroy and create non-consolidated connections
+  int rewireConnections();
   // train network with training set
   int train();
   // evaluate output with test set

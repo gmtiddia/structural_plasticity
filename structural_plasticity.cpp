@@ -58,6 +58,14 @@ simulation::simulation()
   rh2 = 50.0;
   // master seed for random number generation
   master_seed = 123456;
+  // Arbitrary offsets, fixed for reproducibility in simulation rounds.
+  // Must be larger than 9999 and smaller than 990000. No need to change them.
+  // They are added to the master seed and to seed_offset
+  seed_offset_network = 100000;
+  seed_offset_train_set = 200000;
+  seed_offset_train = 300000;
+  seed_offset_test = 400000;
+
   // perform training
   train_flag = true;
   // perform test
@@ -70,8 +78,7 @@ simulation::simulation()
   train_block_size = 10000;
   // number of test examples between saving the status
   test_block_size = 10000;
-  // random number generator (Mersenne Twister MT 19937)
-  std::mt19937 rnd_gen;
+  // by default n. of test examples is equal to n. of training example
   n_test = T;
   // seed offset for random number generation
   seed_offset = 0;
@@ -112,10 +119,7 @@ int simulation::init(int argc, char *argv[])
       "with fixed_indegree connection rule\n";
     exit(-1);
   }
-  
-  // seed RNGs
-  rnd_gen.seed(master_seed + seed_offset);
-  
+    
   sprintf(file_name_head, "mem_head_%04d.dat", seed_offset);
 
   sprintf(network_file_name, "network_%04d.dat", seed_offset);
@@ -275,9 +279,15 @@ int simulation::run()
 // train network with training set
 int simulation::train()
 {
+  // seed RNGs
+  rnd_gen_train.seed(master_seed + seed_offset_train + seed_offset
+		     + j_train*1000000);
+
   // loop over the T examples
   for (int ie=ie0_train; ie<ie1_train; ie++) {
-    //std::cout << "Training example n. " << ie + 1 << " / " << T << "\n";
+    if (ie%100 == 0) {
+      std::cout << "Training example n. " << ie + 1 << " / " << T << "\n";
+    }
     for (int i2=0; i2<N2; i2++) {
       if (rate_L2_train[ie][i2] > rt2) {
 	for (uint ic=0; ic<conn_index[i2].size(); ic++) {
@@ -292,18 +302,8 @@ int simulation::train()
     
     if (change_conn_step!=0 && ((ie+1)%change_conn_step==0)
 	&& allow_multapses) {
-      std::cout << "Training example n. " << ie + 1 << " / " << T << "\n";
-      // uniform distribution for connectivity purpose
-      std::uniform_int_distribution<> rnd_int(0, N1-1);
-
-      // move (i.e. destroy and recreate) non-consolidated connections
-      for (int i2=0; i2<N2; i2++) {
-	for (uint ic=0; ic<conn_index[i2].size(); ic++) {
-	  if (w[i2][ic] < W0 + eps) { // non-consolidated connection
-	    conn_index[i2][ic] = rnd_int(rnd_gen);
-	  }
-	}
-      }
+      //std::cout << "Training example n. " << ie + 1 << " / " << T << "\n";
+      rewireConnections();
     }
   }
   if (save_network) {
@@ -318,6 +318,10 @@ int simulation::train()
 
 int simulation::test()
 {
+  // seed RNGs
+  rnd_gen_test.seed(master_seed + seed_offset_test + seed_offset
+		    + (j_test+10000)*1000000);
+
   // Test phase
   if (T>train_block_size || n_test>test_block_size) {
     char file_name_out[] = "mem_out_xxxx_yyyy.dat";
@@ -546,6 +550,7 @@ int simulation::readParams(char *filename)
 int simulation::generateRandomTrainingSet() 
 {
   // probability distribution generators
+  rnd_gen_train_set.seed(master_seed + seed_offset_train_set + seed_offset);
   std::uniform_real_distribution<> rnd_uniform(0.0, 1.0);
   std::normal_distribution<double> rnd_normal1(mu_ln1, sigma_ln1);
   std::normal_distribution<double> rnd_normal2(mu_ln2, sigma_ln2);
@@ -559,11 +564,11 @@ int simulation::generateRandomTrainingSet()
     std::vector<double> rate1;
     for (int i1=0; i1<N1; i1++) {
       if (lognormal_rate) {
-	rate1.push_back(exp(rnd_normal1(rnd_gen)));
-	//rate_L1_train[ie][i1] = exp(rnd_normal1(rnd_gen));
+	rate1.push_back(exp(rnd_normal1(rnd_gen_train_set)));
+	//rate_L1_train[ie][i1] = exp(rnd_normal1(rnd_gen_train_set));
       }
       else {
-	if (rnd_uniform(rnd_gen) < p1) {
+	if (rnd_uniform(rnd_gen_train_set) < p1) {
 	  rate1.push_back(rh1);
 	  //rate_L1_train[ie][i1] = 
 	}
@@ -579,11 +584,11 @@ int simulation::generateRandomTrainingSet()
     std::vector<double> rate2;
     for (int i2=0; i2<N2; i2++) {
       if (lognormal_rate) {
-	rate2.push_back(exp(rnd_normal2(rnd_gen)));
-	//rate_L2_train[ie][i2] = exp(rnd_normal2(rnd_gen));
+	rate2.push_back(exp(rnd_normal2(rnd_gen_train_set)));
+	//rate_L2_train[ie][i2] = exp(rnd_normal2(rnd_gen_train_set));
       }
       else {
-	if (rnd_uniform(rnd_gen) < p2) {
+	if (rnd_uniform(rnd_gen_train_set) < p2) {
 	  rate2.push_back(rh2);
 	  //rate_L2_train[ie][i2] = rh2;
 	}
@@ -710,6 +715,7 @@ int simulation::saveNetwork()
 
 int simulation::createNetwork()
 {
+  rnd_gen_network.seed(master_seed + seed_offset_network + seed_offset);
   int iC = (int)round(C);
   int iC_reserve;
   if (connection_rule==FIXED_INDEGREE) {
@@ -740,14 +746,14 @@ int simulation::createNetwork()
     }
     else {
       std::poisson_distribution<> rnd_poiss_total_num(C*N2);
-      total_number = rnd_poiss_total_num(rnd_gen);
+      total_number = rnd_poiss_total_num(rnd_gen_network);
     }
     for (int ic=0; ic<total_number; ic++) {
       if (ic%10000000 == 0) {
 	std::cout << "Create network " << ic << " / " << total_number << "\n";
       }
-      int i1 = rnd_int1(rnd_gen);
-      int i2 = rnd_int2(rnd_gen);
+      int i1 = rnd_int1(rnd_gen_network);
+      int i2 = rnd_int2(rnd_gen_network);
       conn_index[i2].push_back(i1);
       w[i2].push_back(W0);
     }
@@ -773,17 +779,17 @@ int simulation::createNetwork()
 	}
 	else {
 	  std::poisson_distribution<> rnd_poiss(C);
-	  iC1 = rnd_poiss(rnd_gen);
+	  iC1 = rnd_poiss(rnd_gen_network);
 	}
 	for (int ic=0; ic<iC1; ic++) {
-	  conn_index[i2].push_back(rnd_int1(rnd_gen));
+	  conn_index[i2].push_back(rnd_int1(rnd_gen_network));
 	  w[i2].push_back(W0);
 	}
       }
       else {
 	for (int ic=0; ic<iC; ic++) {
 	  std::uniform_int_distribution<> rnd_j1(ic, N1-1);
-	  int j1 = rnd_j1(rnd_gen);
+	  int j1 = rnd_j1(rnd_gen_network);
 	  std::swap(int_range[ic], int_range[j1]);
 	  conn_index[i2].push_back(int_range[ic]);
 	  w[i2].push_back(W0);
@@ -834,3 +840,71 @@ int simulation::loadNetwork()
 
   return 0;
 }
+
+int simulation::rewireConnections()
+{
+  // uniform distribution for connectivity purpose
+  std::uniform_int_distribution<> rnd_int1(0, N1-1);
+  std::uniform_int_distribution<> rnd_int2(0, N2-1);
+
+  if (connection_rule==FIXED_INDEGREE) {
+    // uniform distribution for connectivity purpose
+    std::uniform_int_distribution<> rnd_int(0, N1-1);
+
+    // for fixed_indegree connection rule
+    // move (i.e. destroy and recreate) non-consolidated connections
+    for (int i2=0; i2<N2; i2++) {
+      for (uint ic=0; ic<conn_index[i2].size(); ic++) {
+	if (w[i2][ic] < W0 + eps) { // non-consolidated connection
+	  conn_index[i2][ic] = rnd_int(rnd_gen_train);
+	}
+      }
+    }
+  }
+  // for other rules just destroy and recreate non-consolidated connections
+  else {
+    // first identify consolidated connections and reindex them
+    // to the beginning of the connection vector
+    int consolidated_num = 0;
+    for (int i2=0; i2<N2; i2++) {
+      int k = 0;
+      for (uint ic=0; ic<conn_index[i2].size(); ic++) {
+	if (w[i2][ic] > Wc - eps) { // consolidated connection
+	  conn_index[i2][k] = conn_index[i2][ic];
+	  w[i2][k] = w[i2][ic];
+	  k++;
+	  consolidated_num++;
+	}
+	conn_index[i2].resize(k);
+	w[i2].resize(k);
+      }
+    }
+
+    int total_number;
+    if (connection_rule==FIXED_TOTAL_NUMBER) {
+      total_number = (int)round(C*N2);
+    }
+    else {
+      std::poisson_distribution<> rnd_poiss_total_num(C*N2);
+      total_number = rnd_poiss_total_num(rnd_gen_train);
+    }
+    if (total_number<=consolidated_num) {
+      return 0;
+    }
+    for (int ic=0; ic<total_number-consolidated_num; ic++) {
+      if (ic%10000000 == 0) {
+	std::cout << "Rewire connections " << ic << " / "
+		  << total_number-consolidated_num << "\n";
+      }
+      int i1 = rnd_int1(rnd_gen_train);
+      int i2 = rnd_int2(rnd_gen_train);
+      conn_index[i2].push_back(i1);
+      w[i2].push_back(W0);
+    }
+  }
+
+  return 0;
+}
+
+
+    
