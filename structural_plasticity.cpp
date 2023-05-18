@@ -11,6 +11,15 @@
 #include <cstdio>
 #include <string>
 
+#ifdef _OPENMP
+#include <omp.h>
+#define THREAD_MAXNUM omp_get_max_threads()
+#define THREAD_IDX omp_get_thread_num()
+#else
+#define THREAD_MAXNUM 1
+#define THREAD_IDX 0
+#endif
+
 #include "structural_plasticity.h"
 
 double erfm1(double x)
@@ -114,11 +123,11 @@ int simulation::init(int argc, char *argv[])
       "with fixed_indegree connection rule\n";
     exit(-1);
   }
-  if (connection_rule!=FIXED_INDEGREE && change_conn_step!=0) {
-    std::cerr << "Connection recombination currently allowed only "
-      "with fixed_indegree connection rule\n";
-    exit(-1);
-  }
+  //if (connection_rule!=FIXED_INDEGREE && change_conn_step!=0) {
+  //  std::cerr << "Connection recombination currently allowed only "
+  //    "with fixed_indegree connection rule\n";
+  //  exit(-1);
+  //}
     
   sprintf(file_name_head, "mem_head_%04d.dat", seed_offset);
 
@@ -201,7 +210,8 @@ int simulation::evalTheoreticalValues()
   double var_S_poiss = pow(W0 + p*(Wc - W0), 2.0)*rm1*rm1*var_C
     + C_m*(p*Wc*Wc + eta*W0*W0)*var_r1
     + pow(Wc - W0, 2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta);
-    
+
+  printf("Number of openmp threads: %d\n", THREAD_MAXNUM);
   // print of theoretical estimations
   printf("p: %.9lf\n", p);
   printf("sigma2r layer 1 (theoretical): %.4lf\n", var_r1);
@@ -216,6 +226,7 @@ int simulation::evalTheoreticalValues()
 
   // same but saved in the header file
   fp_head = fopen(file_name_head, "wt");
+  fprintf(fp_head, "Number of openmp threads: %d\n", THREAD_MAXNUM);
   fprintf(fp_head, "p: %.9lf\n", p);
   fprintf(fp_head, "sigma2r layer 1 (theoretical): %.4lf\n", var_r1);
   fprintf(fp_head, "sigma2k (theoretical): %.4lf\n", var_k);
@@ -224,6 +235,8 @@ int simulation::evalTheoreticalValues()
 	  S2t_chc);
   fprintf(fp_head, "Sb (theoretical):  %.4lf\n", Sbt);
   fprintf(fp_head, "sigma2S (theoretical): %.4lf\n", var_St);
+  fprintf(fp_head, "sigma2S with Poisson indegree (theoretical): %.4lf\n",
+	  var_S_poiss);
   fclose(fp_head);
 
   return 0;
@@ -288,6 +301,9 @@ int simulation::train()
     if (ie%100 == 0) {
       std::cout << "Training example n. " << ie + 1 << " / " << T << "\n";
     }
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
     for (int i2=0; i2<N2; i2++) {
       if (rate_L2_train[ie][i2] > rt2) {
 	for (uint ic=0; ic<conn_index[i2].size(); ic++) {
@@ -346,6 +362,9 @@ int simulation::test()
     double Sb_square_sum = 0.0;
     
     // loop over pop 2 neurons
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif  
     for (int i2=0; i2<N2; i2++) {
       // signal of neurons representing the item
       double S2 = 0.0;
@@ -892,10 +911,10 @@ int simulation::rewireConnections()
       return 0;
     }
     for (int ic=0; ic<total_number-consolidated_num; ic++) {
-      if (ic%10000000 == 0) {
-	std::cout << "Rewire connections " << ic << " / "
-		  << total_number-consolidated_num << "\n";
-      }
+      //if (ic%10000000 == 0) {
+      //std::cout << "Rewire connections " << ic << " / "
+      //	  << total_number-consolidated_num << "\n";
+      //}
       int i1 = rnd_int1(rnd_gen_train);
       int i2 = rnd_int2(rnd_gen_train);
       conn_index[i2].push_back(i1);
