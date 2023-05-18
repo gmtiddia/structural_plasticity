@@ -1,3 +1,6 @@
+#connection rule (0: fixed_indegree, 1: poisson_indegree,
+# 2: fixed_total_number, 3: poisson_total_number"
+connection_rule 0
 # use discrete rates or lognormal distribution (0:false, 1:true)
 lognormal_rate 0
 # multapses can be allowed or forbidden (0:false, 1:true)
@@ -30,4 +33,15 @@ rl2 2.0
 rh2 50.0
 # master seed for random number generation
 master_seed 123456
-
+# load network from file (0:false, 1:true)
+load_network 0
+# perform training
+train_flag 1
+# perform test
+test_flag 1
+#save network to file after training (0:false, 1:true)
+save_network 0
+# number of training examples between saving network and status
+train_block_size 10000
+# number of test examples between saving the status
+test_block_size 10000
