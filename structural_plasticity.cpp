@@ -894,9 +894,9 @@ int simulation::rewireConnections()
 	  k++;
 	  consolidated_num++;
 	}
-	conn_index[i2].resize(k);
-	w[i2].resize(k);
       }
+      conn_index[i2].resize(k);
+      w[i2].resize(k);
     }
 
     int total_number;
