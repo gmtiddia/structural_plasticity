@@ -17,10 +17,16 @@ class simulation
   bool lognormal_rate;
   // multapses can be allowed or forbidden
   bool allow_multapses;
-  // step (in n. of examples) for connection recombination (0: no recombination)
+  // step (in n. of patterns) for connection recombination (0: no recombination)
   int change_conn_step;
-  // number of training examples
+  // to save memory, patterns can be generated on the fly from their index
+  // without storing the whole set in memory
+  bool generate_patterns_on_the_fly;
+  
+  // number of training patterns
   int T;
+  // number of test patterns
+  int n_test;
   // connections per layer-2-neuron, i.e. indegree (double needed)
   double C;
   // probability of high rate for layer 1
@@ -55,16 +61,15 @@ class simulation
   bool load_network;
   // save network to file after training
   bool save_network;
-  // number of training examples between saving network and status
+  // number of training patterns between saving network and status
   int train_block_size;
-  // number of test examples between saving the status
+  // number of test patterns between saving the status
   int test_block_size;
   // random number generator (Mersenne Twister MT 19937)
   //std::mt19937 rnd_gen;
   // random number generators for different parts of the simulation
   // separated for reproducibility purpose in simulation rounds
   std::mt19937 rnd_gen_network;
-  std::mt19937 rnd_gen_train_set;
   std::mt19937 rnd_gen_train;
   std::mt19937 rnd_gen_test;
   // Arbitrary offsets, fixed for reproducibility in simulation rounds.
@@ -79,15 +84,23 @@ class simulation
   char network_file_name[max_file_name_size];
   // status file name
   char status_file_name[max_file_name_size];
-  // firing rate of layer-1-neurons in training examples
-  std::vector <std::vector<double> > rate_L1_train;
-  // firing rate of layer-2-neurons in training examples
-  std::vector <std::vector<double> > rate_L2_train;
-  // firing rate of layer-1-neurons in test examples
-  std::vector <std::vector<double> > rate_L1_test;
-  // firing rate of layer-2-neurons in test examples
-  std::vector <std::vector<double> > rate_L2_test;
-
+  // firing rate of layer-1-neurons in training patterns
+  std::vector <std::vector<double> > rate_L1_train_set;
+  // firing rate of layer-2-neurons in training patterns
+  std::vector <std::vector<double> > rate_L2_train_set;
+  // firing rate of layer-1-neurons in test patterns
+  std::vector <std::vector<double> > rate_L1_test_set;
+  // firing rate of layer-2-neurons in test patterns
+  std::vector <std::vector<double> > rate_L2_test_set;
+  // Same for single pattern
+  // firing rate of layer-1-neurons in single pattern
+  std::vector<double> rate_L1_pattern;
+  // firing rate of layer-2-neurons in training pattern
+  std::vector<double> rate_L2_pattern;
+  // test pattern indexes
+  std::vector<int> ie_test_arr;
+  // test pattern indexes can be ordered sequentially or randomly 
+  bool random_test_order;
   ///////////////////////////////////////////
   // theoretical values of model quantities
   ///////////////////////////////////////////
@@ -131,8 +144,6 @@ class simulation
   double S2t_chc;
   double var_St;
   
-  // number of test examples
-  int n_test;
   // Connection index vector
   // conn_index[i2][ic] = i1 = index of the neuron of pop 1 connected
   // to i2 through connection ic of neuron i2 of pop 2
@@ -141,6 +152,10 @@ class simulation
   // Connection weight vector
   // w[i2][ic] = weight of the connection ic of neuron i2
   std::vector<std::vector<double> > w;
+  // maximum number of connections per target neuron
+  int iC_reserve;
+  // array of number of connections per target neuron
+  std::vector<int> n_conn_2; 
 
   // output file
   FILE *fp_out;
@@ -150,15 +165,15 @@ class simulation
   // epsilon (margin for numerical compatibility)
   const double eps = 1.0e-6;
 
-  // range of example indexes for training
+  // range of pattern indexes for training
   int ie0_train;
   int ie1_train;
-  // index of trainig example group in case simulation must be splitted 
+  // index of trainig pattern group in case simulation must be splitted 
   int j_train;
-  // range of example indexes for test
+  // range of pattern indexes for test
   int ie0_test;
   int ie1_test;
-  // index of test example group in case simulation must be splitted 
+  // index of test pattern group in case simulation must be splitted 
   int j_test;
 
 public:
@@ -173,9 +188,14 @@ public:
   // read parameters from file
   int readParams(char *filename);
   // generate random training set
-  int generateRandomTrainingSet();
+  int generateRandomSet();
+  // generate random training pattern
+  int generateRandomPattern(double *rate_L1, double *rate_L2, int ie);
+  
   // copy train set to test set
   int copyTrainToTest();
+  // generate indexes for test patterns
+  int extractTestPatternIndexes();
   // load simulation status  
   int loadStatus();
   // save simulation status  
@@ -184,6 +204,8 @@ public:
   int saveNetwork();
   // load network connections from file
   int loadNetwork();
+  // allocate arrays for network
+  int allocateNetwork();
   // create network
   int createNetwork();
   // destroy and create non-consolidated connections
