@@ -33,6 +33,15 @@ rh1 50.0
 rl2 2.0
 # high rate for layer 2 [Hz]
 rh2 50.0
+# add noise on test patterns (0:false, 1:true)
+noise_flag 1
+# noise on test patterns (sigma of truncated normal distribution) [Hz]
+rate_noise 1.0
+# noise from normal distribution is truncated at +-rate_noise*max_noise_dev
+max_noise_dev 2.0
+# handle negative values of rate after noise contribution
+# 0: do not modify, 1: truncate, 2: saturate
+corr_neg_rate 0
 # master seed for random number generation
 master_seed 123456
 # load network from file (0:false, 1:true)

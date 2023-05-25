@@ -49,6 +49,16 @@ class simulation
   double rl2;
   // high rate for layer 2 [Hz]
   double rh2;
+  // add noise on test patterns
+  bool noise_flag;
+  // noise on test patterns (sigma of truncated normal distribution) [Hz]
+  double rate_noise;
+  // noise from normal distribution is truncated at +-rate_noise*max_noise_dev
+  double max_noise_dev;
+  // handle negative values of rate after noise contribution
+  // 0: do not modify, 1: truncate, 2: saturate
+  int corr_neg_rate;
+
   // master seed for random number generation
   uint_least32_t master_seed;
   // seed offset for random number generation

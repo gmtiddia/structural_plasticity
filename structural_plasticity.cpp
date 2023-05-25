@@ -22,6 +22,16 @@
 
 #include "structural_plasticity.h"
 
+double Phi(double x)
+{
+  return 0.5*(1.0 + erf(x/sqrt(2.0)));
+}
+
+double phi(double csi)
+{
+  return exp(-csi*csi/2.0) / sqrt(2.0*M_PI);
+}
+
 double erfm1(double x)
 {
   return sqrt(2.0)*my_erfinvf((float)(2.0*x - 1.0));
@@ -84,6 +94,16 @@ simulation::simulation()
   rl2 = 2.0;
   // high rate for layer 2 [Hz]
   rh2 = 50.0;
+  // add noise on test patterns
+  noise_flag = true;
+  // noise on test patterns (sigma of truncated normal distribution) [Hz]
+  rate_noise = 1.0;
+  // noise from normal distribution is truncated at +-rate_noise*max_noise_dev
+  max_noise_dev = 2.0;
+  // handle negative values of rate after noise contribution
+  // 0: do not modify, 1: truncate, 2: saturate
+  corr_neg_rate = 0;
+  
   // master seed for random number generation
   master_seed = 123456;
   // Arbitrary offsets, fixed for reproducibility in simulation rounds.
@@ -233,6 +253,11 @@ int simulation::evalTheoreticalValues()
     + C_m*(p*Wc*Wc + eta*W0*W0)*var_r1
     + pow(Wc - W0, 2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta);
 
+  double beta = max_noise_dev;
+  double Z = Phi(beta) - Phi(-beta);
+  double var_noise = rate_noise*rate_noise*(1.0 - 2.0*beta*phi(beta)/Z);
+  double var_S_noise = (Wc*Wc*k + W0*W0*(C - k))*var_noise;
+
   printf("Number of openmp threads: %d\n", THREAD_MAXNUM);
   // print of theoretical estimations
   printf("p: %.9lf\n", p);
@@ -243,6 +268,13 @@ int simulation::evalTheoreticalValues()
   printf("Sb (theoretical):  %.4lf\n", Sbt);
   printf("sigma2S (theoretical): %.4lf\n", var_St);
   printf("sigma2S with Poisson indegree (theoretical): %.4lf\n", var_S_poiss);
+  if (noise_flag) {
+    printf("noise variance: %.4lf\n", var_noise);
+    printf("noise contribution to S variance: %.4lf\n", var_S_noise);
+    printf("sigma2S with noise (theoretical): %.4lf\n", var_St + var_S_noise);
+    printf("sigma2S with Poisson indegree and noise (theoretical): %.4lf\n",
+	   var_S_poiss + var_S_noise);
+  }
   fflush(stdout);
   //std::cout << (Wc*Wc*k + W0*W0*(C-k))*sigma2r << "\n";
   //std::cout << (Wc - W0)*(Wc - W0)*r*r*sigma2k << "\n";
@@ -260,6 +292,16 @@ int simulation::evalTheoreticalValues()
   fprintf(fp_head, "sigma2S (theoretical): %.4lf\n", var_St);
   fprintf(fp_head, "sigma2S with Poisson indegree (theoretical): %.4lf\n",
 	  var_S_poiss);
+  if (noise_flag) {
+    fprintf(fp_head, "noise variance: %.4lf\n", var_noise);
+    fprintf(fp_head, "noise contribution to S variance: %.4lf\n", var_S_noise);
+    fprintf(fp_head, "sigma2S with noise (theoretical): %.4lf\n",
+	    var_St + var_S_noise);
+    fprintf(fp_head,
+	    "sigma2S with Poisson indegree and noise (theoretical): %.4lf\n",
+	    var_S_poiss + var_S_noise);
+  }
+
   fclose(fp_head);
 
   return 0;
@@ -415,7 +457,8 @@ int simulation::test()
   // seed RNGs
   rnd_gen_test.seed(master_seed + seed_offset_test + seed_offset
 		    + (j_test+10000)*1000000);
-
+  std::normal_distribution<double> rnd_noise(0.0, rate_noise);
+  
   // Test phase
   char file_name_out[] = "mem_out_xxxx_yyyy.dat";
   sprintf(file_name_out, "mem_out_%04d_%04d.dat", seed_offset, j_test);
@@ -444,7 +487,31 @@ int simulation::test()
       rate_L1 = &rate_L1_test_set[ie][0];
       rate_L2 = &rate_L2_test_set[ie][0];
     }
-    
+    if (noise_flag) {
+      for (int i1=0; i1<N1; i1++) {
+	double r1 = rate_L1[i1];
+	double dev;
+	double r1n;
+	for(;;) {
+	  dev = rnd_noise(rnd_gen_test);
+	  r1n = r1 + dev;
+	  if (fabs(dev) > max_noise_dev) {
+	    continue;
+	  }
+	  if (r1n < 0.0) {
+	    if (corr_neg_rate == 1) {
+	      continue;
+	    }
+	    else if (corr_neg_rate == 2) {
+	      r1n = 0.0;
+	    }
+	  }
+	  break;
+	}
+	rate_L1[i1] = r1n;
+      }
+    }
+      
     double S2_sum = 0.0;
     // for mean calculation - counter of neurons at rh in pop 2
     int P2 = 0;
@@ -635,6 +702,24 @@ int simulation::readParams(char *filename)
       ss >> rh2;
       std::cout << "rh2: " << rh2 << "\n";
     }
+    else if (s=="noise_flag") {
+      ss >> noise_flag;
+      std::cout  << std::boolalpha
+		 << "noise_flag: " << noise_flag << "\n";
+    }
+    else if (s=="rate_noise") {
+      ss >> rate_noise;
+      std::cout << "rate_noise: " << rate_noise << "\n";
+    }
+    else if (s=="max_noise_dev") {
+      ss >> max_noise_dev;
+      std::cout << "max_noise_dev: " << max_noise_dev << "\n";
+    }
+    else if (s=="corr_neg_rate") {
+      ss >> corr_neg_rate;
+      std::cout << "corr_neg_rate: " << corr_neg_rate << "\n";
+    }
+    
     else if (s=="master_seed") {
       ss >> master_seed;
       std::cout << "master_seed: " << master_seed << "\n";
