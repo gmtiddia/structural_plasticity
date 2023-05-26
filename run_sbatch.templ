@@ -2,8 +2,7 @@
 #SBATCH --account=icei-hbp-2020-0007
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=32GB
+#SBATCH --cpus-per-task=128
 #SBATCH --time=23:59:59
 #SBATCH --partition=gpus
 #SBATCH --output=__PATH__/test_sp_out.%j
@@ -22,7 +21,9 @@ fi
 
 srun -n 1 test_structural_plasticity $seed params.dat
 status_file=$(printf "status_%04d.dat" $seed)
-s=$(cat $status_file | awk '{print $1}')
-if [ $s != 'done' ]; then
-    sbatch run_sbatch.sh $seed
+if [ -f $status_file ]; then
+    s=$(cat $status_file | awk '{print $1}')
+    if [ $s != 'done' ]; then
+	sbatch run_sbatch.sh $seed
+    fi
 fi

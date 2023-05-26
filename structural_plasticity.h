@@ -17,10 +17,16 @@ class simulation
   bool lognormal_rate;
   // multapses can be allowed or forbidden
   bool allow_multapses;
-  // step (in n. of examples) for connection recombination (0: no recombination)
+  // step (in n. of patterns) for connection recombination (0: no recombination)
   int change_conn_step;
-  // number of training examples
+  // to save memory, patterns can be generated on the fly from their index
+  // without storing the whole set in memory
+  bool generate_patterns_on_the_fly;
+  
+  // number of training patterns
   int T;
+  // number of test patterns
+  int n_test;
   // connections per layer-2-neuron, i.e. indegree (double needed)
   double C;
   // probability of high rate for layer 1
@@ -43,6 +49,16 @@ class simulation
   double rl2;
   // high rate for layer 2 [Hz]
   double rh2;
+  // add noise on test patterns
+  bool noise_flag;
+  // noise on test patterns (sigma of truncated normal distribution) [Hz]
+  double rate_noise;
+  // noise from normal distribution is truncated at +-rate_noise*max_noise_dev
+  double max_noise_dev;
+  // handle negative values of rate after noise contribution
+  // 0: do not modify, 1: truncate, 2: saturate
+  int corr_neg_rate;
+
   // master seed for random number generation
   uint_least32_t master_seed;
   // seed offset for random number generation
@@ -55,26 +71,46 @@ class simulation
   bool load_network;
   // save network to file after training
   bool save_network;
-  // number of training examples between saving network and status
+  // number of training patterns between saving network and status
   int train_block_size;
-  // number of test examples between saving the status
+  // number of test patterns between saving the status
   int test_block_size;
   // random number generator (Mersenne Twister MT 19937)
-  std::mt19937 rnd_gen;
+  //std::mt19937 rnd_gen;
+  // random number generators for different parts of the simulation
+  // separated for reproducibility purpose in simulation rounds
+  std::mt19937 rnd_gen_network;
+  std::mt19937 rnd_gen_train;
+  std::mt19937 rnd_gen_test;
+  // Arbitrary offsets, fixed for reproducibility in simulation rounds.
+  // Must be larger than 9999. No need to change them
+  // they are added to the master seed and to seed_offset
+  int seed_offset_network;
+  int seed_offset_train_set;
+  int seed_offset_train;
+  int seed_offset_test;
   static const int max_file_name_size = 1000;
   // network file name
   char network_file_name[max_file_name_size];
   // status file name
   char status_file_name[max_file_name_size];
-  // firing rate of layer-1-neurons in training examples
-  std::vector <std::vector<double> > rate_L1_train;
-  // firing rate of layer-2-neurons in training examples
-  std::vector <std::vector<double> > rate_L2_train;
-  // firing rate of layer-1-neurons in test examples
-  std::vector <std::vector<double> > rate_L1_test;
-  // firing rate of layer-2-neurons in test examples
-  std::vector <std::vector<double> > rate_L2_test;
-
+  // firing rate of layer-1-neurons in training patterns
+  std::vector <std::vector<double> > rate_L1_train_set;
+  // firing rate of layer-2-neurons in training patterns
+  std::vector <std::vector<double> > rate_L2_train_set;
+  // firing rate of layer-1-neurons in test patterns
+  std::vector <std::vector<double> > rate_L1_test_set;
+  // firing rate of layer-2-neurons in test patterns
+  std::vector <std::vector<double> > rate_L2_test_set;
+  // Same for single pattern
+  // firing rate of layer-1-neurons in single pattern
+  std::vector<double> rate_L1_pattern;
+  // firing rate of layer-2-neurons in training pattern
+  std::vector<double> rate_L2_pattern;
+  // test pattern indexes
+  std::vector<int> ie_test_arr;
+  // test pattern indexes can be ordered sequentially or randomly 
+  bool random_test_order;
   ///////////////////////////////////////////
   // theoretical values of model quantities
   ///////////////////////////////////////////
@@ -118,8 +154,6 @@ class simulation
   double S2t_chc;
   double var_St;
   
-  // number of test examples
-  int n_test;
   // Connection index vector
   // conn_index[i2][ic] = i1 = index of the neuron of pop 1 connected
   // to i2 through connection ic of neuron i2 of pop 2
@@ -128,6 +162,10 @@ class simulation
   // Connection weight vector
   // w[i2][ic] = weight of the connection ic of neuron i2
   std::vector<std::vector<double> > w;
+  // maximum number of connections per target neuron
+  int iC_reserve;
+  // array of number of connections per target neuron
+  std::vector<int> n_conn_2; 
 
   // output file
   FILE *fp_out;
@@ -137,15 +175,15 @@ class simulation
   // epsilon (margin for numerical compatibility)
   const double eps = 1.0e-6;
 
-  // range of example indexes for training
+  // range of pattern indexes for training
   int ie0_train;
   int ie1_train;
-  // index of trainig example group in case simulation must be splitted 
+  // index of trainig pattern group in case simulation must be splitted 
   int j_train;
-  // range of example indexes for test
+  // range of pattern indexes for test
   int ie0_test;
   int ie1_test;
-  // index of test example group in case simulation must be splitted 
+  // index of test pattern group in case simulation must be splitted 
   int j_test;
 
 public:
@@ -160,9 +198,14 @@ public:
   // read parameters from file
   int readParams(char *filename);
   // generate random training set
-  int generateRandomTrainingSet();
+  int generateRandomSet();
+  // generate random training pattern
+  int generateRandomPattern(double *rate_L1, double *rate_L2, int ie);
+  
   // copy train set to test set
   int copyTrainToTest();
+  // generate indexes for test patterns
+  int extractTestPatternIndexes();
   // load simulation status  
   int loadStatus();
   // save simulation status  
@@ -171,8 +214,12 @@ public:
   int saveNetwork();
   // load network connections from file
   int loadNetwork();
+  // allocate arrays for network
+  int allocateNetwork();
   // create network
   int createNetwork();
+  // destroy and create non-consolidated connections
+  int rewireConnections();
   // train network with training set
   int train();
   // evaluate output with test set
