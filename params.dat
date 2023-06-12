@@ -4,6 +4,7 @@ connection_rule 1
 # use discrete rates or lognormal distribution (0:false, 1:true)
 lognormal_rate 1
 # multapses can be allowed or forbidden (0:false, 1:true)
+# N.B. it works only with fixed_idegree connection rule
 allow_multapses 1
 # step (in n. of patterns) for connection recombination (0: no recombination)
 change_conn_step 100
