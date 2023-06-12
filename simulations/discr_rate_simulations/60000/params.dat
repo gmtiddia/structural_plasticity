@@ -1,0 +1,51 @@
+#connection rules (0: fixed_indegree, 1: poisson_indegree,
+# 2: fixed_total_number, 3: poisson_total_number
+connection_rule 1
+# use discrete rates or lognormal distribution (0:false, 1:true)
+lognormal_rate 0
+# multapses can be allowed or forbidden (0:false, 1:true)
+allow_multapses 1
+# step (in n. of patterns) for connection recombination (0: no recombination)
+change_conn_step 100
+# number of training patterns
+T 60000
+# number of test patterns
+n_test 1000
+# connections per layer-2-neuron, i.e. indegree
+C 5000
+# probability of high rate for layer 1
+p1 1.0e-3
+# probability of high rate for layer 2
+p2 1.0e-3
+# number of neurons in pop 1
+N1 100000
+# number of neurons in pop 2
+N2 100000  
+# baseline weight
+W0 0.1
+# consolidated weight
+Wc 1.0
+# low rate for layer 1 [Hz]
+rl1 2.0
+# high rate for layer 1 [Hz]
+rh1 50.0
+# low rate for layer 2 [Hz]
+rl2 2.0
+# high rate for layer 2 [Hz]
+rh2 50.0
+# master seed for random number generation
+master_seed 123456
+# load network from file (0:false, 1:true)
+load_network 1
+# perform training
+train_flag 0
+# perform test
+test_flag 1
+#save network to file after training (0:false, 1:true)
+save_network 1
+# test pattern indexes can be ordered sequentially (0) or randomly (1) 
+random_test_order 1
+# number of training patterns between saving network and status
+train_block_size 5000
+# number of test patterns between saving the status
+test_block_size 5000
