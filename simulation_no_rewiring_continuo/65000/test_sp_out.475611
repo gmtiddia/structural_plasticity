@@ -1,0 +1,39 @@
+connection_rule: poisson_indegree
+lognormal_rate: true
+allow_multapses: true
+change_conn_step: 0
+T: 65000
+n_test: 1000
+C: 5000
+p1: 0.001
+p2: 0.001
+N1: 100000
+N2: 100000
+W0: 0.1
+Wc: 1
+rl1: 2
+rh1: 50
+rl2: 2
+rh2: 50
+master_seed: 123456
+load_network: false
+train_flag: false
+test_flag: true
+save_network: false
+random_test_order: true
+train_block_size: 5000
+test_block_size: 5000
+Number of openmp threads: 128
+p: 0.062932567
+sigma2r layer 1 (theoretical): 10.5146
+sigma2k (theoretical): 1720.1025
+S2 (theoretical): 1814.8267
+S2 with connection recombination (theoretical): 1852.3826
+Sb (theoretical):  1603.9865
+sigma2S (theoretical): 9645.0614
+sigma2S with Poisson indegree (theoretical): 10160.5846
+Loading simulation status...
+Done loading simulation status.
+Allocating arrays for network...
+	Done.
+Loading network from file...
