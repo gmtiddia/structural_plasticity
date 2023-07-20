@@ -160,10 +160,10 @@ ax1.plot(R10K, [varSb_exp_1[0], varSb_exp_2[0], varSb_exp_5[0], varSb_exp[0] ], 
 ax1.plot(R50K, [varSb_exp_1[1], varSb_exp_2[1], varSb_exp_5[1], varSb_exp[1]], "o", color="red", label="Sim N=50K")
 ax1.plot(R100K, [varSb_exp_1[2], varSb_exp_2[2], varSb_exp_5[2], varSb_exp[2]], "o", color="black", label="Sim N=100K")
 ax1.plot(R200K, [varSb_exp_1[3], varSb_exp_2[3], varSb_exp_5[3], varSb_exp[3]], "o", color="green", label="Sim N=200K")
-ax1.plot(C_frac_50,varSb_t_50k, "-", color="red", label="Teoria N=50K")
-ax1.plot(C_frac_100,varSb_t_100k, "-", color="black", label="Teoria N=100K")
-ax1.plot(C_frac_200,varSb_t_200k, "-", color="green", label="Teoria N=200K")
-ax1.plot(C_frac_10,varSb_t_10k, "-", color="blue", label="Teoria N=10K")
+ax1.plot(C_frac_10,varSb_t_10k, "-.", color="blue", label="Th N=10K")
+ax1.plot(C_frac_50,varSb_t_50k, "--", color="red", label="Th N=50K")
+ax1.plot(C_frac_100,varSb_t_100k, "-", color="black", label="Th N=100K")
+ax1.plot(C_frac_200,varSb_t_200k, ":", color="green", label="Th N=200K")
 ax1.set_xscale('log')
 ax1.set_xlim(0.001,1.1)
 
@@ -173,15 +173,14 @@ ax1.set_ylabel(r"$\sigma_{b}^2$ [$pA^2$ $\times$ $Hz^2$]", fontsize=tick_fs)
 #ax1.set_ylabel(r"$\frac{S2-S2_{th}}{S2_{th}}$ (%)  ", fontsize=tick_fs)
 ax1.tick_params(labelsize=tick_fs)
 #ax1.grid()
-ax1.legend(title="Variance of \n  background signal \n", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.5)
+ax1.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.5)
 
-
-ax2.plot(R100K,[abs((varSb_exp_1[2]-varSb_t_100k[999])/varSb_t_100k[999]*100),abs( (varSb_exp_2[2]-varSb_t_100k[1999])/varSb_t_100k[1999]*100),abs( (varSb_exp_5[2]-varSb_t_100k[4999])/varSb_t_100k[4999]*100), abs((varSb_exp[2]-varSb_t_100k[9999])/varSb_t_100k[9999]*100)], "--", color="black", label="Errore relativo N=100K")
+ax2.plot(R10K, [abs(varSb_exp_1[0]-varSb_t_10k[999])/varSb_t_10k[999]*100, abs(varSb_exp_2[0]-varSb_t_10k[1999])/varSb_t_10k[1999]*100,abs( varSb_exp_5[0]-varSb_t_10k[4999])/varSb_t_10k[4999]*100, abs(varSb_exp[0]-varSb_t_10k[9999])/varSb_t_10k[9999]*100 ], "-.", color="blue", label="N=10K")
+ax2.plot(R50K, [abs(varSb_exp_1[1]-varSb_t_50k[999])/varSb_t_50k[999]*100, abs(varSb_exp_2[1]-varSb_t_50k[1999])/varSb_t_50k[1999]*100,abs( varSb_exp_5[1]-varSb_t_50k[4999])/varSb_t_50k[4999]*100, abs(varSb_exp[1]-varSb_t_50k[9999])/varSb_t_50k[9999]*100 ], "--", color="red", label="N=50K")
+ax2.plot(R100K,[abs((varSb_exp_1[2]-varSb_t_100k[999])/varSb_t_100k[999]*100),abs( (varSb_exp_2[2]-varSb_t_100k[1999])/varSb_t_100k[1999]*100),abs( (varSb_exp_5[2]-varSb_t_100k[4999])/varSb_t_100k[4999]*100), abs((varSb_exp[2]-varSb_t_100k[9999])/varSb_t_100k[9999]*100)], "-", color="black", label="N=100K")
 #ax2.plot(T200K,[Sb_exp_1[0]-Sb_t_10k[999], Sb_exp_2[0]-Sb_t_10k[1999], Sb_exp_5[0]-Sb_t_10k[4999], Sb_exp[0]-Sb_t_10k[9999], "--", color="green", label="Teoria N=200K")
-ax2.plot(R10K, [abs(varSb_exp_1[0]-varSb_t_10k[999])/varSb_t_10k[999]*100, abs(varSb_exp_2[0]-varSb_t_10k[1999])/varSb_t_10k[1999]*100,abs( varSb_exp_5[0]-varSb_t_10k[4999])/varSb_t_10k[4999]*100, abs(varSb_exp[0]-varSb_t_10k[9999])/varSb_t_10k[9999]*100 ], "--", color="blue", label="Errore relativo N=10K")
 #ax2.plot(C_frac_10,[Sb_exp_1[1]-Sb_t_50k[999], Sb_exp_2[1]-Sb_t_50k[1999], Sb_exp_5[1]-Sb_t_50k[4999], Sb_exp[1]-Sb_t_50k[9999] ], "--", color="blue", label="Teoria N=50K")
-ax2.plot(R50K, [abs(varSb_exp_1[1]-varSb_t_50k[999])/varSb_t_50k[999]*100, abs(varSb_exp_2[1]-varSb_t_50k[1999])/varSb_t_50k[1999]*100,abs( varSb_exp_5[1]-varSb_t_50k[4999])/varSb_t_50k[4999]*100, abs(varSb_exp[1]-varSb_t_50k[9999])/varSb_t_50k[9999]*100 ], "--", color="red", label="Errore relativo N=50K")
-ax2.plot(R200K, [abs(varSb_exp_1[3]-varSb_t_200k[999])/varSb_t_200k[999]*100, abs(varSb_exp_2[3]-varSb_t_200k[1999])/varSb_t_200k[1999]*100,abs( varSb_exp_5[3]-varSb_t_200k[4999])/varSb_t_200k[4999]*100, abs(varSb_exp[3]-varSb_t_200k[9999])/varSb_t_200k[9999]*100 ], "--", color="green", label="Errore relativo N=200K")
+ax2.plot(R200K, [abs(varSb_exp_1[3]-varSb_t_200k[999])/varSb_t_200k[999]*100, abs(varSb_exp_2[3]-varSb_t_200k[1999])/varSb_t_200k[1999]*100,abs( varSb_exp_5[3]-varSb_t_200k[4999])/varSb_t_200k[4999]*100, abs(varSb_exp[3]-varSb_t_200k[9999])/varSb_t_200k[9999]*100 ], ":", color="green", label="N=200K")
 
 
 
@@ -191,7 +190,7 @@ ax2.set_ylabel(r"Relative error $\quad$[%]", fontsize=tick_fs)
 ax2.tick_params(labelsize=tick_fs)
 ax2.set_xscale('log')
 #ax2.grid()
-ax2.legend(title="Relative error on the variance \n of background signal \n", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.5)
+ax2.legend(title=r"Relative error of $\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.5)
 
 
 plt.savefig("cn_plot.png")
