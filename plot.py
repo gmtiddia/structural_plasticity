@@ -265,7 +265,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     legend_fs = 15
     tick_fs = 15
 
-    fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (11,16), tight_layout = True)
+    fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (11,15), tight_layout = True)
     ax1 = axs[0,0] # discrete rate - Sb
     ax2 = axs[0,1] # lognormal rate - Sb
     ax3 = axs[1,0] # discrete rate - varSb
@@ -279,14 +279,14 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax1.fill_between(discr['T'], discr['Sb_av']-discr['Sb_std'], discr['Sb_av']+discr['Sb_std'], color="red", alpha=0.2)
     ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Simulation")
     ax1.plot(discr['T'], th_discr['Sb_th'], "--", color="red", label="Theory")
-    #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
+    #ax1.set_xlabel("T training patterns", fontsize=tick_fs)
     ax1.set_ylabel(r"$S_b$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
     ax1.set_xscale('log')
     ax1.grid()
     #ax1.legend(title=r"$S_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
-    ax2.set_title("Lognormal rate model", fontsize=legend_fs)
+    ax2.set_title("Continuous rate model", fontsize=legend_fs)
     #ax2.fill_between(ln['T'], ln['Sb_av']-ln['Sb_std'], ln['Sb_av']+ln['Sb_std'], color="blue", alpha=0.2)
     ax2.plot(ln['T'], ln['Sb_av'], "-", color="blue", label="Simulation")
     ax2.plot(ln['T'], th_ln['Sb_th'], "--", color="red", label="Theory")
@@ -295,8 +295,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax2.plot(ln_noise['T'], ln_noise['Sb_av'], "-", color="cornflowerblue", label="Simulation - noise")
     ax2.plot(ln_noise['T'], th_ln_noise['Sb_th'], "--", color="orange", label="Theory - noise")
 
-    #ax2.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax2.set_ylabel(r"$S_b$ [pA $\times$ Hz]", fontsize=tick_fs)
+    #ax2.set_xlabel("T training patterns", fontsize=tick_fs)
+    ax2.set_ylabel(r"$S_{b}$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax2.tick_params(labelsize=tick_fs)
     ax2.set_xscale('log')
     ax2.grid()
@@ -307,12 +307,12 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     #ax3.fill_between(discr['T'], discr['varSb_av']-discr['varSb_std'], discr['varSb_av']+discr['varSb_std'], color="blue", alpha=0.2)
     ax3.plot(discr['T'], discr['varSb_av'], "-", color="blue", label="Simulation")
     ax3.plot(discr['T'], th_discr['varSb_th'], "--", color="red", label="Theory")
-    #ax3.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax3.set_ylabel(r"Var($S_b$) $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
+    #ax3.set_xlabel("T training patterns", fontsize=tick_fs)
+    ax3.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
     ax3.set_xscale('log')
     ax3.grid()
-    #ax3.legend(title=r"Var($S_b$)", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
     #ax4.fill_between(ln['T'], ln['varSb_av']-ln['varSb_std'], ln['varSb_av']+ln['varSb_std'], color="blue", alpha=0.2)
@@ -323,18 +323,18 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax4.plot(ln_noise['T'], ln_noise['varSb_av'], "-", color="cornflowerblue", label="Simulation - noise")
     ax4.plot(ln_noise['T'], th_ln_noise['varSb_th'], "--", color="orange", label="Theory - noise")
 
-    #ax4.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax4.set_ylabel(r"Var($S_b$) $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
+    #ax4.set_xlabel("T training patterns", fontsize=tick_fs)
+    ax4.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     ax4.tick_params(labelsize=tick_fs)
     ax4.set_xscale('log')
     ax4.grid()
-    #ax4.legend(title=r"Var($S_b$)", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax4.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
     #ax5.fill_between(discr['T'], discr['S2_av']-discr['S2_std'], discr['S2_av']+discr['S2_std'], color="blue", alpha=0.2)
     ax5.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation")
     ax5.plot(discr['T'], th_discr['S2_th'], "--", color="red", label="Theory")
-    #ax5.set_xlabel("T (training patterns)", fontsize=tick_fs)
+    #ax5.set_xlabel("T training patterns", fontsize=tick_fs)
     ax5.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
     ax5.set_xscale('log')
@@ -350,7 +350,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax6.plot(ln_noise['T'], ln_noise['S2_av'], "-", color="cornflowerblue", label="Simulation - noise")
     ax6.plot(ln_noise['T'], th_ln_noise['S2_th'], "--", color="orange", label="Theory - noise")
 
-    #ax6.set_xlabel("T (training patterns)", fontsize=tick_fs)
+    #ax6.set_xlabel("T training patterns", fontsize=tick_fs)
     ax6.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax6.tick_params(labelsize=tick_fs)
     ax6.set_xscale('log')
@@ -360,7 +360,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
 
     ax7.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Simulation")
     ax7.plot(discr['T'], np.abs(th_discr['S2_th']-th_discr['Sb_th'])/np.sqrt(th_discr['varSb_th']), "--", color="red", label="Theory")
-    ax7.set_xlabel("T (training patterns)", fontsize=tick_fs)
+    ax7.set_xlabel("T training patterns", fontsize=tick_fs)
     ax7.set_ylabel(r"CNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xscale('log')
@@ -374,7 +374,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax8.plot(ln_noise['T'], np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "-", color="cornflowerblue", label="Simulation - noise")
     ax8.plot(ln_noise['T'], np.abs(th_ln_noise['S2_th']-th_ln_noise['Sb_th'])/np.sqrt(th_ln_noise['varSb_th']), "--", color="orange", label="Theory - noise")
 
-    ax8.set_xlabel("T (training patterns)", fontsize=tick_fs)
+    ax8.set_xlabel("T training patterns", fontsize=tick_fs)
     ax8.set_ylabel(r"CNR", fontsize=tick_fs)
     ax8.tick_params(labelsize=tick_fs)
     ax8.set_xscale('log')
@@ -382,9 +382,72 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     #ax8.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
-    plt.savefig("structural_plasticity.png")
+    plt.savefig("discrete_vs_continuous.png")
 
     
+def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
+    """
+    Plot data and saves the plot
+
+    Parameters
+    ----------
+    discr, th_discr: pandas DataFrame
+        DataFrame with simulation and theoretical values of Sb, varSb and S2 for discrete rate model
+    ln, th_ln: pandas DataFrame
+        DataFrame with simulation and theoretical values of Sb, varSb and S2 for lognormal rate model
+    ln_noise, th_ln_noise: pandas DataFrame
+        DataFrame with simulation and theoretical values of Sb, varSb and S2 for lognormal rate model with noise
+
+    """
+
+    # fontsize params
+    legend_fs = 15
+    tick_fs = 15
+
+    fig, axs = plt.subplots(ncols=2, nrows=2, figsize = (16, 9), tight_layout = True)
+    ax1 = axs[0,0] # discrete rate - Sb
+    ax2 = axs[0,1] # lognormal rate - Sb
+    ax3 = axs[1,0] # discrete rate - varSb
+    ax4 = axs[1,1] # lognormal rate - varSb
+
+
+    ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Simulation - discrete")
+    ax1.plot(ln['T'], ln['Sb_av'], "-", color="red", label="Simulation - lognormal")
+    ax1.set_ylabel(r"$S_b$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax1.set_xlabel("T training patterns", fontsize=tick_fs)
+    ax1.tick_params(labelsize=tick_fs)
+    ax1.set_xscale('log')
+    ax1.legend(title=r"$S_b$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+
+    ax2.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation - discrete")
+    ax2.plot(ln['T'], ln['S2_av'], "-", color="red", label="Simulation - lognormal")
+    ax2.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax2.set_xlabel("T training patterns", fontsize=tick_fs)
+    ax2.tick_params(labelsize=tick_fs)
+    ax2.set_xscale('log')
+    ax2.legend(title=r"$S_2$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+
+
+    ax3.plot(discr['T'], discr['varSb_av'], "-", color="blue", label="Simulation - discrete")
+    ax3.plot(ln['T'], ln['varSb_av'], "-", color="red", label="Simulation - lognormal")
+    ax3.set_xlabel("T training patterns", fontsize=tick_fs)
+    ax3.set_ylabel(r"$\sigma^2(S_b) \quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
+    ax3.tick_params(labelsize=tick_fs)
+    ax3.set_xscale('log')
+    ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+
+
+    ax4.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Simulation - discrete")
+    ax4.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), "-", color="red", label="Simulation- lognormal")
+    ax4.set_xlabel("T training patterns", fontsize=tick_fs)
+    ax4.set_ylabel(r"CNR", fontsize=tick_fs)
+    ax4.tick_params(labelsize=tick_fs)
+    ax4.set_xscale('log')
+    ax4.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+
+
+    plt.savefig("structural_plasticity.png")
+
 
 
 
@@ -404,6 +467,14 @@ th_discr = get_th_data("simulations/discr_rate_simulations")
 th_ln = get_th_data("simulations/no_noise_simulations")
 th_ln_noise = get_th_data("simulations/noise_1Hz_simulations")
 
-plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise)
+
+print("Theor")
+print(th_discr)
+
+print("Sim")
+print(discr_rate)
+
+
+plot_data_luca(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise)
 
 plt.show()

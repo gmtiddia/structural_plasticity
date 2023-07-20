@@ -29,6 +29,8 @@ def get_params_dict(path):
     return(dict_params)
 
 
+
+
 def get_th_set(path, T):
     """
     Returns theoretical estimation of Sb, S2 and Var(Sb) given the simulation parameters.
@@ -217,29 +219,36 @@ def get_data(path, seeds):
         S2_av = np.zeros(len(t)); S2_std = np.zeros(len(t))
         Sb_av = np.zeros(len(t)); Sb_std = np.zeros(len(t))
         varSb_av = np.zeros(len(t)); varSb_std = np.zeros(len(t))
+        CNR_av = np.zeros(len(t)); CNR_std = np.zeros(len(t))
 
         # extract values from data
         for step, dir in enumerate(subfolders):
             Sb_dum = []
             S2_dum = []
             varSb_dum = []
+            CNR_dum = []
             for i in range(seeds):
                 mem_out = np.loadtxt(path+"/"+str(t[step])+"/mem_out_000"+str(i)+"_0000.dat")
                 Sb_dum.append(np.average(mem_out[:,1]))
                 S2_dum.append(np.average(mem_out[:,2]))
                 varSb_dum.append(np.average(mem_out[:,3]))
+                CNR_dum.append(np.abs(np.average(mem_out[:,2])-np.average(mem_out[:,1]))/np.sqrt(np.average(mem_out[:,3])))
             S2_av[step]=np.average(S2_dum)
             Sb_av[step]=np.average(Sb_dum)
             varSb_av[step]=np.average(varSb_dum)
+            CNR_av[step]=np.average(CNR_dum)
             Sb_std[step]=np.std(Sb_dum)
             S2_std[step]=np.std(S2_dum)
             varSb_std[step]=np.std(varSb_dum)
+            CNR_std[step]=np.std(CNR_dum)
+            
+
         
         # free some memory
         del mem_out, Sb_dum, S2_dum, varSb_dum
 
         # save values on a DataFrame
-        data = {"t": t, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "S2_av": S2_av, "S2_std": S2_std}
+        data = {"t": t, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "S2_av": S2_av, "S2_std": S2_std, "CNR_av":CNR_av, "CNR_std":CNR_std}
         data = pd.DataFrame(data)
         #print(data)
 
@@ -260,123 +269,72 @@ def plot_data(data, th_data):
     """
 
     # fontsize params
-    legend_fs =15
-    tick_fs = 15
+    legend_fs =16
+    tick_fs = 16
     legend_residui = 8
 
-    #width and height ratios of subplots
-    widths= [1, 1, 1, 1]
-    heights= [3, 1, 3, 1]
-
     #plot discrete
-    fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (16,16), constrained_layout=False, gridspec_kw={'height_ratios': heights})
+    fig, axs = plt.subplots(ncols=2, nrows=2, figsize = (16,9), constrained_layout=False, tight_layout = True)
 
     #subplots of discrete model
-    ax1 = axs[0,0] # discrete rate - Sb
-    ax2 = axs[1,0] # residue - Sb
-    ax3 = axs[2,0] # discrete rate - varSb
-    ax4 = axs[3,0] # residue rate - varSb
-    ax5 = axs[0,1] # discrete rate - S2
-    ax6 = axs[1,1] # residue rate - S2
-    ax7 = axs[2,1] # discrete rate - CNR
-    ax8 = axs[3,1] # residue rate - CNR
+    ax1 = axs[0,0]
+    ax3 = axs[1,0]
+    ax5 = axs[0,1]
+    ax7 = axs[1,1]
 
-    #parameters of grid
-    y_begin=0.1
-    x_begin=0.08
-    height_res=0.1
-    height_dat=0.25
-    space_s=0.01
-    space_l=0.065
-    central_space=0.09
-    h_space=0.2
-    width_g=0.4
-
-
-    ############grid plot##################
-    
-    ax1.set_position([x_begin, y_begin+height_res+space_s+height_dat+space_l+height_res+space_s, width_g, height_dat])
-    ax2.set_position([x_begin, y_begin+height_res+space_s+height_dat+space_l, width_g, height_res])
-    ax3.set_position([x_begin, y_begin+height_res+space_s, width_g, height_dat])
-    ax4.set_position([x_begin, y_begin, width_g, height_res])
-    ax5.set_position([x_begin+width_g+central_space, y_begin+height_res+space_s+height_dat+space_l+height_res+space_s, width_g, height_dat])
-    ax6.set_position([x_begin+width_g+central_space, y_begin+height_res+space_s+height_dat+space_l, width_g, height_res])
-    ax7.set_position([x_begin+width_g+central_space, y_begin+height_res+space_s, width_g, height_dat])
-    ax8.set_position([x_begin+width_g+central_space, y_begin, width_g, height_res])
-
-
-    plt.figure(1)
-    ax1.fill_between(data['t'], data['Sb_av']-data['Sb_std'], data['Sb_av']+data['Sb_std'], color="red", alpha=0.2)
-    ax1.plot(data['t'], data['Sb_av'], "-", color="blue", label="Simulation")
-    ax1.plot(data['t'], th_data['Sb_th'], "--", color="red", label="Theory")
+    ax1.fill_between(data['t'][1:], data['Sb_av'][1:]-data['Sb_std'][1:], data['Sb_av'][1:]+data['Sb_std'][1:], color="blue", alpha=0.2)
+    ax1.plot(data['t'][1:], data['Sb_av'][1:], "-", color="blue", label="With recombination")
+    ax1.plot(data['t'][0], data['Sb_av'][0], "o", color="red", label="Without recombination")
+    #ax1.plot(data['t'], th_data['Sb_th'], "--", color="red", label="Theory")
     ax1.legend(title=r"$S_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax1.set_ylabel(r"$S_b$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax1.set_xlabel(r"Recombination step t", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
-    ax1.set_xticklabels([])
+    ax1.set_ylim(1069.4, 1070.5)
+    ax1.ticklabel_format(style='plain', useOffset=False, axis='y') 
+    #ax1.set_xticklabels([])
     ax1.grid()
     
-
-    ax2.plot(data['t'], abs(data['Sb_av']-th_data['Sb_th'])/th_data['Sb_th']*100, "-", color="green", label="Simulation")
-    ax2.set_ylabel(r"$\dfrac{S_b - S_{b}^{th}}{S_{b}^{th}}$ ", fontsize=tick_fs)
-    ax2.set_xlabel('Recombination step t', fontsize=tick_fs)
-    ax2.tick_params(labelsize=tick_fs)
-    ax2.grid()
-
-   
-    ax3.plot(data['t'], data['varSb_av'], "-", color="blue", label="Simulation")
-    ax3.plot(data['t'], th_data['varSb_th'], "--", color="red", label="Theory")
-    ax3.legend(title=r"Var($S_b$)", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
-    ax3.set_ylabel(r"Var($S_b$) $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
+    ax3.fill_between(data['t'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
+    ax3.plot(data['t'][1:], data['varSb_av'][1:], "-", color="blue", label="With recombination")
+    ax3.plot(data['t'][0], data['varSb_av'][0], "o", color="red", label="Without recombination")
+    #ax3.plot(data['t'], th_data['varSb_th'], "--", color="red", label="Theory")
+    ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    ax3.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
+    ax3.set_xlabel(r"Recombination step t", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
     ax3.grid()
-    ax3.set_xticklabels([])
-
-    ax3.legend(title=r"Var($S_b$)", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
-
-
-    ax4.plot(data['t'], abs(data['varSb_av']-th_data['varSb_th'])/th_data['varSb_th']*100, "-", color="green", label="Simulation")
-    ax4.set_ylabel(r"$\dfrac{Var(S_b) - Var(S_{b}^{th})}{Var(S_{b}^{th})}$ ", fontsize=tick_fs)
-    ax4.set_xlabel('Recombination step t', fontsize=tick_fs)
-    ax4.tick_params(labelsize=tick_fs)
-    ax4.grid()
+    #ax3.set_xticklabels([])
+    ax3.legend(title=r"$\sigma^2_{b}$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
-    ax5.plot(data['t'], data['S2_av'], "-", color="blue", label="Simulation")
-    ax5.plot(data['t'], th_data['S2_th'], "--", color="red", label="Theory")
+    ax5.fill_between(data['t'][1:], data['S2_av'][1:]-data['S2_std'][1:], data['S2_av'][1:]+data['S2_std'][1:], color="blue", alpha=0.2)
+    ax5.plot(data['t'][1:], data['S2_av'][1:], "-", color="blue", label="With recombination")
+    ax5.plot(data['t'][0], data['S2_av'][0], "o", color="red", label="Without recombination")
+    #ax5.plot(data['t'], th_data['S2_th'], "--", color="red", label="Theory")
     ax5.legend(title=r"$S_2$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax5.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax5.set_xlabel(r"Recombination step t", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
     ax5.grid()
     ax5.legend(title=r"$S_2$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
-    ax5.set_xticklabels([])
+    #ax5.set_xticklabels([])
 
-
-    ax6.plot(data['t'], abs(data['S2_av']-th_data['S2_th'])/th_data['S2_th']*100, "-", color="green", label="Simulation")
-    ax6.set_ylabel(r"$\dfrac{S_2 - S_{2}^{th}}{S_{2}^{th}}$ ", fontsize=tick_fs)
-    ax6.set_xlabel('Recombination step t', fontsize=tick_fs)
-    ax6.tick_params(labelsize=tick_fs)
-    ax6.grid()
     
-    
-    ax7.plot(data['t'], np.abs(data['S2_av']-data['Sb_av'])/np.sqrt(data['varSb_av']), "-", color="blue", label="Simulation")
-    ax7.plot(data['t'], np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", color="red", label="Theory")
+    ax7.plot(data['t'][1:], np.abs(data['S2_av'][1:]-data['Sb_av'][1:])/np.sqrt(data['varSb_av'][1:]), "-", color="blue", label="With recombination")
+    ax7.plot(data['t'][0], np.abs(data['S2_av'][0]-data['Sb_av'][0])/np.sqrt(data['varSb_av'][0]), "o", color="red", label="Without recombination")
+    #ax7.plot(data['t'], np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", color="red", label="Theory")
     ax7.set_ylabel(r"CNR", fontsize=tick_fs)
+    ax7.set_xlabel(r"Recombination step t", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.grid()
     #ax7.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax7.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
-    ax7.set_xticklabels([])
+    #ax7.set_xticklabels([])
 
-
-    ax8.plot(data['t'], abs(np.abs(data['S2_av']-data['Sb_av'])/np.sqrt(data['varSb_av'])- np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']))/ (np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']))*100, "-", color="green", label="Simulation")
-    ax8.set_ylabel(r"$\dfrac{CNR - CNR_{th}}{CNR_{th}}$ ", fontsize=tick_fs)
-    ax8.set_xlabel('Recombination step t', fontsize=tick_fs)
-    ax8.tick_params(labelsize=tick_fs)
-    ax8.grid()
-    
    
     #fig1.subplots_adjust(wspace=0.6)
-    fig.suptitle(r'Different recombination step, $T=5000$', fontsize=25)
+    #fig.suptitle(r'Different recombination step, $T=5000$', fontsize=25)
 
     plt.savefig("t_study.png")
 
