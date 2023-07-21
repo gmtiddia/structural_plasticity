@@ -280,11 +280,11 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Simulation")
     ax1.plot(discr['T'], th_discr['Sb_th'], "--", color="red", label="Theory")
     #ax1.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax1.set_ylabel(r"$S_b$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
     ax1.set_xscale('log')
     ax1.grid()
-    #ax1.legend(title=r"$S_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax1.legend(title=r"$\langle S_b \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
     ax2.set_title("Continuous rate model", fontsize=legend_fs)
     #ax2.fill_between(ln['T'], ln['Sb_av']-ln['Sb_std'], ln['Sb_av']+ln['Sb_std'], color="blue", alpha=0.2)
@@ -296,11 +296,11 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax2.plot(ln_noise['T'], th_ln_noise['Sb_th'], "--", color="orange", label="Theory - noise")
 
     #ax2.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax2.set_ylabel(r"$S_{b}$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax2.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax2.tick_params(labelsize=tick_fs)
     ax2.set_xscale('log')
     ax2.grid()
-    #ax2.legend(title=r"$S_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax2.legend(title=r"$\langle S_b \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax2.legend(fontsize=legend_fs, framealpha=1.0)
 
 
@@ -335,11 +335,11 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax5.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation")
     ax5.plot(discr['T'], th_discr['S2_th'], "--", color="red", label="Theory")
     #ax5.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax5.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax5.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
     ax5.set_xscale('log')
     ax5.grid()
-    #ax5.legend(title=r"$S_2$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax5.legend(title=r"$\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
     #ax6.fill_between(ln['T'], ln['S2_av']-ln['S2_std'], ln['S2_av']+ln['S2_std'], color="blue", alpha=0.2)
@@ -351,11 +351,11 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax6.plot(ln_noise['T'], th_ln_noise['S2_th'], "--", color="orange", label="Theory - noise")
 
     #ax6.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax6.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax6.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax6.tick_params(labelsize=tick_fs)
     ax6.set_xscale('log')
     ax6.grid()
-    #ax6.legend(title=r" $S_2$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax6.legend(title=r" $\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
     ax7.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Simulation")
@@ -413,25 +413,25 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
 
     ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Simulation - discrete")
     ax1.plot(ln['T'], ln['Sb_av'], "-", color="red", label="Simulation - lognormal")
-    ax1.set_ylabel(r"$S_b$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.set_xlabel("T training patterns", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
     ax1.set_xscale('log')
-    ax1.legend(title=r"$S_b$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+    ax1.legend(title=r"$\langle S_b \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
 
     ax2.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation - discrete")
     ax2.plot(ln['T'], ln['S2_av'], "-", color="red", label="Simulation - lognormal")
-    ax2.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax2.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax2.set_xlabel("T training patterns", fontsize=tick_fs)
     ax2.tick_params(labelsize=tick_fs)
     ax2.set_xscale('log')
-    ax2.legend(title=r"$S_2$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+    ax2.legend(title=r"$\langle S_2 \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
 
 
     ax3.plot(discr['T'], discr['varSb_av'], "-", color="blue", label="Simulation - discrete")
     ax3.plot(ln['T'], ln['varSb_av'], "-", color="red", label="Simulation - lognormal")
     ax3.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax3.set_ylabel(r"$\sigma^2(S_b) \quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
+    ax3.set_ylabel(r"$\sigma^2_b \quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
     ax3.set_xscale('log')
     ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
@@ -475,6 +475,6 @@ print("Sim")
 print(discr_rate)
 
 
-plot_data_luca(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise)
+plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise)
 
 plt.show()
