@@ -262,19 +262,18 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     """
 
     # fontsize params
-    legend_fs =17
-    tick_fs = 17
-    legend_residui = 11
+    legend_fs =20
+    tick_fs = 25
 
     #width and height ratios of subplots
     widths= [1, 1, 1, 1]
     heights= [3, 1, 3, 1]
 
     #plot discrete
-    fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (16,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
+    fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (20,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
 
     #plot lognormal model
-    fig1, axs1 = plt.subplots(ncols=2, nrows=4, figsize = (16,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
+    fig1, axs1 = plt.subplots(ncols=2, nrows=4, figsize = (20,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
 
     #subplots of discrete model
     ax1 = axs[0,0] # discrete rate - Sb
@@ -300,14 +299,14 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
 
     #parameters of grid
     y_begin=0.1
-    x_begin=0.08
-    height_res=0.1
-    height_dat=0.25
+    x_begin=0.12
+    height_res=0.125
+    height_dat=0.275
     space_s=0.01
     space_l=0.065
-    central_space=0.09
+    central_space=0.1
     h_space=0.2
-    width_g=0.4
+    width_g=0.35
 
 
     ############grid plot discrete model##################
@@ -345,7 +344,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Simulation")
     ax1.plot(discr['T'], th_discr['Sb_th'], "--", color="red", label="Theory")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax1.legend(title=r"$\langle S_b \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax1.legend(title=r"$\langle S_b \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax1.legend(fontsize=legend_fs, framealpha=0.75)
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
     ax1.set_xscale('log')
@@ -370,7 +370,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     #ax3.fill_between(discr['T'], discr['varSb_av']-discr['varSb_std'], discr['varSb_av']+discr['varSb_std'], color="blue", alpha=0.2)
     ax3.plot(discr['T'], discr['varSb_av'], "-", color="blue", label="Simulation")
     ax3.plot(discr['T'], th_discr['varSb_th'], "--", color="red", label="Theory")
-    ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax3.legend(fontsize=legend_fs, framealpha=0.75)
     #ax3.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax3.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
@@ -379,7 +380,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax3.set_xticklabels([])
     #ax3.legend(fontsize=legend_fs, framealpha=0.75)
 
-    ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax3.legend(fontsize=legend_fs, framealpha=0.75)
 
 
     ax4.plot(discr['T'], abs(discr['varSb_av']-th_discr['varSb_th'])/th_discr['varSb_th']*100, "-", color="green", label="Simulation")
@@ -398,7 +400,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     #ax5.fill_between(discr['T'], discr['S2_av']-discr['S2_std'], discr['S2_av']+discr['S2_std'], color="blue", alpha=0.2)
     ax5.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation")
     ax5.plot(discr['T'], th_discr['S2_th'], "--", color="red", label="Theory")
-    ax5.legend(title=r"$\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax5.legend(title=r"$\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax5.legend(fontsize=legend_fs, framealpha=0.75)
     #ax5.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax5.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
@@ -428,7 +431,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax7.set_xscale('log')
     #ax7.grid()
     #ax7.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
-    ax7.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax7.legend(fontsize=legend_fs, framealpha=0.75)
     ax7.set_xticklabels([])
 
 
@@ -472,8 +475,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax9.set_xscale('log')
     ax9.set_xticklabels([])
     #ax9.grid()
-    ax9.legend(title=r"$\langle S_b \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
-    #ax9.legend(fontsize=legend_fs, framealpha=0.75)
+    #ax9.legend(title=r"$\langle S_b \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax9.legend(fontsize=legend_fs, framealpha=0.75)
     
 
 
@@ -487,7 +490,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax10.set_xlabel('T training patterns', fontsize=tick_fs)
     ax10.tick_params(labelsize=tick_fs)
     ax10.set_xscale('log')
-    ax10.set_xticklabels([])
+    #ax10.set_xticklabels([])
     #ax10.grid()
     ax10.legend(fontsize=legend_fs, framealpha=0.75)
 
@@ -511,9 +514,9 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax11.set_xscale('log')
     ax11.set_xticklabels([])
     #ax11.grid()
-    ax11.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax11.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
 
-   # ax11.legend(fontsize=legend_fs, framealpha=0.75)
+    ax11.legend(fontsize=legend_fs, framealpha=0.75)
 
     
     ax12.plot(discr['T'], abs(ln['varSb_av']-th_ln['varSb_th'])/th_ln['varSb_th']*100, "-", color="blue", label="w/out noise")
@@ -545,7 +548,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax13.set_xscale('log')
     ax13.set_xticklabels([])
     #ax13.grid()
-    ax13.legend(title=r" $\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax13.legend(title=r" $\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax13.legend(fontsize=legend_fs, framealpha=0.75)
 
    # plt.subplots_adjust(hspace=0.1)
     
@@ -556,7 +560,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax14.set_xlabel('T training patterns', fontsize=tick_fs)
     ax14.tick_params(labelsize=tick_fs)
     ax14.set_xscale('log')
-    ax14.set_xticklabels([])
+    #ax14.set_xticklabels([])
     #ax14.grid()
     ax14.legend(fontsize=legend_fs, framealpha=0.75)
 
@@ -582,8 +586,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax15.set_xscale('log')
     ax15.set_xticklabels([])
     #ax15.grid()
-    ax15.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
-   
+    #ax15.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    ax15.legend(fontsize=legend_fs, framealpha=0.75)
 
     ax16.plot(discr['T'], abs(np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av'])-np.abs(th_ln['S2_th']-th_ln['Sb_th'])/np.sqrt(th_ln['varSb_th']))/(np.abs(th_ln['S2_th']-th_ln['Sb_th'])/np.sqrt(th_ln['varSb_th']))*100, "-", color="blue", label="w/out noise")
     ax16.plot(discr['T'], abs(np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av'])-np.abs(th_ln_noise['S2_th']-th_ln_noise['Sb_th'])/np.sqrt(th_ln_noise['varSb_th']))/(np.abs(th_ln_noise['S2_th']-th_ln_noise['Sb_th'])/np.sqrt(th_ln_noise['varSb_th']))*100, "--", color="red", label="w/ noise")
@@ -601,7 +605,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
 
    
     #fig1.subplots_adjust(wspace=0.6)
-    fig1.subplots_adjust(bottom=0.1, top=0.97, right=0.975, left=0.1)
+    #fig1.subplots_adjust(bottom=0.1, top=0.97, right=0.975, left=0.1)
     #fig1.suptitle('Lognormal Model', fontsize=25)
     fig1.savefig('lognormal.png')
     #fig1.show()

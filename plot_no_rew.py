@@ -264,13 +264,13 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     """
 
     # fontsize params
-    legend_fs = 18
-    tick_fs = 18
+    legend_fs = 20
+    tick_fs = 25
 
     widths= [1, 1, 1, 1]
     heights= [3, 1, 3, 1]
 
-    fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (16,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
+    fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (20,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
 
   
     #subplots of discrete model
@@ -285,14 +285,14 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
     #parameters of grid
     y_begin=0.1
-    x_begin=0.08
-    height_res=0.1
-    height_dat=0.25
+    x_begin=0.12
+    height_res=0.125
+    height_dat=0.275
     space_s=0.01
     space_l=0.065
-    central_space=0.09
+    central_space=0.1
     h_space=0.2
-    width_g=0.4
+    width_g=0.35
 
 
     ############grid plot discrete model##################
@@ -311,12 +311,12 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     plt.figure(1)
     #ax1.set_title("Discrete rate model", fontsize=legend_fs)
     #ax1.fill_between(discr['T'], discr['Sb_av']-discr['Sb_std'], discr['Sb_av']+discr['Sb_std'], color="red", alpha=0.2)
-    ax1.plot(ln_noise['T'], ln_noise['Sb_av'], "-", color="blue", label="Recombination enabled")
-    ax1.plot(norew_noise['T'], norew_noise['Sb_av'], "--", color="red", label="Recombination disabled")
+    ax1.plot(ln_noise['T'], ln_noise['Sb_av'], "-", color="blue", label="w/ recombination")
+    ax1.plot(norew_noise['T'], norew_noise['Sb_av'], "--", color="red", label="w/out recombination")
     ax1.set_xlim(5000,100000)
-    ax1.legend(title=r"$S_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    ax1.legend(fontsize=legend_fs, framealpha=1.0)
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax1.set_ylabel(r"$S_b$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax1.set_ylabel(r"$ \langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
     ax1.set_xscale('log')
     #ax1.grid()
@@ -339,8 +339,8 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     
     ax2.plot(norew_noise['T'], abs((np.array(ln_noise['Sb_av'][2:22])-np.array(norew_noise['Sb_av']))/np.array(ln_noise['Sb_av'][2:22])*100), "-", color="green")
     #ax2.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax2.set_ylabel(r"$\dfrac{S_b - S_{b}^{nr}}{S_{b}} \quad $[%] ", fontsize=tick_fs)
-    #ax2.set_xlabel('T training patterns', fontsize=tick_fs)
+    ax2.set_ylabel(r"$\dfrac{\langle S_b \rangle - \langle S_{b} \rangle ^{nr}}{\langle S_{b}\rangle} \quad $[%] ", fontsize=tick_fs)
+    ax2.set_xlabel('T training patterns', fontsize=tick_fs)
     ax2.tick_params(labelsize=tick_fs)
     ax2.set_xscale('log')
     # ax2.grid()
@@ -349,9 +349,9 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
     #ax4.fill_between(ln['T'], ln['varSb_av']-ln['varSb_std'], ln['varSb_av']+ln['varSb_std'], color="blue", alpha=0.2)
     
-    ax3.plot(ln_noise['T'], ln_noise['varSb_av'], "-", color="blue", label="Recombination enabled")
-    ax3.plot(norew_noise['T'], norew_noise['varSb_av'],"--", color="red", label="Recombination disabled")
-    ax3.legend(title=r"$\sigma^2_{b}$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    ax3.plot(ln_noise['T'], ln_noise['varSb_av'], "-", color="blue", label="w/ recombination")
+    ax3.plot(norew_noise['T'], norew_noise['varSb_av'],"--", color="red", label="w/out recombination")
+    ax3.legend(fontsize=legend_fs, framealpha=1.0)
     ax3.set_ylabel(r"$\sigma^2_{b}$ [$pA^2 \times Hz^2$]", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
     ax3.set_xscale('log')
@@ -369,35 +369,35 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax4.tick_params(labelsize=tick_fs)
     ax4.set_xscale('log')
     
-    ax5.plot(ln_noise['T'], ln_noise['S2_av'], "-", color="blue", label="Recombination enabled")
-    ax5.plot(norew_noise['T'], norew_noise['S2_av'], "--", color="red", label="Recombination disabled")
+    ax5.plot(ln_noise['T'], ln_noise['S2_av'], "-", color="blue", label="w/ recombination")
+    ax5.plot(norew_noise['T'], norew_noise['S2_av'], "--", color="red", label="w/out recombination")
     #ax5.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax5.set_ylabel(r"$S_2$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax5.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
     ax5.set_xscale('log')
     #ax5.grid()
     ax5.set_xlim(5000,100000)
-    ax5.legend(title=r"$S_2$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    ax5.legend(fontsize=legend_fs, framealpha=1.0)
     #ax5.legend(title=r"$S_2$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax5.set_xticklabels([])
 
     ax6.plot(norew_noise['T'], abs((np.array(ln_noise['S2_av'][2:22])-np.array(norew_noise['S2_av']))/np.array(ln_noise['S2_av'][2:22])*100), "-", color="green")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax6.set_ylabel(r"$\dfrac{S_2 - S_{2}^{nr}}{S_{2}}\quad$[%] ", fontsize=tick_fs)
-    #ax6.set_xlabel('T training patterns', fontsize=tick_fs)
+    ax6.set_ylabel(r"$\dfrac{\langle S_2 \rangle - \langle S_{2}\rangle ^{nr}}{\langle S_{2} \rangle}\quad$[%] ", fontsize=tick_fs)
+    ax6.set_xlabel('T training patterns', fontsize=tick_fs)
     ax6.tick_params(labelsize=tick_fs)
     ax6.set_xscale('log')
 
     CNR_rew=np.array(np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']))
     CNR_norew=np.array(np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']))
-    ax7.plot(ln_noise['T'], np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "-", color="blue", label="Recombination enabled")
-    ax7.plot(norew_noise['T'], np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "--", color="red", label="Recombination disabled")
+    ax7.plot(ln_noise['T'], np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "-", color="blue", label="w/ recombination")
+    ax7.plot(norew_noise['T'], np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "--", color="red", label="w/out recombination")
 
    # ax7.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax7.set_ylabel(r"CNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xscale('log')
-    ax7.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    ax7.legend(fontsize=legend_fs, framealpha=1.0)
    # ax7.grid()
     ax7.set_xlim(5000,100000)
     ax7.set_xticklabels([])
@@ -410,7 +410,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax8.tick_params(labelsize=tick_fs)
     ax8.set_xscale('log')
 
-    fig.subplots_adjust(bottom=0.1, top=0.97, right=0.975, left=0.12, wspace = 0.25)
+    #fig.subplots_adjust(bottom=0.1, top=0.97, right=0.975, left=0.12, wspace = 0.25)
 
     plt.savefig("no_rewiring.png")
 

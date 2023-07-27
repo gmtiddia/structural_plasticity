@@ -401,52 +401,57 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     """
 
     # fontsize params
-    legend_fs = 15
-    tick_fs = 15
+    legend_fs = 21
+    tick_fs = 25
 
-    fig, axs = plt.subplots(ncols=2, nrows=2, figsize = (16, 9), tight_layout = True)
+    fig, axs = plt.subplots(ncols=2, nrows=2, figsize = (20, 9), tight_layout = True)
     ax1 = axs[0,0] # discrete rate - Sb
     ax2 = axs[0,1] # lognormal rate - Sb
     ax3 = axs[1,0] # discrete rate - varSb
     ax4 = axs[1,1] # lognormal rate - varSb
 
 
-    ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Simulation - discrete")
-    ax1.plot(ln['T'], ln['Sb_av'], "-", color="red", label="Simulation - lognormal")
+    ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Discrete rate")
+    ax1.plot(ln['T'], ln['Sb_av'], "--", color="red", label="Continuous rate")
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.set_xlabel("T training patterns", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
     ax1.set_xscale('log')
-    ax1.legend(title=r"$\langle S_b \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+    #ax1.legend(title=r"$\langle S_b \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+    ax1.legend(fontsize=legend_fs, framealpha=1.0)
 
-    ax2.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation - discrete")
-    ax2.plot(ln['T'], ln['S2_av'], "-", color="red", label="Simulation - lognormal")
+    ax2.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Discrete rate")
+    ax2.plot(ln['T'], ln['S2_av'], "--", color="red", label="Continuous rate")
     ax2.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax2.set_xlabel("T training patterns", fontsize=tick_fs)
     ax2.tick_params(labelsize=tick_fs)
     ax2.set_xscale('log')
-    ax2.legend(title=r"$\langle S_2 \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+    #ax2.legend(title=r"$\langle S_2 \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
+    ax2.legend(fontsize=legend_fs, framealpha=1.0)
 
 
-    ax3.plot(discr['T'], discr['varSb_av'], "-", color="blue", label="Simulation - discrete")
-    ax3.plot(ln['T'], ln['varSb_av'], "-", color="red", label="Simulation - lognormal")
+    ax3.plot(discr['T'], discr['varSb_av'], "-", color="blue", label="Discrete rate")
+    ax3.plot(ln['T'], ln['varSb_av'], "--", color="red", label="Continuous rate")
     ax3.set_xlabel("T training patterns", fontsize=tick_fs)
     ax3.set_ylabel(r"$\sigma^2_b \quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
     ax3.set_xscale('log')
-    ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    ax3.legend(fontsize=legend_fs, framealpha=1.0)
 
 
-    ax4.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Simulation - discrete")
-    ax4.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), "-", color="red", label="Simulation- lognormal")
+    ax4.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Discrete rate")
+    ax4.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), "--", color="red", label="Continuous rate")
     ax4.set_xlabel("T training patterns", fontsize=tick_fs)
     ax4.set_ylabel(r"CNR", fontsize=tick_fs)
     ax4.tick_params(labelsize=tick_fs)
     ax4.set_xscale('log')
-    ax4.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax4.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    ax4.legend(fontsize=legend_fs, framealpha=1.0)
 
 
-    plt.savefig("structural_plasticity.png")
+
+    plt.savefig("discrete_vs_continuous.png")
 
 
 
@@ -475,6 +480,6 @@ print("Sim")
 print(discr_rate)
 
 
-plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise)
+plot_data_luca(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise)
 
 plt.show()
