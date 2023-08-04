@@ -282,12 +282,12 @@ def plot_data(data, th_data):
     ax7 = axs[1,1]
 
     ax1.fill_between(data['t'][1:], data['Sb_av'][1:]-data['Sb_std'][1:], data['Sb_av'][1:]+data['Sb_std'][1:], color="blue", alpha=0.2)
-    ax1.plot(data['t'][1:], data['Sb_av'][1:], "-", color="blue", label="w/ recombination")
-    ax1.plot(data['t'][0], data['Sb_av'][0], "o", markersize=10, color="red", label="w/out recombination")
+    ax1.plot(data['t'][1:], data['Sb_av'][1:], "-", color="blue", label="w/ rewiring")
+    ax1.plot(data['t'][0], data['Sb_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
     #ax1.plot(data['t'], th_data['Sb_th'], "--", color="red", label="Theory")
     ax1.legend(fontsize=legend_fs, framealpha=1.0)
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
-    ax1.set_xlabel(r"Recombination step t", fontsize=tick_fs)
+    ax1.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
     ax1.set_ylim(1069.4, 1070.5)
     ax1.ticklabel_format(style='plain', useOffset=False, axis='y') 
@@ -295,12 +295,12 @@ def plot_data(data, th_data):
     ax1.grid()
     
     ax3.fill_between(data['t'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
-    ax3.plot(data['t'][1:], data['varSb_av'][1:], "-", color="blue", label="w/ recombination")
-    ax3.plot(data['t'][0], data['varSb_av'][0], "o", markersize=10, color="red", label="w/out recombination")
+    ax3.plot(data['t'][1:], data['varSb_av'][1:], "-", color="blue", label="w/ rewiring")
+    ax3.plot(data['t'][0], data['varSb_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
     #ax3.plot(data['t'], th_data['varSb_th'], "--", color="red", label="Theory")
     ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax3.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
-    ax3.set_xlabel(r"Recombination step t", fontsize=tick_fs)
+    ax3.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
     ax3.grid()
     #ax3.set_xticklabels([])
@@ -308,12 +308,12 @@ def plot_data(data, th_data):
 
 
     ax5.fill_between(data['t'][1:], data['S2_av'][1:]-data['S2_std'][1:], data['S2_av'][1:]+data['S2_std'][1:], color="blue", alpha=0.2)
-    ax5.plot(data['t'][1:], data['S2_av'][1:], "-", color="blue", label="w/ recombination")
-    ax5.plot(data['t'][0], data['S2_av'][0], "o", markersize=10, color="red", label="w/out recombination")
+    ax5.plot(data['t'][1:], data['S2_av'][1:], "-", color="blue", label="w/ rewiring")
+    ax5.plot(data['t'][0], data['S2_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
     #ax5.plot(data['t'], th_data['S2_th'], "--", color="red", label="Theory")
     ax5.legend(title=r"$\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax5.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
-    ax5.set_xlabel(r"Recombination step t", fontsize=tick_fs)
+    ax5.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
     ax5.grid()
     ax5.legend(fontsize=legend_fs, framealpha=1.0)
@@ -321,20 +321,20 @@ def plot_data(data, th_data):
 
 
     ax7.fill_between(data['t'][1:], data['CNR_av'][1:]-data['CNR_std'][1:], data['CNR_av'][1:]+data['CNR_std'][1:], color="blue", alpha=0.2)
-    ax7.plot(data['t'][1:], data['CNR_av'][1:], "-", color="blue", label="w/ recombination")
-    ax7.plot(data['t'][0], data['CNR_av'][0], "o", markersize=10, color="red", label="w/out recombination")
+    ax7.plot(data['t'][1:], data['CNR_av'][1:], "-", color="blue", label="w/ rewiring")
+    ax7.plot(data['t'][0], data['CNR_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
     #ax7.plot(data['t'], np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", color="red", label="Theory")
-    ax7.set_ylabel(r"CNR", fontsize=tick_fs)
-    ax7.set_xlabel(r"Recombination step t", fontsize=tick_fs)
+    ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
+    ax7.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.grid()
-    #ax7.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax7.legend(title=r"SDNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax7.legend(fontsize=legend_fs, framealpha=1.0)
     #ax7.set_xticklabels([])
 
    
     #fig1.subplots_adjust(wspace=0.6)
-    #fig.suptitle(r'Different recombination step, $T=5000$', fontsize=25)
+    #fig.suptitle(r'Different rewiring step, $T=5000$', fontsize=25)
 
     plt.savefig("t_study.png")
 
