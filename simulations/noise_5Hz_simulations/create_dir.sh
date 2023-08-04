@@ -1,5 +1,6 @@
 for i in {1..20}; do
     j=$(($i*5000))
+    rm -rf $j
     cp -r template $j
     cd $j
     sed "s/__PATTERNS__/$j/" params.templ > params.dat

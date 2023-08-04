@@ -495,7 +495,7 @@ int simulation::test()
 	for(;;) {
 	  dev = rnd_noise(rnd_gen_test);
 	  r1n = r1 + dev;
-	  if (fabs(dev) > max_noise_dev) {
+	  if (fabs(dev) > rate_noise*max_noise_dev) {
 	    continue;
 	  }
 	  if (r1n < 0.0) {
