@@ -361,11 +361,11 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax7.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Simulation")
     ax7.plot(discr['T'], np.abs(th_discr['S2_th']-th_discr['Sb_th'])/np.sqrt(th_discr['varSb_th']), "--", color="red", label="Theory")
     ax7.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax7.set_ylabel(r"CNR", fontsize=tick_fs)
+    ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xscale('log')
     ax7.grid()
-    #ax5.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax5.legend(title=r"SDNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
     ax8.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), "-", color="blue", label="Simulation")
@@ -375,11 +375,11 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax8.plot(ln_noise['T'], np.abs(th_ln_noise['S2_th']-th_ln_noise['Sb_th'])/np.sqrt(th_ln_noise['varSb_th']), "--", color="orange", label="Theory - noise")
 
     ax8.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax8.set_ylabel(r"CNR", fontsize=tick_fs)
+    ax8.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax8.tick_params(labelsize=tick_fs)
     ax8.set_xscale('log')
     ax8.grid()
-    #ax8.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax8.legend(title=r"SDNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
 
     plt.savefig("discrete_vs_continuous.png")
@@ -443,10 +443,10 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax4.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Discrete rate")
     ax4.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), "--", color="red", label="Continuous rate")
     ax4.set_xlabel("T training patterns", fontsize=tick_fs)
-    ax4.set_ylabel(r"CNR", fontsize=tick_fs)
+    ax4.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax4.tick_params(labelsize=tick_fs)
     ax4.set_xscale('log')
-    #ax4.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
+    #ax4.legend(title=r"SDNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax4.legend(fontsize=legend_fs, framealpha=1.0)
 
 

@@ -311,8 +311,8 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     plt.figure(1)
     #ax1.set_title("Discrete rate model", fontsize=legend_fs)
     #ax1.fill_between(discr['T'], discr['Sb_av']-discr['Sb_std'], discr['Sb_av']+discr['Sb_std'], color="red", alpha=0.2)
-    ax1.plot(ln_noise['T'], ln_noise['Sb_av'], "-", color="blue", label="w/ recombination")
-    ax1.plot(norew_noise['T'], norew_noise['Sb_av'], "--", color="red", label="w/out recombination")
+    ax1.plot(ln_noise['T'], ln_noise['Sb_av'], "-", color="blue", label="w/ rewiring")
+    ax1.plot(norew_noise['T'], norew_noise['Sb_av'], "--", color="red", label="w/out rewiring")
     ax1.set_xlim(5000,100000)
     ax1.legend(fontsize=legend_fs, framealpha=1.0)
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
@@ -349,8 +349,8 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
     #ax4.fill_between(ln['T'], ln['varSb_av']-ln['varSb_std'], ln['varSb_av']+ln['varSb_std'], color="blue", alpha=0.2)
     
-    ax3.plot(ln_noise['T'], ln_noise['varSb_av'], "-", color="blue", label="w/ recombination")
-    ax3.plot(norew_noise['T'], norew_noise['varSb_av'],"--", color="red", label="w/out recombination")
+    ax3.plot(ln_noise['T'], ln_noise['varSb_av'], "-", color="blue", label="w/ rewiring")
+    ax3.plot(norew_noise['T'], norew_noise['varSb_av'],"--", color="red", label="w/out rewiring")
     ax3.legend(fontsize=legend_fs, framealpha=1.0)
     ax3.set_ylabel(r"$\sigma^2_{b}$ [$pA^2 \times Hz^2$]", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
@@ -369,8 +369,8 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax4.tick_params(labelsize=tick_fs)
     ax4.set_xscale('log')
     
-    ax5.plot(ln_noise['T'], ln_noise['S2_av'], "-", color="blue", label="w/ recombination")
-    ax5.plot(norew_noise['T'], norew_noise['S2_av'], "--", color="red", label="w/out recombination")
+    ax5.plot(ln_noise['T'], ln_noise['S2_av'], "-", color="blue", label="w/ rewiring")
+    ax5.plot(norew_noise['T'], norew_noise['S2_av'], "--", color="red", label="w/out rewiring")
     #ax5.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax5.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
@@ -390,11 +390,11 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
     CNR_rew=np.array(np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']))
     CNR_norew=np.array(np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']))
-    ax7.plot(ln_noise['T'], np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "-", color="blue", label="w/ recombination")
-    ax7.plot(norew_noise['T'], np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "--", color="red", label="w/out recombination")
+    ax7.plot(ln_noise['T'], np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "-", color="blue", label="w/ rewiring")
+    ax7.plot(norew_noise['T'], np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "--", color="red", label="w/out rewiring")
 
    # ax7.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax7.set_ylabel(r"CNR", fontsize=tick_fs)
+    ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xscale('log')
     ax7.legend(fontsize=legend_fs, framealpha=1.0)
@@ -405,7 +405,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
     ax8.plot(norew_noise['T'], abs((CNR_rew[2:22]-CNR_norew)/CNR_rew[2:22]*100), "-", color="green", label="Simulation")
   #  ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax8.set_ylabel(r"$\dfrac{CNR - CNR^{nr}}{CNR}\quad$[%] ", fontsize=tick_fs)
+    ax8.set_ylabel(r"$\dfrac{SDNR - SDNR^{nr}}{SDNR}\quad$[%] ", fontsize=tick_fs)
     ax8.set_xlabel('T training patterns', fontsize=tick_fs)
     ax8.tick_params(labelsize=tick_fs)
     ax8.set_xscale('log')
