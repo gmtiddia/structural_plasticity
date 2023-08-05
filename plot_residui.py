@@ -648,6 +648,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     #fig1.subplots_adjust(wspace=0.6)
     #fig1.subplots_adjust(bottom=0.1, top=0.97, right=0.975, left=0.1)
     #fig1.suptitle('Lognormal Model', fontsize=25)
+    #fig1.savefig('lognormal.png')
     fig1.savefig('lognormal.png')
     #fig1.show()
     

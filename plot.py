@@ -432,7 +432,9 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.set_xlabel("T training patterns", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
-    ax1.set_xscale('log')
+    #ax1.set_xscale('log')
+    ax1.set_xticks([5000, 25000, 50000, 75000, 100000])
+    ax1.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
     #ax1.legend(title=r"$\langle S_b \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
     ax1.legend(fontsize=legend_fs, framealpha=1.0)
 
@@ -441,7 +443,9 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax2.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax2.set_xlabel("T training patterns", fontsize=tick_fs)
     ax2.tick_params(labelsize=tick_fs)
-    ax2.set_xscale('log')
+    #ax2.set_xscale('log')
+    ax2.set_xticks([5000, 25000, 50000, 75000, 100000])
+    ax2.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
     #ax2.legend(title=r"$\langle S_2 \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
     ax2.legend(fontsize=legend_fs, framealpha=1.0)
 
@@ -451,7 +455,9 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax3.set_xlabel("T training patterns", fontsize=tick_fs)
     ax3.set_ylabel(r"$\sigma^2_b \quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     ax3.tick_params(labelsize=tick_fs)
-    ax3.set_xscale('log')
+    #ax3.set_xscale('log')
+    ax3.set_xticks([5000, 25000, 50000, 75000, 100000])
+    ax3.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
     #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax3.legend(fontsize=legend_fs, framealpha=1.0)
 
@@ -461,7 +467,9 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax4.set_xlabel("T training patterns", fontsize=tick_fs)
     ax4.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax4.tick_params(labelsize=tick_fs)
-    ax4.set_xscale('log')
+    #ax4.set_xscale('log')
+    ax4.set_xticks([5000, 25000, 50000, 75000, 100000])
+    ax4.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
     #ax4.legend(title=r"SDNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax4.legend(fontsize=legend_fs, framealpha=1.0)
 
