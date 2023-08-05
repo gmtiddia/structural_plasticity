@@ -1,0 +1,43 @@
+connection_rule: poisson_indegree
+lognormal_rate: true
+allow_multapses: true
+change_conn_step: 100
+T: 40000
+n_test: 1000
+C: 5000
+p1: 0.001
+p2: 0.001
+N1: 100000
+N2: 100000
+W0: 0.1
+Wc: 1
+rl1: 2
+rh1: 50
+rl2: 2
+rh2: 50
+noise_flag: true
+rate_noise: 2
+max_noise_dev: 2
+corr_neg_rate: 2
+master_seed: 123456
+load_network: true
+train_flag: false
+test_flag: true
+save_network: true
+random_test_order: true
+train_block_size: 5000
+test_block_size: 5000
+Number of openmp threads: 128
+p: 0.039210580
+sigma2r layer 1 (theoretical): 10.5146
+sigma2k (theoretical): 1110.3946
+S2 (theoretical): 1601.5423
+S2 with connection recombination (theoretical): 1633.9793
+Sb (theoretical):  1385.3647
+sigma2S (theoretical): 6338.9802
+sigma2S with Poisson indegree (theoretical): 6723.4539
+noise variance: 3.0950
+noise contribution to S variance: 755.4574
+sigma2S with noise (theoretical): 7094.4376
+sigma2S with Poisson indegree and noise (theoretical): 7478.9113
+Loading simulation status...
