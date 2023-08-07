@@ -29,15 +29,15 @@ def lognormal(x):
 
 plt.figure(1)
 plt.plot(x, lognormale, '-', color='black')
-plt.vlines(x_t, 0, lognormal(x_t), colors = "green", linestyles='solid', linewidth=3.0)
-plt.vlines(x_h, 0, lognormal(x_h), colors = "blue", linestyles='solid', linewidth=2.0)
-plt.vlines(x_l, 0, lognormal(x_l), colors = "red", linestyles='solid', linewidth=2.0)
-plt.fill_between(np.linspace(0, x_t, x_t*10001//10), lognormal(np.linspace(0, x_t, x_t*10001//10)), color='red', alpha=0.1)
-plt.fill_between(np.linspace(x_t, 10, (10-x_t)*10001//10), lognormal(np.linspace(x_t, 10, (10-x_t)*10001//10)), color='blue', alpha=0.1)
+plt.vlines(x_t, 0, lognormal(x_t), colors = "blue", linestyles='solid', linewidth=3.0)
+plt.vlines(x_h, 0, lognormal(x_h), colors = "red", linestyles='solid', linewidth=2.0)
+plt.vlines(x_l, 0, lognormal(x_l), colors = "orange", linestyles='solid', linewidth=2.0)
+plt.fill_between(np.linspace(0, x_t, x_t*10001//10), lognormal(np.linspace(0, x_t, x_t*10001//10)), color='orange', alpha=0.2)
+plt.fill_between(np.linspace(x_t, 10, (10-x_t)*10001//10), lognormal(np.linspace(x_t, 10, (10-x_t)*10001//10)), color='red', alpha=0.2)
 
-plt.text(x_t, lognormal(x_t)+0.025, r"$\nu_t$", color = "green", fontsize=18, fontweight='bold')
-plt.text(x_h, lognormal(x_h)+0.025, r"$\nu_h$", color = "blue", fontsize=18, fontweight='bold')
-plt.text(x_l, lognormal(x_l)+0.025, r"$\nu_{\ell}$", color = "red", fontsize=18, fontweight='bold')
+plt.text(x_t, lognormal(x_t)+0.025, r"$\nu_t$", color = "blue", fontsize=18, fontweight='bold')
+plt.text(x_h, lognormal(x_h)+0.025, r"$\nu_h$", color = "red", fontsize=18, fontweight='bold')
+plt.text(x_l, lognormal(x_l)+0.025, r"$\nu_{\ell}$", color = "orange", fontsize=18, fontweight='bold')
 
 plt.xticks([], [])
 plt.yticks([], [])
