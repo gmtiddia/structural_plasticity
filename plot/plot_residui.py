@@ -248,7 +248,7 @@ def get_data(path, seeds):
         return(data)
 
 
-def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
+def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturation):
     """
     Plot data and saves the plot
 
@@ -402,21 +402,21 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     #ax5.fill_between(discr['T'], discr['S2_av']-discr['S2_std'], discr['S2_av']+discr['S2_std'], color="blue", alpha=0.2)
     ax5.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation")
     ax5.plot(discr['T'], th_discr['S2_th'], "--", color="red", label="Theory")
-    #ax5.legend(title=r"$\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax5.legend(title=r"$\langle S_c \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
     ax5.legend(fontsize=legend_fs, framealpha=0.75)
     #ax5.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax5.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax5.set_ylabel(r"$\langle S_c \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
     ax5.set_xscale('log')
     #ax5.grid()
     #ax5.legend(fontsize=legend_fs, framealpha=0.75)
-    #ax5.legend(title=r"$\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax5.legend(title=r"$\langle S_c \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
     ax5.set_xticklabels([])
 
 
     ax6.plot(discr['T'], abs(discr['S2_av']-th_discr['S2_th'])/th_discr['S2_th']*100, "-", color="green", label="Simulation")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax6.set_ylabel(r"$\dfrac{\langle S_2 \rangle - \langle S_{2} \rangle ^{th}}{\langle S_{2} \rangle ^{th}}$ ", fontsize=tick_fs)
+    ax6.set_ylabel(r"$\dfrac{\langle S_c \rangle - \langle S_{c} \rangle ^{th}}{\langle S_{c} \rangle ^{th}}$ ", fontsize=tick_fs)
     ax6.set_xlabel('T training patterns', fontsize=tick_fs)
     ax6.tick_params(labelsize=tick_fs)
     ax6.set_xscale('log')
@@ -462,8 +462,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
 
     ############################## PLOT LOGNORMAL MODEL #########################################################
     
-    colors = ["red", "blue", "black", "green", "magenta"]
-    th_colors = ["orange", "cornflowerblue", "grey", "limegreen", "plum"]
+    colors = ["red", "blue", "black", "green", "magenta", "darkkhaki"]
+    th_colors = ["orange", "cornflowerblue", "grey", "limegreen", "plum", "khaki"]
 
     from matplotlib.patches import Patch
     from matplotlib.lines import Line2D
@@ -476,17 +476,25 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     #ax9.plot(ln['T'], th_ln['Sb_th'], "--", color="cornflowerblue", label="Th - w/out noise")
     #ax9.fill_between(ln_noise['T'], ln_noise['Sb_av']-ln_noise['Sb_std'], ln_noise['Sb_av']+ln_noise['Sb_std'], color="cornflowerblue", alpha=0.2)
     
-    l1, = ax9.plot(ln_noise[0]['T'], ln_noise[0]['Sb_av'], "-", color=colors[0], label="Sim - " + label[0] + " noise")
     l1_th, = ax9.plot(th_ln_noise[0]['T'], th_ln_noise[0]['Sb_th'], "--", color=th_colors[0], label="Th - " + label[0] + " noise")
-    l2, = ax9.plot(ln_noise[1]['T'], ln_noise[1]['Sb_av'], "-", color=colors[1], label="Sim - " + label[1] + " noise")
+    l1, = ax9.plot(ln_noise[0]['T'], ln_noise[0]['Sb_av'], "^", color=colors[0], label="Sim - " + label[0] + " noise")
+
     l2_th, = ax9.plot(th_ln_noise[1]['T'], th_ln_noise[1]['Sb_th'], "--", color=th_colors[1], label="Th - " + label[1] + " noise")
-    l3, = ax9.plot(ln_noise[2]['T'], ln_noise[2]['Sb_av'], "-", color=colors[2], label="Sim - " + label[2] + " noise")
+    l2, = ax9.plot(ln_noise[1]['T'], ln_noise[1]['Sb_av'], "^", color=colors[1], label="Sim - " + label[1] + " noise")
+
     l3_th, = ax9.plot(th_ln_noise[2]['T'], th_ln_noise[2]['Sb_th'], "--", color=th_colors[2], label="Th - " + label[2] + " noise")
-    l4, = ax9.plot(ln_noise[3]['T'], ln_noise[3]['Sb_av'], "-", color=colors[3], label="Sim - " + label[3] + " noise")
+    l3, = ax9.plot(ln_noise[2]['T'], ln_noise[2]['Sb_av'], "^", color=colors[2], label="Sim - " + label[2] + " noise")
+
     l4_th, = ax9.plot(th_ln_noise[3]['T'], th_ln_noise[3]['Sb_th'], "--", color=th_colors[3], label="Th - " + label[3] + " noise")
-    l5, = ax9.plot(ln_noise[4]['T'], ln_noise[4]['Sb_av'], "-", color=colors[4], label="Sim - " + label[4] + " noise")
+    l4, = ax9.plot(ln_noise[3]['T'], ln_noise[3]['Sb_av'], "^", color=colors[3], label="Sim - " + label[3] + " noise")
+
     l5_th, = ax9.plot(th_ln_noise[4]['T'], th_ln_noise[4]['Sb_th'], "--", color=th_colors[4], label="Th - " + label[4] + " noise")
+    l5, = ax9.plot(ln_noise[4]['T'], ln_noise[4]['Sb_av'], "^", color=colors[4], label="Sim - " + label[4] + " noise")
     
+    l6_th, = ax9.plot(th_ln_noise[5]['T'], th_ln_noise[5]['Sb_th'], "--", color=th_colors[5], label="Th - " + label[5] + " noise")
+    l6, = ax9.plot(ln_noise[5]['T'], ln_noise[5]['Sb_av'], "^", color=colors[5], label="Sim - " + label[5] + " noise")
+    
+
     #ax9.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax9.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax9.tick_params(labelsize=tick_fs)
@@ -495,12 +503,13 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     #ax9.grid()
     #ax9.legend(title=r"$\langle S_b \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
     #ax9.legend(fontsize=legend_fs, framealpha=0.75)
-    ax9.legend(handles =[(plt.plot([], marker='s', color=l1.get_color())[0],plt.plot([], marker='s', color=l1_th.get_color())[0]), 
+    ax9.legend(handles =[(plt.plot([], marker='s', color=l1.get_color())[0],plt.plot([], marker='s', color=l1_th.get_color())[0]),
                 (plt.plot([], marker='s', color=l2.get_color())[0],plt.plot([], marker='s', color=l2_th.get_color())[0]), 
                 (plt.plot([], marker='s', color=l3.get_color())[0],plt.plot([], marker='s', color=l3_th.get_color())[0]), 
                 (plt.plot([], marker='s', color=l4.get_color())[0],plt.plot([], marker='s', color=l4_th.get_color())[0]), 
-                (plt.plot([], marker='s', color=l5.get_color())[0],plt.plot([], marker='s', color=l5_th.get_color())[0])], 
-                labels = ['Sim/Th 1 Hz noise', 'Sim/Th 2 Hz noise', 'Sim/Th 3 Hz noise', 'Sim/Th 4 Hz noise', 'Sim/Th 5 Hz noise'], numpoints=5,
+                (plt.plot([], marker='s', color=l5.get_color())[0],plt.plot([], marker='s', color=l5_th.get_color())[0]), 
+                (plt.plot([], marker='s', color=l6.get_color())[0],plt.plot([], marker='s', color=l6_th.get_color())[0])], 
+                labels = ['Sim/Th no noise', 'Sim/Th 1 Hz noise', 'Sim/Th 2 Hz noise', 'Sim/Th 3 Hz noise', 'Sim/Th 4 Hz noise', 'Sim/Th 5 Hz noise'], numpoints=6,
               handler_map={tuple: HandlerTuple(ndivide=None)}, fontsize=legend_fs, framealpha=0.75)
 
 
@@ -513,12 +522,14 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     l3, = ax10.plot(ln_noise[2]['T'], abs(ln_noise[2]['Sb_av']-th_ln_noise[2]['Sb_th'])/th_ln_noise[2]['Sb_th']*100, "--", color=colors[2], label=label[2] + " noise")
     l4, = ax10.plot(ln_noise[3]['T'], abs(ln_noise[3]['Sb_av']-th_ln_noise[3]['Sb_th'])/th_ln_noise[3]['Sb_th']*100, "--", color=colors[3], label=label[3] + " noise")
     l5, = ax10.plot(ln_noise[4]['T'], abs(ln_noise[4]['Sb_av']-th_ln_noise[4]['Sb_th'])/th_ln_noise[4]['Sb_th']*100, "--", color=colors[4], label=label[4] + " noise")
+    l6, = ax10.plot(ln_noise[5]['T'], abs(ln_noise[4]['Sb_av']-th_ln_noise[5]['Sb_th'])/th_ln_noise[5]['Sb_th']*100, "--", color=colors[5], label=label[5] + " noise")
     
     ax10.set_ylabel(r"$\dfrac{\langle S_b \rangle - \langle S_{b} \rangle ^{th}}{\langle S_{b} \rangle ^{th}}\quad$[%] ", fontsize=tick_fs)
     ax10.set_xlabel('T training patterns', fontsize=tick_fs)
     ax10.tick_params(labelsize=tick_fs)
     #ax10.set_xscale('log')
-    ax10.set_ylim(0, 0.06)
+    if(sat==False):
+        ax10.set_ylim(0, 0.06)
     ax10.set_xticks([5000, 25000, 50000, 75000, 100000])
     ax10.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
     #ax10.grid()
@@ -537,8 +548,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     #ax11.plot(ln['T'], ln['varSb_av'], "-", color="blue", label="Sim - w/out noise")
     #ax11.plot(ln['T'], th_ln['varSb_th'], "--", color="cornflowerblue", label="Th - w/out noise")
     for i in range(len(ln_noise)):
-        ax11.plot(ln_noise[i]['T'], ln_noise[i]['varSb_av'], "-", color=colors[i], label="Sim - " + label[i] + " noise")
         ax11.plot(ln_noise[i]['T'], th_ln_noise[i]['varSb_th'], "--", color=th_colors[i], label="Th - " + label[i] + " noise")
+        ax11.plot(ln_noise[i]['T'], ln_noise[i]['varSb_av'], "^", color=colors[i], label="Sim - " + label[i] + " noise")
     ax11.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     #ax11.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]", fontsize=tick_fs)
     ax11.tick_params(labelsize=tick_fs)
@@ -574,16 +585,16 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
 
     #ax6.fill_between(ln_noise['T'], ln_noise['S2_av']-ln_noise['S2_std'], ln_noise['S2_av']+ln_noise['S2_std'], color="cornflowerblue", alpha=0.2)
     for i in range(len(ln_noise)):
-        ax13.plot(ln_noise[i]['T'], ln_noise[i]['S2_av'], "-", color=colors[i], label="Sim - " + label[i] + " noise")
         ax13.plot(ln_noise[i]['T'], th_ln_noise[i]['S2_th'], "--", color=th_colors[i], label="Th - " + label[i] + " noise")
-    
+        ax13.plot(ln_noise[i]['T'], ln_noise[i]['S2_av'], "^", color=colors[i], label="Sim - " + label[i] + " noise")
+        
     #ax6.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax13.set_ylabel(r"$\langle S_2 \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
+    ax13.set_ylabel(r"$\langle S_c \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax13.tick_params(labelsize=tick_fs)
     #ax13.set_xscale('log')
     ax13.set_xticklabels([])
     #ax13.grid()
-    #ax13.legend(title=r" $\langle S_2 \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
+    #ax13.legend(title=r" $\langle S_c \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
     #ax13.legend(fontsize=legend_fs, framealpha=0.75)
 
    # plt.subplots_adjust(hspace=0.1)
@@ -592,7 +603,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     for i in range(len(ln_noise)):
         ax14.plot(ln_noise[i]['T'], abs(ln_noise[i]['S2_av']-th_ln_noise[i]['S2_th'])/th_ln_noise[i]['S2_th']*100, "--", color=colors[i], label=label[i] + " noise")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
-    ax14.set_ylabel(r"$\dfrac{\langle S_{2} \rangle - \langle S_{2}\rangle ^{th}}{\langle S_{2}\rangle ^{th}}\quad$[%]", fontsize=tick_fs)
+    ax14.set_ylabel(r"$\dfrac{\langle S_{c} \rangle - \langle S_{c}\rangle ^{th}}{\langle S_{c}\rangle ^{th}}\quad$[%]", fontsize=tick_fs)
     ax14.set_xlabel('T training patterns', fontsize=tick_fs)
     ax14.tick_params(labelsize=tick_fs)
     ax14.set_xticks([5000, 25000, 50000, 75000, 100000])
@@ -610,8 +621,8 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     #ax15.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), "-", color="blue", label="Sim - w/out noise")
     #ax15.plot(ln['T'], np.abs(th_ln['S2_th']-th_ln['Sb_th'])/np.sqrt(th_ln['varSb_th']), "--", color="cornflowerblue", label="Th - w/out noise")
     for i in range(len(ln_noise)):
-        ax15.plot(ln_noise[i]['T'], np.abs(ln_noise[i]['S2_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av']), "-", color=colors[i], label="Sim - " + label[i] + " noise")
         ax15.plot(ln_noise[i]['T'], np.abs(th_ln_noise[i]['S2_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']), "--", color=th_colors[i], label="Th - " + label[i] + " noise")
+        ax15.plot(ln_noise[i]['T'], np.abs(ln_noise[i]['S2_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av']), "^", color=colors[i], label="Sim - " + label[i] + " noise")
     
 
 
@@ -649,42 +660,43 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label):
     #fig1.subplots_adjust(bottom=0.1, top=0.97, right=0.975, left=0.1)
     #fig1.suptitle('Lognormal Model', fontsize=25)
     #fig1.savefig('lognormal.png')
-    fig1.savefig('lognormal.png')
+    fig1.savefig('lognormal' + saturation +'.png')
     #fig1.show()
     
     #plt.savefig("structural_plasticity.png")
 
     
-
-
-
-
+saturation = False
+if saturation==True:
+    sat = "_saturation"
+else:
+    sat = ""
 
 # values extracted from simulations
 discr_rate = get_data("../simulations/discr_rate_simulations", 10)
 ln_rate = get_data("../simulations/no_noise_simulations", 10)
-ln_rate_noise1 = get_data("../simulations/noise_1Hz_simulations", 10)
-ln_rate_noise2 = get_data("../simulations/noise_2Hz_simulations", 10)
-ln_rate_noise3 = get_data("../simulations/noise_3Hz_simulations", 10)
-ln_rate_noise4 = get_data("../simulations/noise_4Hz_simulations", 10)
-ln_rate_noise5 = get_data("../simulations/noise_5Hz_simulations", 10)
+ln_rate_noise1 = get_data("../simulations/noise_1Hz_simulations"+sat, 10)
+ln_rate_noise2 = get_data("../simulations/noise_2Hz_simulations"+sat, 10)
+ln_rate_noise3 = get_data("../simulations/noise_3Hz_simulations"+sat, 10)
+ln_rate_noise4 = get_data("../simulations/noise_4Hz_simulations"+sat, 10)
+ln_rate_noise5 = get_data("../simulations/noise_5Hz_simulations"+sat, 10)
 
 
 # theoretical values
 th_discr = get_th_data("../simulations/discr_rate_simulations")
 th_ln = get_th_data("../simulations/no_noise_simulations")
-th_ln_noise1 = get_th_data("../simulations/noise_1Hz_simulations")
-th_ln_noise2 = get_th_data("../simulations/noise_2Hz_simulations")
-th_ln_noise3 = get_th_data("../simulations/noise_3Hz_simulations")
-th_ln_noise4 = get_th_data("../simulations/noise_4Hz_simulations")
-th_ln_noise5 = get_th_data("../simulations/noise_5Hz_simulations")
+th_ln_noise1 = get_th_data("../simulations/noise_1Hz_simulations"+sat)
+th_ln_noise2 = get_th_data("../simulations/noise_2Hz_simulations"+sat)
+th_ln_noise3 = get_th_data("../simulations/noise_3Hz_simulations"+sat)
+th_ln_noise4 = get_th_data("../simulations/noise_4Hz_simulations"+sat)
+th_ln_noise5 = get_th_data("../simulations/noise_5Hz_simulations"+sat)
 
 
-ln_rate_noise = [ln_rate_noise1, ln_rate_noise2, ln_rate_noise3, ln_rate_noise4, ln_rate_noise5]
-th_ln_noise = [th_ln_noise1, th_ln_noise2, th_ln_noise3, th_ln_noise4, th_ln_noise5]
-label = ["1 Hz", "2 Hz", "3 Hz", "4 Hz", "5 Hz"]
+ln_rate_noise = [ln_rate, ln_rate_noise1, ln_rate_noise2, ln_rate_noise3, ln_rate_noise4, ln_rate_noise5]
+th_ln_noise = [th_ln, th_ln_noise1, th_ln_noise2, th_ln_noise3, th_ln_noise4, th_ln_noise5]
+label = ["No", "1 Hz", "2 Hz", "3 Hz", "4 Hz", "5 Hz"]
 
 
-plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise, label)
+plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise, label, sat)
 
 plt.show()
