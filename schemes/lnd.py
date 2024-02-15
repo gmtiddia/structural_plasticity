@@ -36,8 +36,8 @@ plt.fill_between(np.linspace(0, x_t, x_t*10001//10), lognormal(np.linspace(0, x_
 plt.fill_between(np.linspace(x_t, 10, (10-x_t)*10001//10), lognormal(np.linspace(x_t, 10, (10-x_t)*10001//10)), color='red', alpha=0.2)
 
 plt.text(x_t, lognormal(x_t)+0.025, r"$\nu_t$", color = "blue", fontsize=18, fontweight='bold')
-plt.text(x_h, lognormal(x_h)+0.025, r"$\nu_h$", color = "red", fontsize=18, fontweight='bold')
-plt.text(x_l, lognormal(x_l)+0.025, r"$\nu_{\ell}$", color = "orange", fontsize=18, fontweight='bold')
+plt.text(x_h, lognormal(x_h)+0.025, r"$\langle \nu_h \rangle$", color = "red", fontsize=18, fontweight='bold')
+plt.text(x_l, lognormal(x_l)+0.025, r"$\langle \nu_{\ell} \rangle$", color = "orange", fontsize=18, fontweight='bold')
 
 plt.xticks([], [])
 plt.yticks([], [])
