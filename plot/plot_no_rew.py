@@ -308,6 +308,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
 
     plt.figure(1)
+    ax1.text(-0.1, 0.95, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
     #ax1.set_title("Discrete rate model", fontsize=legend_fs)
     #ax1.fill_between(discr['T'], discr['Sb_av']-discr['Sb_std'], discr['Sb_av']+discr['Sb_std'], color="red", alpha=0.2)
     ax1.plot(ln_noise['T'], ln_noise['Sb_av'], "o", color="blue", label="w/ rewiring")
@@ -347,7 +348,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax2.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
     # ax2.grid()
 
-    
+    ax3.text(-0.1, 1, "C", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
     ax3.plot(ln_noise['T'], ln_noise['varSb_av'], "o", color="blue", label="w/ rewiring")
     ax3.plot(norew_noise['T'], norew_noise['varSb_av'],"^", markersize=5, color="red", label="w/out rewiring")
     ax3.legend(fontsize=legend_fs, framealpha=1.0)
@@ -366,7 +367,8 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax4.tick_params(labelsize=tick_fs)
     ax4.set_xticks([5000, 25000, 50000, 75000, 100000])
     ax4.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
-    
+
+    ax5.text(-0.1, 0.95, "B", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
     ax5.plot(ln_noise['T'], ln_noise['S2_av'], "o", color="blue", label="w/ rewiring")
     ax5.plot(norew_noise['T'], norew_noise['S2_av'], "^", markersize=5, color="red", label="w/out rewiring")
     #ax5.set_xlabel("T (training patterns)", fontsize=tick_fs)
@@ -393,6 +395,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax7.plot(norew_noise['T'], np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "^", markersize=5, color="red", label="w/out rewiring")
 
    # ax7.set_xlabel("T (training patterns)", fontsize=tick_fs)
+    ax7.text(-0.1, 1, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
     ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xticks([5000, 25000, 50000, 75000, 100000])

@@ -275,6 +275,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax7 = axs[3,0] # discrete rate - CNR
     ax8 = axs[3,1] # lognormal rate - CNR
 
+    ax1.text(-0.1, 0.95, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
     ax1.set_title("Discrete rate model", fontsize=legend_fs)
     ax1.fill_between(discr['T'], discr['Sb_av']-discr['Sb_std'], discr['Sb_av']+discr['Sb_std'], color="red", alpha=0.2)
     ax1.plot(discr['T'], discr['Sb_av'], "-", color="blue", label="Simulation")
@@ -308,6 +309,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax2.legend(fontsize=legend_fs, framealpha=1.0)
 
 
+    ax3.text(-0.1, 0.95, "C", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
     #ax3.fill_between(discr['T'], discr['varSb_av']-discr['varSb_std'], discr['varSb_av']+discr['varSb_std'], color="blue", alpha=0.2)
     ax3.plot(discr['T'], discr['varSb_av'], "-", color="blue", label="Simulation")
     ax3.plot(discr['T'], th_discr['varSb_th'], "--", color="red", label="Theory")
@@ -340,6 +342,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
 
 
     #ax5.fill_between(discr['T'], discr['S2_av']-discr['S2_std'], discr['S2_av']+discr['S2_std'], color="blue", alpha=0.2)
+    ax5.text(-0.1, 0.95, "C", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
     ax5.plot(discr['T'], discr['S2_av'], "-", color="blue", label="Simulation")
     ax5.plot(discr['T'], th_discr['S2_th'], "--", color="red", label="Theory")
     #ax5.set_xlabel("T training patterns", fontsize=tick_fs)
@@ -369,7 +372,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax6.grid()
     #ax6.legend(title=r" $\langle S_c \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
-
+    ax7.text(-0.1, 0.95, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
     ax7.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "-", color="blue", label="Simulation")
     ax7.plot(discr['T'], np.abs(th_discr['S2_th']-th_discr['Sb_th'])/np.sqrt(th_discr['varSb_th']), "--", color="red", label="Theory")
     ax7.set_xlabel("T training patterns", fontsize=tick_fs)
@@ -416,7 +419,15 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
 
     """
 
+
     # fontsize params
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import FuncFormatter
+
+# Funzione per formattare gli esponenti
+    def format_exp(value, pos):
+         return f"{value:.0e}"
+
     legend_fs = 21
     tick_fs = 25
 
@@ -426,7 +437,8 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     ax3 = axs[1,0] # discrete rate - varSb
     ax4 = axs[1,1] # lognormal rate - varSb
 
-
+   # ax1.yaxis.set_major_formatter(FuncFormatter(format_exp))
+    ax1.text(-0.1, 0.95, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
     ax1.plot(discr['T'], discr['Sb_av'], "^", color="blue", label="Discrete rate")
     ax1.plot(ln['T'], ln['Sb_av'], ".", color="red", label="Continuous rate")
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
@@ -438,6 +450,9 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     #ax1.legend(title=r"$\langle S_b \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
     ax1.legend(fontsize=legend_fs, framealpha=1.0)
 
+    #ax2.yaxis.set_major_formatter(FuncFormatter(format_exp))
+    ax2.text(-0.1, 0.95, "B", weight="bold", fontsize=30, color='k', transform=ax2.transAxes)
+    #ax2.set_ylim(1000,19000)ax2.set_ylim(1000,19000)
     ax2.plot(discr['T'], discr['S2_av'], "^", color="blue", label="Discrete rate")
     ax2.plot(ln['T'], ln['S2_av'], ".", color="red", label="Continuous rate")
     ax2.set_ylabel(r"$\langle S_c \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
@@ -449,7 +464,9 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     #ax2.legend(title=r"$\langle S_c \rangle$", title_fontsize=legend_fs, fontsize=legend_fs, framealpha=1.0)
     ax2.legend(fontsize=legend_fs, framealpha=1.0)
 
-
+    ax3.set_ylim(1000,17000)
+    #ax3.yaxis.set_major_formatter(FuncFormatter(format_exp))
+    ax3.text(-0.1, 0.95, "C", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
     ax3.plot(discr['T'], discr['varSb_av'], "^", color="blue", label="Discrete rate")
     ax3.plot(ln['T'], ln['varSb_av'], ".", color="red", label="Continuous rate")
     ax3.set_xlabel("T training patterns", fontsize=tick_fs)
@@ -461,7 +478,8 @@ def plot_data_luca(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise):
     #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax3.legend(fontsize=legend_fs, framealpha=1.0)
 
-
+    #ax4.yaxis.set_major_formatter(FuncFormatter(format_exp))
+    ax4.text(-0.1, 0.95, "D", weight="bold", fontsize=30, color='k', transform=ax4.transAxes)
     ax4.plot(discr['T'], np.abs(discr['S2_av']-discr['Sb_av'])/np.sqrt(discr['varSb_av']), "^", color="blue", label="Discrete rate")
     ax4.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), ".", color="red", label="Continuous rate")
     ax4.set_xlabel("T training patterns", fontsize=tick_fs)

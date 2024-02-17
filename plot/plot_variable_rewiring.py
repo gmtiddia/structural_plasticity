@@ -282,6 +282,7 @@ def plot_data(data, th_data):
     ax7 = axs[1,1]
 
     #ax1.fill_between(data['t'][1:], data['Sb_av'][1:]-data['Sb_std'][1:], data['Sb_av'][1:]+data['Sb_std'][1:], color="blue", alpha=0.2)
+    ax1.text(-0.1, 1.05, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
     ax1.errorbar(data['t'][1:], data['Sb_av'][1:], fmt="o", linestyle="", yerr=data['Sb_std'][1:], color="blue", label="w/ rewiring")
     ax1.plot(data['t'][0], data['Sb_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
     ax1.legend(fontsize=legend_fs, framealpha=1.0)
@@ -295,6 +296,7 @@ def plot_data(data, th_data):
     ax1.grid()
     
     #ax3.fill_between(data['t'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
+    ax3.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
     ax3.errorbar(data['t'][1:], data['varSb_av'][1:], fmt="o", linestyle="", yerr=data['varSb_std'][1:], color="blue", label="w/ rewiring")
     ax3.plot(data['t'][0], data['varSb_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
     #ax3.plot(data['t'], th_data['varSb_th'], "--", color="red", label="Theory")
@@ -307,7 +309,7 @@ def plot_data(data, th_data):
     #ax3.set_xticklabels([])
     #ax3.legend(fontsize=legend_fs, framealpha=1.0)
 
-
+    ax5.text(-0.1, 1.05, "C", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
     #ax5.fill_between(data['t'][1:], data['S2_av'][1:]-data['S2_std'][1:], data['S2_av'][1:]+data['S2_std'][1:], color="blue", alpha=0.2)
     ax5.errorbar(data['t'][1:], data['S2_av'][1:], fmt="o", linestyle="", yerr=data['S2_std'][1:], color="blue", label="w/ rewiring")
     ax5.plot(data['t'][0], data['S2_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
@@ -321,7 +323,7 @@ def plot_data(data, th_data):
     #ax5.legend(fontsize=legend_fs, framealpha=1.0)
     #ax5.set_xticklabels([])
 
-
+    ax7.text(-0.1, 1.05, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
     #ax7.fill_between(data['t'][1:], data['CNR_av'][1:]-data['CNR_std'][1:], data['CNR_av'][1:]+data['CNR_std'][1:], color="blue", alpha=0.2)
     ax7.errorbar(data['t'][1:], data['CNR_av'][1:], fmt="o", linestyle="", yerr=data['CNR_std'][1:], color="blue", label="w/ rewiring")
     ax7.plot(data['t'][0], data['CNR_av'][0], "o", markersize=10, color="red", label="w/out rewiring")

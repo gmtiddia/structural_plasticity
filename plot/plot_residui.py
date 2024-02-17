@@ -275,8 +275,9 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     fig, axs = plt.subplots(ncols=2, nrows=4, figsize = (20,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
 
     #plot lognormal model
-    fig1, axs1 = plt.subplots(ncols=2, nrows=4, figsize = (20,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
-
+    #fig1, axs1 = plt.subplots(ncols=2, nrows=4, figsize = (20,18), constrained_layout=False,gridspec_kw={'height_ratios': heights})
+    fig1, axs1 = plt.subplots(ncols=2, nrows=4, figsize = (20,18),constrained_layout=True,gridspec_kw={'height_ratios': heights})
+  
     #subplots of discrete model
     ax1 = axs[0,0] # discrete rate - Sb
     ax2 = axs[1,0] # residue - Sb
@@ -302,12 +303,12 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     #parameters of grid
     y_begin=0.1
     x_begin=0.12
-    height_res=0.125
-    height_dat=0.275
+    height_res=0.1
+    height_dat=0.22
     space_s=0.01
     space_l=0.065
     central_space=0.1
-    h_space=0.2
+    h_space=0.5
     width_g=0.35
 
 
@@ -475,7 +476,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     #ax9.plot(ln['T'], ln['Sb_av'], "-", color="blue", label="Sim - w/out noise")
     #ax9.plot(ln['T'], th_ln['Sb_th'], "--", color="cornflowerblue", label="Th - w/out noise")
     #ax9.fill_between(ln_noise['T'], ln_noise['Sb_av']-ln_noise['Sb_std'], ln_noise['Sb_av']+ln_noise['Sb_std'], color="cornflowerblue", alpha=0.2)
-    
+        
     l1_th, = ax9.plot(th_ln_noise[0]['T'], th_ln_noise[0]['Sb_th'], "--", color=th_colors[0], label="Th - " + label[0] + " noise")
     l1, = ax9.plot(ln_noise[0]['T'], ln_noise[0]['Sb_av'], "^", color=colors[0], label="Sim - " + label[0] + " noise")
 
@@ -494,7 +495,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     l6_th, = ax9.plot(th_ln_noise[5]['T'], th_ln_noise[5]['Sb_th'], "--", color=th_colors[5], label="Th - " + label[5] + " noise")
     l6, = ax9.plot(ln_noise[5]['T'], ln_noise[5]['Sb_av'], "^", color=colors[5], label="Sim - " + label[5] + " noise")
     
-
+    ax9.text(-0.1, 1, "A", weight="bold", fontsize=30, color='k', transform=ax9.transAxes)
     #ax9.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax9.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax9.tick_params(labelsize=tick_fs)
@@ -547,6 +548,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     #ax4.fill_between(ln['T'], ln['varSb_av']-ln['varSb_std'], ln['varSb_av']+ln['varSb_std'], color="blue", alpha=0.2)
     #ax11.plot(ln['T'], ln['varSb_av'], "-", color="blue", label="Sim - w/out noise")
     #ax11.plot(ln['T'], th_ln['varSb_th'], "--", color="cornflowerblue", label="Th - w/out noise")
+    ax11.text(-0.1, 1, "C", weight="bold", fontsize=30, color='k', transform=ax11.transAxes)
     for i in range(len(ln_noise)):
         ax11.plot(ln_noise[i]['T'], th_ln_noise[i]['varSb_th'], "--", color=th_colors[i], label="Th - " + label[i] + " noise")
         ax11.plot(ln_noise[i]['T'], ln_noise[i]['varSb_av'], "^", color=colors[i], label="Sim - " + label[i] + " noise")
@@ -584,6 +586,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
 
 
     #ax6.fill_between(ln_noise['T'], ln_noise['S2_av']-ln_noise['S2_std'], ln_noise['S2_av']+ln_noise['S2_std'], color="cornflowerblue", alpha=0.2)
+    ax13.text(-0.1, 1, "B", weight="bold", fontsize=30, color='k', transform=ax13.transAxes)
     for i in range(len(ln_noise)):
         ax13.plot(ln_noise[i]['T'], th_ln_noise[i]['S2_th'], "--", color=th_colors[i], label="Th - " + label[i] + " noise")
         ax13.plot(ln_noise[i]['T'], ln_noise[i]['S2_av'], "^", color=colors[i], label="Sim - " + label[i] + " noise")
@@ -630,6 +633,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
 
 
     #ax15.set_xlabel("T (training patterns)", fontsize=tick_fs)
+    ax15.text(-0.1, 1, "D", weight="bold", fontsize=30, color='k', transform=ax15.transAxes)
     ax15.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax15.tick_params(labelsize=tick_fs)
     ax15.set_xscale('log')
