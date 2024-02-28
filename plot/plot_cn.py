@@ -198,5 +198,5 @@ ax2.set_xscale('log')
 ax2.legend(fontsize=legend_fs, framealpha=0.5)
 
 
-plt.savefig("cn_prova.png")
+plt.savefig("cn_plot.png")
 plt.show()
