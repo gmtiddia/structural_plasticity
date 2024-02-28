@@ -353,6 +353,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax3.plot(norew_noise['T'], norew_noise['varSb_av'],"^", markersize=5, color="red", label="w/out rewiring")
     ax3.legend(fontsize=legend_fs, framealpha=1.0)
     ax3.set_ylabel(r"$\sigma^2_{b}$ [$pA^2 \times Hz^2$]", fontsize=tick_fs)
+    ax3.set_ylim(0,17000)
     ax3.tick_params(labelsize=tick_fs)
     ax3.set_xticks([5000, 25000, 50000, 75000, 100000])
     #ax3.set_xlim(5000,100000)

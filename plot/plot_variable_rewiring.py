@@ -294,6 +294,7 @@ def plot_data(data, th_data):
     ax1.ticklabel_format(style='plain', useOffset=False, axis='y') 
     #ax1.set_xticklabels([])
     ax1.grid()
+    ax1.set_ylim(1069.6,1070.4)
     
     #ax3.fill_between(data['t'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
     ax3.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
