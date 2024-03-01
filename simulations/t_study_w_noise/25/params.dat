@@ -45,9 +45,9 @@ corr_neg_rate 0
 # master seed for random number generation
 master_seed 123456
 # load network from file (0:false, 1:true)
-load_network 1
+load_network 0
 # perform training
-train_flag 0
+train_flag 1
 # perform test
 test_flag 1
 #save network to file after training (0:false, 1:true)
@@ -55,6 +55,6 @@ save_network 0
 # test pattern indexes can be ordered sequentially (0) or randomly (1) 
 random_test_order 1
 # number of training patterns between saving network and status
-train_block_size 10000
+train_block_size 50000
 # number of test patterns between saving the status
-test_block_size 10000
+test_block_size 50000
