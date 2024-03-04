@@ -248,7 +248,31 @@ def get_data(path, seeds):
         return(data)
 
 
-def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturation):
+def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturation,prob_thr):
+
+
+    #Blocco che permette all'utente di decidere la probabilità di soglia durante il RUN
+    '''
+    while True:
+        try:
+            prob_thr = float(input(r"Inserire soglia sulla probabilità P_C: "))
+            if 0 <= prob_thr <= 1:
+                break  # Esci dal ciclo se il valore è valido
+            else:
+                print("Il numero inserito non è compreso tra 0 e 1. Riprova.")
+        except ValueError:
+            print("Inserisci un numero valido.")
+    '''
+
+
+    def SDNR_thres(prob_thr):
+        
+        SDNR_thr=erfinv(prob_thr) *2*np.sqrt(2)
+        return(SDNR_thr)
+    
+    SDNR_thr=SDNR_thres(prob_thr)
+    print('La soglia su SDNR corrispondente a P_C=' + str(prob_thr)+ ' è:' + str(SDNR_thr))
+
     """
     Plot data and saves the plot
 
@@ -624,10 +648,11 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     #ax15.plot(ln['T'], np.abs(ln['S2_av']-ln['Sb_av'])/np.sqrt(ln['varSb_av']), "-", color="blue", label="Sim - w/out noise")
     #ax15.plot(ln['T'], np.abs(th_ln['S2_th']-th_ln['Sb_th'])/np.sqrt(th_ln['varSb_th']), "--", color="cornflowerblue", label="Th - w/out noise")
     for i in range(len(ln_noise)):
-        ax15.plot(ln_noise[i]['T'], np.abs(th_ln_noise[i]['S2_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']), "--", color=th_colors[i], label="Th - " + label[i] + " noise")
-        ax15.plot(ln_noise[i]['T'], np.abs(ln_noise[i]['S2_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av']), "^", color=colors[i], label="Sim - " + label[i] + " noise")
+        ax15.plot(ln_noise[i]['T'], np.abs(th_ln_noise[i]['S2_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']), "--", color=th_colors[i], label='_nolegend_')
+        ax15.plot(ln_noise[i]['T'], np.abs(ln_noise[i]['S2_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av']), "^", color=colors[i], label='_nolegend_')
     
-
+    #ax15.axhline(y=SDNR_thr, color='r', linestyle='-', label='SDNR threshold')
+    ax15.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-', label='SDNR threshold')
 
   #  plt.subplots_adjust(hspace=0.1)
 
@@ -638,6 +663,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     ax15.tick_params(labelsize=tick_fs)
     ax15.set_xscale('log')
     ax15.set_xticklabels([])
+    ax15.legend(fontsize=legend_fs)
     #ax15.grid()
     #ax15.legend(title=r"SDNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.75)
     #ax15.legend(fontsize=legend_fs, framealpha=0.75)
@@ -695,12 +721,12 @@ th_ln_noise3 = get_th_data("../simulations/noise_3Hz_simulations"+sat)
 th_ln_noise4 = get_th_data("../simulations/noise_4Hz_simulations"+sat)
 th_ln_noise5 = get_th_data("../simulations/noise_5Hz_simulations"+sat)
 
-
+prob_thr=0.9
 ln_rate_noise = [ln_rate, ln_rate_noise1, ln_rate_noise2, ln_rate_noise3, ln_rate_noise4, ln_rate_noise5]
 th_ln_noise = [th_ln, th_ln_noise1, th_ln_noise2, th_ln_noise3, th_ln_noise4, th_ln_noise5]
 label = ["No", "1 Hz", "2 Hz", "3 Hz", "4 Hz", "5 Hz"]
 
 
-plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise, label, sat)
+plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise, label, sat,prob_thr)
 
 plt.show()
