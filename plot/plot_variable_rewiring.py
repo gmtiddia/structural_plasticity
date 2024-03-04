@@ -23,7 +23,7 @@ def get_params_dict(path):
         Python dictionary containing simulation parameters
     """
 
-    params = np.loadtxt(path+'/params.dat', dtype=np.str)
+    params = np.loadtxt(path+'/params.dat', dtype=str)
     dict_params = dict([[params[i][0], float(params[i][1])] for i in range(len(params))])
     
     return(dict_params)
@@ -102,8 +102,12 @@ def get_th_set(path, T):
         # w/out rewiring
         S2 = params['rh1']*params['Wc']*params['p1']*params['C'] + params['rl1']*(1.0-params['p1'])*(params['W0']*params['C'] + (params['Wc'] - params['W0'])*k)
     else:
+        r = params['change_conn_step']
+        b = (1.-(1.-params['p1']*params['p2'])**(T+r))/(1.-(1.-params['p1']*params['p2'])**r)
+        av_pt = 1. - (b*r)/(T+r)
+        av_kt_first = av_pt*params['C']*(1.0-params['p1'])
         # w/ rewiring
-        S2 = params['rh1']*params['Wc']*params['p1']*params['C'] + rm1*(1.0-params['p1'])*(params['W0']*params['C'] + (params['Wc'] - params['W0'])*k)
+        S2 = params['rh1']*params['Wc']*params['p1']*params['C'] + rm1*(1.0-params['p1'])*(params['W0']*params['C'] + (params['Wc'] - params['W0'])*k) - params['Wc']*(rm1 - params['rl1'])*av_kt_first
 
     # if C is constant
     if(params['connection_rule']==0):
@@ -161,14 +165,14 @@ def get_th_data(path):
         t = [int(step) for step in t_list]
         t.sort()
 
-        T = [ 5000 for i in range(len(t))]
+        T = [ 10000 for i in range(len(t))]
 
         dum_Sb = []
         dum_varSb = []
         dum_S2 = []
 
         for i in range(len(t)):
-            dum_dict = get_th_set(path+"/0", T[i])
+            dum_dict = get_th_set(path+"/"+str(t[i]), T[i])
             dum_Sb.append(dum_dict['Sb'])
             dum_varSb.append(dum_dict['varSb'])
             dum_S2.append(dum_dict['S2'])
@@ -283,41 +287,43 @@ def plot_data(data, th_data):
 
     #ax1.fill_between(data['t'][1:], data['Sb_av'][1:]-data['Sb_std'][1:], data['Sb_av'][1:]+data['Sb_std'][1:], color="blue", alpha=0.2)
     ax1.text(-0.1, 1.05, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
-    ax1.errorbar(data['t'][1:], data['Sb_av'][1:], fmt="o", linestyle="", yerr=data['Sb_std'][1:], color="blue", label="w/ rewiring")
-    ax1.plot(data['t'][0], data['Sb_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
-    ax1.legend(fontsize=legend_fs, framealpha=1.0)
+    ax1.plot(th_data['t'], th_data['Sb_th'], "--", linewidth=2.5, color="gold", label='Theoretical estimation')
+    ax1.errorbar(data['t'][1:], data['Sb_av'][1:], yerr=data['Sb_std'][1:], fmt="o", linestyle="", color="blue", label="w/ rewiring")
+    ax1.errorbar(data['t'][0], data['Sb_av'][0], yerr=data['Sb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
-    ax1.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
+    ax1.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
-    ax1.set_ylim(1069.4, 1070.5)
+    ax1.set_ylim(1115, 1116.5)
     ax1.set_xlim(-10, 700)
     ax1.ticklabel_format(style='plain', useOffset=False, axis='y') 
     #ax1.set_xticklabels([])
     ax1.grid()
-    ax1.set_ylim(1069.6,1070.4)
+    #ax1.set_ylim(1069.6,1070.4)
     
     #ax3.fill_between(data['t'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
-    ax3.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
+    ax3.text(-0.1, 1.05, "C", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
+    ax3.plot(th_data['t'], th_data['varSb_th'], "--", linewidth=2.5, color="gold", label='Theoretical estimation')
     ax3.errorbar(data['t'][1:], data['varSb_av'][1:], fmt="o", linestyle="", yerr=data['varSb_std'][1:], color="blue", label="w/ rewiring")
-    ax3.plot(data['t'][0], data['varSb_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
+    ax3.errorbar(data['t'][0], data['varSb_av'][0], yerr=data['varSb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     #ax3.plot(data['t'], th_data['varSb_th'], "--", color="red", label="Theory")
     #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax3.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
-    ax3.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
+    ax3.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
     ax3.set_xlim(-10, 700)
     ax3.tick_params(labelsize=tick_fs)
     ax3.grid()
     #ax3.set_xticklabels([])
     #ax3.legend(fontsize=legend_fs, framealpha=1.0)
 
-    ax5.text(-0.1, 1.05, "C", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
+    ax5.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
     #ax5.fill_between(data['t'][1:], data['S2_av'][1:]-data['S2_std'][1:], data['S2_av'][1:]+data['S2_std'][1:], color="blue", alpha=0.2)
+    ax5.plot(th_data['t'], th_data['S2_th'], "--", linewidth=2.5, color="gold", label='Theoretical estimation')
     ax5.errorbar(data['t'][1:], data['S2_av'][1:], fmt="o", linestyle="", yerr=data['S2_std'][1:], color="blue", label="w/ rewiring")
-    ax5.plot(data['t'][0], data['S2_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
+    ax5.errorbar(data['t'][0], data['S2_av'][0], yerr=data['S2_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     #ax5.plot(data['t'], th_data['S2_th'], "--", color="red", label="Theory")
     #ax5.legend(title=r"$\langle S_c \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax5.set_ylabel(r"$\langle S_c \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
-    ax5.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
+    ax5.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
     ax5.set_xlim(-10, 700)
     ax5.tick_params(labelsize=tick_fs)
     ax5.grid()
@@ -326,14 +332,16 @@ def plot_data(data, th_data):
 
     ax7.text(-0.1, 1.05, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
     #ax7.fill_between(data['t'][1:], data['CNR_av'][1:]-data['CNR_std'][1:], data['CNR_av'][1:]+data['CNR_std'][1:], color="blue", alpha=0.2)
+    ax7.plot(th_data['t'], (th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", linewidth=2.5, color="gold", label='Theoretical estimation')
     ax7.errorbar(data['t'][1:], data['CNR_av'][1:], fmt="o", linestyle="", yerr=data['CNR_std'][1:], color="blue", label="w/ rewiring")
-    ax7.plot(data['t'][0], data['CNR_av'][0], "o", markersize=10, color="red", label="w/out rewiring")
+    ax7.errorbar(data['t'][0], data['CNR_av'][0], yerr=data['CNR_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     #ax7.plot(data['t'], np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", color="red", label="Theory")
     ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
-    ax7.set_xlabel(r"rewiring step $s$", fontsize=tick_fs)
+    ax7.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xlim(-10, 700)
     ax7.grid()
+    ax7.legend(fontsize=legend_fs, framealpha=1.0, loc='lower right')
     #ax7.legend(title=r"SDNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     #ax7.legend(fontsize=legend_fs, framealpha=1.0)
     #ax7.set_xticklabels([])
