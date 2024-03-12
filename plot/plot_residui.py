@@ -267,7 +267,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
 
     def SDNR_thres(prob_thr):
         
-        SDNR_thr=erfinv(prob_thr) *2*np.sqrt(2)
+        SDNR_thr=erfinv(2*prob_thr-1) *2*np.sqrt(2)
         return(SDNR_thr)
     
     SDNR_thr=SDNR_thres(prob_thr)
@@ -661,7 +661,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     ax15.text(-0.1, 1.05, "D", weight="bold", fontsize=30, color='k', transform=ax15.transAxes)
     ax15.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax15.tick_params(labelsize=tick_fs)
-    ax15.set_xscale('log')
+    #ax15.set_xscale('log')
     ax15.set_xticklabels([])
     ax15.legend(fontsize=legend_fs)
     #ax15.grid()
@@ -696,7 +696,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     #plt.savefig("structural_plasticity.png")
 
     
-saturation = True
+saturation = False
 if saturation==True:
     sat = "_saturation"
 else:
@@ -721,7 +721,7 @@ th_ln_noise3 = get_th_data("../simulations/noise_3Hz_simulations"+sat)
 th_ln_noise4 = get_th_data("../simulations/noise_4Hz_simulations"+sat)
 th_ln_noise5 = get_th_data("../simulations/noise_5Hz_simulations"+sat)
 
-prob_thr=0.9
+prob_thr=0.95
 ln_rate_noise = [ln_rate, ln_rate_noise1, ln_rate_noise2, ln_rate_noise3, ln_rate_noise4, ln_rate_noise5]
 th_ln_noise = [th_ln, th_ln_noise1, th_ln_noise2, th_ln_noise3, th_ln_noise4, th_ln_noise5]
 label = ["No", "1 Hz", "2 Hz", "3 Hz", "4 Hz", "5 Hz"]
