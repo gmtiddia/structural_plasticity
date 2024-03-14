@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import math
+from scipy.optimize import curve_fit
 from scipy.special import erf, erfinv
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -338,7 +339,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
 
     
-    ax2.plot(ln_noise['T'], abs((np.array(ln_noise['Sb_av'])-np.array(norew_noise['Sb_av']))/np.array(ln_noise['Sb_av'])*100), "-", color="green")
+    ax2.plot(ln_noise['T'], abs((np.array(ln_noise['Sb_av'])-np.array(norew_noise['Sb_av']))/np.array(ln_noise['Sb_av'])*100), "--", color="green")
     #ax2.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax2.set_ylabel(r"$\dfrac{\langle S_b \rangle - \langle S_{b} \rangle ^{nr}}{\langle S_{b}\rangle} \quad $[%] ", fontsize=tick_fs)
     ax2.set_xlabel('T training patterns', fontsize=tick_fs)
@@ -361,7 +362,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
 
 
 
-    ax4.plot(norew_noise['T'], abs((np.array(ln_noise['varSb_av'])-np.array(norew_noise['varSb_av']))/np.array(ln_noise['varSb_av'])*100), "-", color="green")
+    ax4.plot(norew_noise['T'], abs((np.array(ln_noise['varSb_av'])-np.array(norew_noise['varSb_av']))/np.array(ln_noise['varSb_av'])*100), "--", color="green")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax4.set_ylabel(r"$\dfrac{\sigma^2_{b} - \sigma_{{b}^{nr}}^{2}}{\sigma^2_{b}}\quad$[%] ", fontsize=tick_fs)
     ax4.set_xlabel('T training patterns', fontsize=tick_fs)
@@ -382,7 +383,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     #ax5.legend(title=r"$S_c$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax5.set_xticklabels([])
 
-    ax6.plot(norew_noise['T'], abs((np.array(ln_noise['S2_av'])-np.array(norew_noise['S2_av']))/np.array(ln_noise['S2_av'])*100), "-", color="green")
+    ax6.plot(norew_noise['T'], abs((np.array(ln_noise['S2_av'])-np.array(norew_noise['S2_av']))/np.array(ln_noise['S2_av'])*100), "--", color="green")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax6.set_ylabel(r"$\dfrac{\langle S_c \rangle - \langle S_{c}\rangle ^{nr}}{\langle S_{c} \rangle}\quad$[%] ", fontsize=tick_fs)
     ax6.set_xlabel('T training patterns', fontsize=tick_fs)
@@ -394,9 +395,15 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     CNR_norew=np.array(np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']))
     ax7.plot(ln_noise['T'], np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "o", color="blue", label="w/ rewiring")
     ax7.plot(norew_noise['T'], np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "^", markersize=5, color="red", label="w/out rewiring")
+    
+    prob_thr=0.95
+    SDNR_thr=erfinv(2*prob_thr-1) *2*np.sqrt(2)
 
    # ax7.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax7.text(-0.1, 1, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
+
+    ax7.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-',color='coral')
+    ax7.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=17, s=r'$\text{SDNR}_{\text{thr}}$')
     ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xticks([5000, 25000, 50000, 75000, 100000])
@@ -406,7 +413,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax7.set_xticklabels([])
     #ax8.legend(title=r"CNR", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
 
-    ax8.plot(norew_noise['T'], abs((CNR_rew-CNR_norew)/CNR_norew*100), "-", color="green", label="Simulation")
+    ax8.plot(norew_noise['T'], abs((CNR_rew-CNR_norew)/CNR_norew*100), "--", color="green", label="Simulation")
   #  ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax8.set_ylabel(r"$\dfrac{SDNR - SDNR^{nr}}{SDNR^{nr}}\quad$[%] ", fontsize=tick_fs)
     ax8.set_xlabel('T training patterns', fontsize=tick_fs)
@@ -433,6 +440,30 @@ discr_rate = get_data("../simulations/discr_rate_simulations", 10)
 ln_rate = get_data("../simulations/no_noise_simulations", 10)
 ln_rate_noise = get_data("../simulations/noise_1Hz_simulations", 10)
 
+T = ln_rate['T']
+
+sdnr_rew = np.asarray([(ln_rate['S2_av'][i]-ln_rate['Sb_av'][i])/np.sqrt(ln_rate['varSb_av'][i]) for i in range(len(ln_rate['T']))])
+sdnr_norew = np.asarray([(norew_noise['S2_av'][i]-norew_noise['Sb_av'][i])/np.sqrt(norew_noise['varSb_av'][i]) for i in range(len(norew_noise['T']))])
+
+
+def sqrt_function(X, a):
+    return a / np.sqrt(X) 
+prob_thr=0.95
+sdnr_thr = erfinv(2*prob_thr-1)*np.sqrt(8)
+
+paramsrew, covariance0 = curve_fit(sqrt_function, T, sdnr_rew)
+paramsnorew, covariance1 = curve_fit(sqrt_function, T, sdnr_norew)
+
+a_fit_rew = paramsrew[0]
+a_fit_norew = paramsnorew[0]
+
+T_max_rew=a_fit_rew**2/(sdnr_thr)**2
+T_max_norew=a_fit_norew**2/(sdnr_thr)**2
+
+diff_patterns=(T_max_rew-T_max_norew)/T_max_norew*100
+print(T_max_rew)
+print(T_max_norew)
+print("Con il rewiring la rete riesce ad immagazzinare il " + str(diff_patterns)+ "\% di pattern in più")
 # theoretical values
 #th_norew_noise = get_th_data("simulations/simulation_no_rewiring_continuo")
 #th_discr = get_th_data("simulations/discr_rate_simulations")

@@ -1,4 +1,5 @@
 import os
+from scipy.optimize import curve_fit
 import numpy as np
 import math
 from scipy.special import erf, erfinv
@@ -651,9 +652,10 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
         ax15.plot(ln_noise[i]['T'], np.abs(th_ln_noise[i]['S2_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']), "--", color=th_colors[i], label='_nolegend_')
         ax15.plot(ln_noise[i]['T'], np.abs(ln_noise[i]['S2_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av']), "^", color=colors[i], label='_nolegend_')
     
-    #ax15.axhline(y=SDNR_thr, color='r', linestyle='-', label='SDNR threshold')
-    ax15.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-', label='SDNR threshold')
-
+    # SOGLIA
+    #ax15.axhline(y=SDNR_thr, color='r', linestyle='-')
+    ax15.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-',color='coral')
+    ax15.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=20, s=r'$\text{SDNR}_{\text{thr}}$')
   #  plt.subplots_adjust(hspace=0.1)
 
 
@@ -696,7 +698,7 @@ def plot_data(discr, th_discr, ln, th_ln, ln_noise, th_ln_noise, label, saturati
     #plt.savefig("structural_plasticity.png")
 
     
-saturation = False
+saturation = True
 if saturation==True:
     sat = "_saturation"
 else:
@@ -726,7 +728,48 @@ ln_rate_noise = [ln_rate, ln_rate_noise1, ln_rate_noise2, ln_rate_noise3, ln_rat
 th_ln_noise = [th_ln, th_ln_noise1, th_ln_noise2, th_ln_noise3, th_ln_noise4, th_ln_noise5]
 label = ["No", "1 Hz", "2 Hz", "3 Hz", "4 Hz", "5 Hz"]
 
+def sqrt_function(X, a):
+    return a / np.sqrt(X) 
+sdnr_thr = erfinv(2*prob_thr-1)*np.sqrt(8)
+sdnr_noise0 = np.asarray([(ln_rate['S2_av'][i]-ln_rate['Sb_av'][i])/np.sqrt(ln_rate['varSb_av'][i]) for i in range(len(ln_rate['T']))])
+sdnr_noise1 = np.asarray([(ln_rate_noise1['S2_av'][i]-ln_rate_noise1['Sb_av'][i])/np.sqrt(ln_rate_noise1['varSb_av'][i]) for i in range(len(ln_rate_noise1['T']))])
+#sdnr_noise2 = np.asarray([(ln_rate_noise2['S2_av'][i]-ln_rate_noise2['Sb_av'][i])/np.sqrt(ln_rate_noise2['varSb_av'][i]) for i in range(len(ln_rate_noise2['T']))])
+#sdnr_noise3 = np.asarray([(ln_rate_noise3['S2_av'][i]-ln_rate_noise3['Sb_av'][i])/np.sqrt(ln_rate_noise3['varSb_av'][i]) for i in range(len(ln_rate_noise3['T']))])
+#sdnr_noise4 = np.asarray([(ln_rate_noise4['S2_av'][i]-ln_rate_noise4['Sb_av'][i])/np.sqrt(ln_rate_noise4['varSb_av'][i]) for i in range(len(ln_rate_noise4['T']))])
+sdnr_noise5 = np.asarray([(ln_rate_noise5['S2_av'][i]-ln_rate_noise5['Sb_av'][i])/np.sqrt(ln_rate_noise5['varSb_av'][i]) for i in range(len(ln_rate_noise5['T']))])
 
+T = ln_rate_noise1['T']
+
+# Generate sample data
+# Fit the data to the sqrt_function
+params0, covariance0 = curve_fit(sqrt_function, T, sdnr_noise0)
+params1, covariance1 = curve_fit(sqrt_function, T, sdnr_noise1)
+#params2, covariance2 = curve_fit(sqrt_function, T, sdnr_noise2)
+#params3, covariance3 = curve_fit(sqrt_function, T, sdnr_noise3)
+#params4, covariance4 = curve_fit(sqrt_function, T, sdnr_noise4)
+params5, covariance5 = curve_fit(sqrt_function, T, sdnr_noise5)
+
+# Extract the fitted parameter
+a_fit_noise0 = params0[0]
+a_fit_noise1 = params1[0]
+#print(a_fit_noise1)
+#b_fit_noise1 = params1[1]
+#print(b_fit_noise1)
+#a_fit_noise2 = params2[0]
+#b_fit_noise2 = params2[1]
+#a_fit_noise3 = params3[0]
+#b_fit_noise3 = params3[1]
+#a_fit_noise4 = params4[0]
+#b_fit_noise4 = params4[1]
+a_fit_noise5 = params5[0]
+T_max_noise0=a_fit_noise0**2/(sdnr_thr)**2
+T_max_noise1=a_fit_noise1**2/(sdnr_thr)**2
+T_max_noise5=a_fit_noise5**2/(sdnr_thr)**2
+
+
+print("Massimo numero di pattern con 0 Hz noise: " + str(T_max_noise0)+ '\n')
+print("Massimo numero di pattern con 1 Hz noise: " + str(T_max_noise1)+ '\n')
+print("Massimo numero di pattern con 5 Hz noise: " + str(T_max_noise5)+ '\n')
 plot_data(discr_rate, th_discr, ln_rate, th_ln, ln_rate_noise, th_ln_noise, label, sat,prob_thr)
 
 plt.show()
