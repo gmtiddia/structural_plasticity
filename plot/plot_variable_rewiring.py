@@ -287,7 +287,7 @@ def plot_data(data, th_data):
 
     #ax1.fill_between(data['t'][1:], data['Sb_av'][1:]-data['Sb_std'][1:], data['Sb_av'][1:]+data['Sb_std'][1:], color="blue", alpha=0.2)
     ax1.text(-0.1, 1.05, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
-    ax1.plot(th_data['t'], th_data['Sb_th'], "--", linewidth=2.5, color="gold", label='Theoretical estimation')
+    ax1.plot(th_data['t'], th_data['Sb_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
     ax1.errorbar(data['t'][1:], data['Sb_av'][1:], yerr=data['Sb_std'][1:], fmt="o", linestyle="", color="blue", label="w/ rewiring")
     ax1.errorbar(data['t'][0], data['Sb_av'][0], yerr=data['Sb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
@@ -302,7 +302,7 @@ def plot_data(data, th_data):
     
     #ax3.fill_between(data['t'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
     ax3.text(-0.1, 1.05, "C", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
-    ax3.plot(th_data['t'], th_data['varSb_th'], "--", linewidth=2.5, color="gold", label='Theoretical estimation')
+    ax3.plot(th_data['t'], th_data['varSb_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
     ax3.errorbar(data['t'][1:], data['varSb_av'][1:], fmt="o", linestyle="", yerr=data['varSb_std'][1:], color="blue", label="w/ rewiring")
     ax3.errorbar(data['t'][0], data['varSb_av'][0], yerr=data['varSb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     #ax3.plot(data['t'], th_data['varSb_th'], "--", color="red", label="Theory")
@@ -317,7 +317,7 @@ def plot_data(data, th_data):
 
     ax5.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
     #ax5.fill_between(data['t'][1:], data['S2_av'][1:]-data['S2_std'][1:], data['S2_av'][1:]+data['S2_std'][1:], color="blue", alpha=0.2)
-    ax5.plot(th_data['t'], th_data['S2_th'], "--", linewidth=2.5, color="gold", label='Theoretical estimation')
+    ax5.plot(th_data['t'], th_data['S2_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
     ax5.errorbar(data['t'][1:], data['S2_av'][1:], fmt="o", linestyle="", yerr=data['S2_std'][1:], color="blue", label="w/ rewiring")
     ax5.errorbar(data['t'][0], data['S2_av'][0], yerr=data['S2_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     #ax5.plot(data['t'], th_data['S2_th'], "--", color="red", label="Theory")
@@ -332,7 +332,7 @@ def plot_data(data, th_data):
 
     ax7.text(-0.1, 1.05, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
     #ax7.fill_between(data['t'][1:], data['CNR_av'][1:]-data['CNR_std'][1:], data['CNR_av'][1:]+data['CNR_std'][1:], color="blue", alpha=0.2)
-    ax7.plot(th_data['t'], (th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", linewidth=2.5, color="gold", label='Theoretical estimation')
+    ax7.plot(th_data['t'], (th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", linewidth=2.5, color="orange", label='Theoretical estimation')
     ax7.errorbar(data['t'][1:], data['CNR_av'][1:], fmt="o", linestyle="", yerr=data['CNR_std'][1:], color="blue", label="w/ rewiring")
     ax7.errorbar(data['t'][0], data['CNR_av'][0], yerr=data['CNR_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     #ax7.plot(data['t'], np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", color="red", label="Theory")

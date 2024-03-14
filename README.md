@@ -12,7 +12,10 @@ Additionally to run the scripts to post process the data and generate plots, Pyt
 * Matplotlib 3.5.1
 
 ## Contents
-
+The [illustrations](illustrations/) directory contains the source and the PNG files of the illustrations shown in the work.
+The [model](model/) directory contains all the scripts needed to perform the simulations of the model. Please enter the directory to have instructions on how to run a simulation.
+The [plot](plot/) directory contains all the Python scripts used to produce the plots shown in the manuscript.
+The [simulations](simulations/) directory contains the data, obtained from the simulations, that we used in the work.
 
 ## Contact
 Gianmarco Tiddia, Department of Physics, University of Cagliary, Italy and Istituto Nazionale di Fisica Nucleare, Sezione di Cagliari, Italy, gianmarco.tiddia@ca.infn.it
