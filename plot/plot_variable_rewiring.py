@@ -4,7 +4,6 @@ import math
 from scipy.special import erf, erfinv
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 import matplotlib.gridspec as gridspec
 
 
