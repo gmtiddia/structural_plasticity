@@ -7,7 +7,7 @@ In order to reproduce the plots of the manuscript you can run the following Pyth
 - [plot_sim_th_comparison.py](plot_sim_th_comparison.py): returns discrete_vs_continuous.png and lognormal.png or lognormal_saturation.png, i.e., Figure 9 and 4 or 5, depending on the value of the flag ```saturation``` in the script
 - [plot_variable_rewiring.py](plot_variable_rewiring.py): returns variable_rewiring.png, i.e., Figure 7
 
-
+The plots use the data stored inside the [simulations](../simulations/) directory.
 
 
 
