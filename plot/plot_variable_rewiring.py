@@ -350,7 +350,7 @@ def plot_data(data, th_data):
     #fig1.subplots_adjust(wspace=0.6)
     #fig.suptitle(r'Different rewiring step, $T=5000$', fontsize=25)
 
-    plt.savefig("t_study.png")
+    plt.savefig("variable_rewiring.png")
 
     plt.show()
 
