@@ -169,7 +169,7 @@ ax1.set_xscale('log')
 ax1.set_xlim(0.001,1.1)
 
 
-ax1.set_xlabel("C/N ratio", fontsize=tick_fs)
+ax1.set_xlabel(r'$\mathcal{C}/\mathcal{N}$ ratio', fontsize=tick_fs)
 ax1.set_ylabel(r"$\sigma_{b}^2$ [$pA^2$ $\times$ $Hz^2$]", fontsize=tick_fs)
 #ax1.set_ylabel(r"$\frac{S2-S2_{th}}{S2_{th}}$ (%)  ", fontsize=tick_fs)
 ax1.tick_params(labelsize=tick_fs)
@@ -188,7 +188,7 @@ ax2.plot(R200K, [abs(varSb_exp_1[3]-varSb_t_200k[999])/varSb_t_200k[999]*100, ab
 
 
 
-ax2.set_xlabel("C/N ratio", fontsize=tick_fs)
+ax2.set_xlabel(r'$\mathcal{C}/\mathcal{N}$ ratio', fontsize=tick_fs)
 ax2.set_ylabel(r"Relative error $\quad$[%]", fontsize=tick_fs)                                                                    
 ax2.tick_params(labelsize=tick_fs)
 ax2.set_xscale('log')

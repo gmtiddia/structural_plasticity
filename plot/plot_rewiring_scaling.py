@@ -341,7 +341,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax2.plot(ln_noise['T'], abs((np.array(ln_noise['Sb_av'])-np.array(norew_noise['Sb_av']))/np.array(ln_noise['Sb_av'])*100), "--", color="green")
     #ax2.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax2.set_ylabel(r"$\dfrac{\langle S_b \rangle - \langle S_{b} \rangle ^{nr}}{\langle S_{b}\rangle} \quad $[%] ", fontsize=tick_fs)
-    ax2.set_xlabel('T training patterns', fontsize=tick_fs)
+    ax2.set_xlabel(r'$\mathcal{T}$ training patterns', fontsize=tick_fs)
     ax2.tick_params(labelsize=tick_fs)
     #ax2.set_xscale('log')
     ax2.set_xticks([5000, 25000, 50000, 75000, 100000])
@@ -364,7 +364,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax4.plot(norew_noise['T'], abs((np.array(ln_noise['varSb_av'])-np.array(norew_noise['varSb_av']))/np.array(ln_noise['varSb_av'])*100), "--", color="green")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax4.set_ylabel(r"$\dfrac{\sigma^2_{b} - \sigma_{{b}^{nr}}^{2}}{\sigma^2_{b}}\quad$[%] ", fontsize=tick_fs)
-    ax4.set_xlabel('T training patterns', fontsize=tick_fs)
+    ax4.set_xlabel(r'$\mathcal{T}$ training patterns', fontsize=tick_fs)
     ax4.tick_params(labelsize=tick_fs)
     ax4.set_xticks([5000, 25000, 50000, 75000, 100000])
     ax4.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
@@ -385,7 +385,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax6.plot(norew_noise['T'], abs((np.array(ln_noise['S2_av'])-np.array(norew_noise['S2_av']))/np.array(ln_noise['S2_av'])*100), "--", color="green")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax6.set_ylabel(r"$\dfrac{\langle S_c \rangle - \langle S_{c}\rangle ^{nr}}{\langle S_{c} \rangle}\quad$[%] ", fontsize=tick_fs)
-    ax6.set_xlabel('T training patterns', fontsize=tick_fs)
+    ax6.set_xlabel(r'$\mathcal{T}$ training patterns', fontsize=tick_fs)
     ax6.tick_params(labelsize=tick_fs)
     ax6.set_xticks([5000, 25000, 50000, 75000, 100000])
     ax6.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
@@ -402,7 +402,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax7.text(-0.1, 1, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
 
     ax7.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-',color='coral')
-    ax7.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=17, s=r'$\text{SDNR}_{\text{thr}}$')
+    ax7.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=legend_fs+2, s=r'$\text{SDNR}_{\text{thr}}$')
     ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xticks([5000, 25000, 50000, 75000, 100000])
@@ -415,14 +415,14 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax8.plot(norew_noise['T'], abs((CNR_rew-CNR_norew)/CNR_norew*100), "--", color="green", label="Simulation")
   #  ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax8.set_ylabel(r"$\dfrac{SDNR - SDNR^{nr}}{SDNR^{nr}}\quad$[%] ", fontsize=tick_fs)
-    ax8.set_xlabel('T training patterns', fontsize=tick_fs)
+    ax8.set_xlabel(r'$\mathcal{T}$ training patterns', fontsize=tick_fs)
     ax8.tick_params(labelsize=tick_fs)
     ax8.set_xticks([5000, 25000, 50000, 75000, 100000])
     ax8.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
 
     #fig.subplots_adjust(bottom=0.1, top=0.97, right=0.975, left=0.12, wspace = 0.25)
 
-    plt.savefig("no_rewiring.png")
+    plt.savefig("rewiring_scaling.png")
 
 
 
@@ -445,6 +445,7 @@ sdnr_rew = np.asarray([(ln_rate['S2_av'][i]-ln_rate['Sb_av'][i])/np.sqrt(ln_rate
 sdnr_norew = np.asarray([(norew_noise['S2_av'][i]-norew_noise['Sb_av'][i])/np.sqrt(norew_noise['varSb_av'][i]) for i in range(len(norew_noise['T']))])
 
 
+"""
 def sqrt_function(X, a):
     return a / np.sqrt(X) 
 prob_thr=0.95
@@ -468,6 +469,8 @@ print("Con il rewiring la rete riesce ad immagazzinare il " + str(diff_patterns)
 #th_discr = get_th_data("simulations/discr_rate_simulations")
 #th_ln = get_th_data("simulations/no_noise_simulations")
 #th_ln_noise = get_th_data("simulations/noise_1Hz_simulations")
+"""
+
 
 plot_data(discr_rate, ln_rate,  ln_rate_noise, norew_noise)
 plt.show()
