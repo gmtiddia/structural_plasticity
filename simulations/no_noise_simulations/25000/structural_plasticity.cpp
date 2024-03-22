@@ -64,7 +64,7 @@ simulation::simulation()
   // multapses can be allowed or forbidden
   allow_multapses = true;
   // step (in n. of patterns) for connection recombination (0: no recombination)
-  change_conn_step = 100;
+  r = 100;
   // to save memory, patterns can be generated on the fly from their index
   // without storing the whole set in memory
   generate_patterns_on_the_fly = true;
@@ -75,25 +75,25 @@ simulation::simulation()
   // connections per layer-2-neuron, i.e. indegree (double needed)
   C = 5000.0;
   // probability of high rate for layer 1
-  p1 = 1.0e-3;
+  alpha1 = 1.0e-3;
   // probability of high rate for layer 2
-  p2 = 1.0e-3;
+  alpha2 = 1.0e-3;
   // number of neurons in pop 1
   N1 = 100000;
   // number of neurons in pop 2
   N2 = 100000;  
   // baseline weight
-  W0 = 0.1;
+  Wb = 0.1;
   // consolidated weight
-  Wc = 1.0;
+  Ws = 1.0;
   // low rate for layer 1 [Hz]
-  rl1 = 2.0;
+  nu_l_1 = 2.0;
   // high rate for layer 1 [Hz]
-  rh1 = 50.0;
+  nu_h_1 = 50.0;
   // low rate for layer 2 [Hz]
-  rl2 = 2.0;
+  nu_l_2 = 2.0;
   // high rate for layer 2 [Hz]
-  rh2 = 50.0;
+  nu_h_2 = 50.0;
   // add noise on test patterns
   noise_flag = true;
   // noise on test patterns (sigma of truncated normal distribution) [Hz]
@@ -157,7 +157,7 @@ int simulation::init(int argc, char *argv[])
     readParams(argv[2]);
   }
   
-  if (!allow_multapses && change_conn_step!=0) {
+  if (!allow_multapses && r!=0) {
     std::cerr << "Connection recombination allowed only "
       "with multapses allowed\n";
     exit(-1);
@@ -167,7 +167,7 @@ int simulation::init(int argc, char *argv[])
       "with fixed_indegree connection rule\n";
     exit(-1);
   }
-  //if (connection_rule!=FIXED_INDEGREE && change_conn_step!=0) {
+  //if (connection_rule!=FIXED_INDEGREE && r!=0) {
   //  std::cerr << "Connection recombination currently allowed only "
   //    "with fixed_indegree connection rule\n";
   //  exit(-1);
@@ -184,44 +184,44 @@ int simulation::evalTheoreticalValues()
 {
   // probability of having consolidated the
   // connection at least for one instance
-  p = 1.0 - pow(1.0 - p1*p2, T);
+  p = 1.0 - pow(1.0 - alpha1*alpha2, T);
 
-  // complement of p1
-  q1 = 1.0 - p1;
+  // complement of alpha1
+  q1 = 1.0 - alpha1;
   // average rate layer 1
-  rm1 = p1*rh1 + q1*rl1;
+  rm1 = alpha1*nu_h_1 + q1*nu_l_1;
 
-  // complement of p2
-  q2 = 1.0 - p2;
+  // complement of alpha2
+  q2 = 1.0 - alpha2;
   // average rate layer 2
-  rm2 = p2*rh2 + q2*rl2;
+  rm2 = alpha2*nu_h_2 + q2*nu_l_2;
 
   // rate lognormal distribution parameters for layer 1
-  sigma_ln1 = erfm1(q1) - erfm1(q1*rl1/rm1);
+  sigma_ln1 = erfm1(q1) - erfm1(q1*nu_l_1/rm1);
   mu_ln1 = log(rm1) - sigma_ln1*sigma_ln1/2.0;
   yt_ln1 = erfm1(q1)*sigma_ln1 + mu_ln1;
   if(lognormal_rate) {
     rt1 = exp(yt_ln1);
   }
   else {
-    rt1 = (rh1 + rl1) / 2.0;
+    rt1 = (nu_h_1 + nu_l_1) / 2.0;
   }
 
   // rate lognormal distribution parameters for layer 2
-  sigma_ln2 = erfm1(q2) - erfm1(q2*rl2/rm2);
+  sigma_ln2 = erfm1(q2) - erfm1(q2*nu_l_2/rm2);
   mu_ln2 = log(rm2) - sigma_ln2*sigma_ln2/2.0;
   yt_ln2 = erfm1(q2)*sigma_ln2 + mu_ln2;
   if(lognormal_rate) {
     rt2 = exp(yt_ln2);
   }
   else {
-    rt2 = (rh2 + rl2) / 2.0;
+    rt2 = (nu_h_2 + nu_l_2) / 2.0;
   }
   
   // average consolidated connections
   k = p*C;
   // <r^2> for layer 1 (we do not need it for layer 2)
-  rsq1 = p1*rh1*rh1 + (1.0 - p1)*rl1*rl1;
+  rsq1 = alpha1*nu_h_1*nu_h_1 + (1.0 - alpha1)*nu_l_1*nu_l_1;
   // rate variance layer 1
   if (lognormal_rate) {
     var_r1 = (exp(sigma_ln1*sigma_ln1) -1.0)
@@ -231,32 +231,32 @@ int simulation::evalTheoreticalValues()
     var_r1 = rsq1 - rm1*rm1;
   }
   // calculation for variance of k
-  k2 = C*(C - 1)*pow(1.0 - (2.0 - p1)*p1*p2, T)
-    - C*(2*C - 1)*pow(1.0 - p1*p2, T) + C*C;
+  k2 = C*(C - 1)*pow(1.0 - (2.0 - alpha1)*alpha1*alpha2, T)
+    - C*(2*C - 1)*pow(1.0 - alpha1*alpha2, T) + C*C;
   var_k = k2 - k*k;
   
   // theoretical estimation of Sb, S2 and sigma^2 Sb
-  Sbt = Wc*k*rm1 + W0*(C-k)*rm1;
-  S2t = rh1*Wc*p1*C + rl1*(1.0-p1)*(W0*C + (Wc - W0)*k);
-  S2t_chc = rh1*Wc*p1*C + rm1*(1.0-p1)*(W0*C + (Wc - W0)*k);
-  var_St = (Wc*Wc*k + W0*W0*(C-k))*var_r1
-    + (Wc - W0)*(Wc - W0)*rm1*rm1*var_k;
+  Sbt = Ws*k*rm1 + Wb*(C-k)*rm1;
+  S2t = nu_h_1*Ws*alpha1*C + nu_l_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
+  S2t_chc = nu_h_1*Ws*alpha1*C + rm1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
+  var_St = (Ws*Ws*k + Wb*Wb*(C-k))*var_r1
+    + (Ws - Wb)*(Ws - Wb)*rm1*rm1*var_k;
 
   // Variable n. of connections per target neuron (Poisson distribution)
   double C_m = C;
   double var_C = C;
   double C2_m = C*(C + 1.0);
-  double eta = pow(1.0 - p1*p2, T);
-  double csi = pow(1.0 - (2.0 - p1)*p1*p2, T);
+  double eta = pow(1.0 - alpha1*alpha2, T);
+  double csi = pow(1.0 - (2.0 - alpha1)*alpha1*alpha2, T);
   
-  double var_S_poiss = pow(W0 + p*(Wc - W0), 2.0)*rm1*rm1*var_C
-    + C_m*(p*Wc*Wc + eta*W0*W0)*var_r1
-    + pow(Wc - W0, 2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta);
+  double var_S_poiss = pow(Wb + p*(Ws - Wb), 2.0)*rm1*rm1*var_C
+    + C_m*(p*Ws*Ws + eta*Wb*Wb)*var_r1
+    + pow(Ws - Wb, 2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta);
 
   double beta = max_noise_dev;
   double Z = Phi(beta) - Phi(-beta);
   double var_noise = rate_noise*rate_noise*(1.0 - 2.0*beta*phi(beta)/Z);
-  double var_S_noise = (Wc*Wc*k + W0*W0*(C - k))*var_noise;
+  double var_S_noise = (Ws*Ws*k + Wb*Wb*(C - k))*var_noise;
 
   printf("Number of openmp threads: %d\n", THREAD_MAXNUM);
   // print of theoretical estimations
@@ -276,8 +276,8 @@ int simulation::evalTheoreticalValues()
 	   var_S_poiss + var_S_noise);
   }
   fflush(stdout);
-  //std::cout << (Wc*Wc*k + W0*W0*(C-k))*sigma2r << "\n";
-  //std::cout << (Wc - W0)*(Wc - W0)*r*r*sigma2k << "\n";
+  //std::cout << (Ws*Ws*k + Wb*Wb*(C-k))*sigma2r << "\n";
+  //std::cout << (Ws - Wb)*(Ws - Wb)*r*r*sigma2k << "\n";
 
   // same but saved in the header file
   fp_head = fopen(file_name_head, "wt");
@@ -418,13 +418,13 @@ int simulation::train()
 	  int i1 = conn_index[i2][ic];
 	  if (rate_L1[i1] > rt1) {
 	    // synaptic consolidation
-	    w[i2][ic] = Wc;
+	    w[i2][ic] = Ws;
 	  }
 	}
       }
     }
     
-    if (change_conn_step!=0 && ((ie+1)%change_conn_step==0)
+    if (r!=0 && ((ie+1)%r==0)
 	&& allow_multapses) {
       //std::cout << "Training pattern n. " << ie + 1 << " / " << T << "\n";
       rewireConnections();
@@ -646,9 +646,9 @@ int simulation::readParams(char *filename)
       std::cout  << std::boolalpha
 		 << "allow_multapses: " << allow_multapses << "\n";
     }
-    else if (s=="change_conn_step") {
-      ss >> change_conn_step;
-      std::cout << "change_conn_step: " << change_conn_step << "\n";
+    else if (s=="r") {
+      ss >> r;
+      std::cout << "r: " << r << "\n";
     }
     else if (s=="T") {
       ss >> T;
@@ -662,13 +662,13 @@ int simulation::readParams(char *filename)
       ss >> C;
       std::cout << "C: " << C << "\n";
     }
-    else if (s=="p1") {
-      ss >> p1;
-      std::cout << "p1: " << p1 << "\n";
+    else if (s=="alpha1") {
+      ss >> alpha1;
+      std::cout << "alpha1: " << alpha1 << "\n";
     }
-    else if (s=="p2") {
-      ss >> p2;
-      std::cout << "p2: " << p2 << "\n";
+    else if (s=="alpha2") {
+      ss >> alpha2;
+      std::cout << "alpha2: " << alpha2 << "\n";
     }
     else if (s=="N1") {
       ss >> N1;
@@ -678,29 +678,29 @@ int simulation::readParams(char *filename)
       ss >> N2;
       std::cout << "N2: " << N2 << "\n";
     }
-    else if (s=="W0") {
-      ss >> W0;
-      std::cout << "W0: " << W0 << "\n";
+    else if (s=="Wb") {
+      ss >> Wb;
+      std::cout << "Wb: " << Wb << "\n";
     }
-    else if (s=="Wc") {
-      ss >> Wc;
-      std::cout << "Wc: " << Wc << "\n";
+    else if (s=="Ws") {
+      ss >> Ws;
+      std::cout << "Ws: " << Ws << "\n";
     }
-    else if (s=="rl1") {
-      ss >> rl1;
-      std::cout << "rl1: " << rl1 << "\n";
+    else if (s=="nu_l_1") {
+      ss >> nu_l_1;
+      std::cout << "nu_l_1: " << nu_l_1 << "\n";
     }
-    else if (s=="rh1") {
-      ss >> rh1;
-      std::cout << "rh1: " << rh1 << "\n";
+    else if (s=="nu_h_1") {
+      ss >> nu_h_1;
+      std::cout << "nu_h_1: " << nu_h_1 << "\n";
     }
-    else if (s=="rl2") {
-      ss >> rl2;
-      std::cout << "rl2: " << rl2 << "\n";
+    else if (s=="nu_l_2") {
+      ss >> nu_l_2;
+      std::cout << "nu_l_2: " << nu_l_2 << "\n";
     }
-    else if (s=="rh2") {
-      ss >> rh2;
-      std::cout << "rh2: " << rh2 << "\n";
+    else if (s=="nu_h_2") {
+      ss >> nu_h_2;
+      std::cout << "nu_h_2: " << nu_h_2 << "\n";
     }
     else if (s=="noise_flag") {
       ss >> noise_flag;
@@ -816,13 +816,13 @@ int simulation::generateRandomPattern(double *rate_L1, double *rate_L2,
       rate_L1[i1] = exp(rnd_normal1(rnd_gen));
     }
     else {
-      if (rnd_uniform(rnd_gen) < p1) {
-	//rate1.push_back(rh1);
-	rate_L1[i1] = rh1;
+      if (rnd_uniform(rnd_gen) < alpha1) {
+	//rate1.push_back(nu_h_1);
+	rate_L1[i1] = nu_h_1;
       }
       else {
-	//rate1.push_back(rl1);
-	rate_L1[i1] = rl1;
+	//rate1.push_back(nu_l_1);
+	rate_L1[i1] = nu_l_1;
       }
     }
   }
@@ -836,13 +836,13 @@ int simulation::generateRandomPattern(double *rate_L1, double *rate_L2,
       rate_L2[i2] = exp(rnd_normal2(rnd_gen));
     }
     else {
-      if (rnd_uniform(rnd_gen) < p2) {
-	//rate2.push_back(rh2);
-	rate_L2[i2] = rh2;
+      if (rnd_uniform(rnd_gen) < alpha2) {
+	//rate2.push_back(nu_h_2);
+	rate_L2[i2] = nu_h_2;
       }
       else {
-	//rate2.push_back(rl2);
-	rate_L2[i2] = rl2;
+	//rate2.push_back(nu_l_2);
+	rate_L2[i2] = nu_l_2;
       }
     }
   }
@@ -1032,9 +1032,9 @@ int simulation::createNetwork()
       } while (ic1 >= iC_reserve);
       int i1 = rnd_int1(rnd_gen_network);
       //conn_index[i2].push_back(i1);
-      //w[i2].push_back(W0);
+      //w[i2].push_back(Wb);
       conn_index[i2][ic1] = i1;
-      w[i2][ic1] = W0;
+      w[i2][ic1] = Wb;
       n_conn_2[i2]++;
     }
     std::cout << "\tDone.\n" << std::flush;
@@ -1069,9 +1069,9 @@ int simulation::createNetwork()
 	n_conn_2[i2] = iC1;
 	for (int ic=0; ic<iC1; ic++) {
 	  //conn_index[i2].push_back(rnd_int1(rnd_gen_network));
-	  //w[i2].push_back(W0);
+	  //w[i2].push_back(Wb);
 	  conn_index[i2][ic] = rnd_int1(rnd_gen_network);
-	  w[i2][ic] = W0;
+	  w[i2][ic] = Wb;
 	}
       }
       else {
@@ -1081,9 +1081,9 @@ int simulation::createNetwork()
 	  int j1 = rnd_j1(rnd_gen_network);
 	  std::swap(int_range[ic], int_range[j1]);
 	  //conn_index[i2].push_back(int_range[ic]);
-	  //w[i2].push_back(W0);
+	  //w[i2].push_back(Wb);
 	  conn_index[i2][ic] = int_range[ic];
-	  w[i2][ic] = W0;
+	  w[i2][ic] = Wb;
 	}
       }
     }
@@ -1155,7 +1155,7 @@ int simulation::rewireConnections()
     // move (i.e. destroy and recreate) non-consolidated connections
     for (int i2=0; i2<N2; i2++) {
       for (int ic=0; ic<n_conn_2[i2]; ic++) {
-	if (w[i2][ic] < W0 + eps) { // non-consolidated connection
+	if (w[i2][ic] < Wb + eps) { // non-consolidated connection
 	  conn_index[i2][ic] = rnd_int(rnd_gen_train);
 	}
       }
@@ -1169,7 +1169,7 @@ int simulation::rewireConnections()
     for (int i2=0; i2<N2; i2++) {
       int k = 0;
       for (int ic=0; ic<n_conn_2[i2]; ic++) {
-	if (w[i2][ic] > Wc - eps) { // consolidated connection
+	if (w[i2][ic] > Ws - eps) { // consolidated connection
 	  conn_index[i2][k] = conn_index[i2][ic];
 	  w[i2][k] = w[i2][ic];
 	  k++;
@@ -1193,7 +1193,7 @@ int simulation::rewireConnections()
 	n_conn_2[i2] = iC1;
 	for (int ic=k; ic<n_conn_2[i2]; ic++) {
 	  conn_index[i2][ic] = rnd_int(rnd_gen_train);
-	  w[i2][ic] = W0;
+	  w[i2][ic] = Wb;
 	}
       }
     }
@@ -1222,14 +1222,14 @@ int simulation::rewireConnections()
 	} while (ic1 >= iC_reserve);
 	int i1 = rnd_int1(rnd_gen_train);
 	//conn_index[i2].push_back(i1);
-	//w[i2].push_back(W0);
+	//w[i2].push_back(Wb);
 	conn_index[i2][ic1] = i1;
-	w[i2][ic1] = W0;
+	w[i2][ic1] = Wb;
 	n_conn_2[i2]++;
 	//int i1 = rnd_int1(rnd_gen_train);
 	//int i2 = rnd_int2(rnd_gen_train);
 	//conn_index[i2].push_back(i1);
-	//w[i2].push_back(W0);
+	//w[i2].push_back(Wb);
       }
     }
   }

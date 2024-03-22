@@ -56,31 +56,31 @@ def get_th_set(path, T):
         return np.exp(-csi*csi/2.0) / np.sqrt(2.0*math.pi)
 
     params = get_params_dict(path)
-    p = 1.0 - (1.0 - params['p1']*params['p2'])**T
-    q1 = 1.0 - params['p1']
-    q2 = 1.0 - params['p2']
+    p = 1.0 - (1.0 - params['alpha1']*params['alpha2'])**T
+    q1 = 1.0 - params['alpha1']
+    q2 = 1.0 - params['alpha2']
     # average rate layer 1
-    rm1 = params['p1']*params['rh1'] + q1*params['rl1']
+    rm1 = params['alpha1']*params['nu_h_1'] + q1*params['nu_l_1']
     # average rate layer 2
-    rm2 = params['p2']*params['rh2'] + q2*params['rl2']
+    rm2 = params['alpha2']*params['nu_h_2'] + q2*params['nu_l_2']
 
     # rate threshold for both layers
     if(params['lognormal_rate']==1):
-        sigma_ln1 = erfm1(q1) - erfm1(q1*params['rl1']/rm1)
+        sigma_ln1 = erfm1(q1) - erfm1(q1*params['nu_l_1']/rm1)
         mu_ln1 = math.log(rm1) - sigma_ln1*sigma_ln1/2.0
         yt_ln1 = erfm1(q1)*sigma_ln1 + mu_ln1
         rt1 = np.exp(yt_ln1)
-        sigma_ln2 = erfm1(q2) - erfm1(q2*params['rl2']/rm2)
+        sigma_ln2 = erfm1(q2) - erfm1(q2*params['nu_l_2']/rm2)
         mu_ln2 = math.log(rm2) - sigma_ln2*sigma_ln2/2.0
         yt_ln2 = erfm1(q2)*sigma_ln2 + mu_ln2
         rt2 = np.exp(yt_ln2)
     else:
-        rt1 = (params['rh1'] + params['rl1']) / 2.0
-        rt2 = (params['rh2'] + params['rl2']) / 2.0
+        rt1 = (params['nu_h_1'] + params['nu_l_1']) / 2.0
+        rt2 = (params['nu_h_2'] + params['nu_l_2']) / 2.0
 
     k = p*params['C']
     # <r1**2>
-    rsq1 = params['p1']*params['rh1']*params['rh1'] + (1.0 - params['p1'])*params['rl1']*params['rl1']
+    rsq1 = params['alpha1']*params['nu_h_1']*params['nu_h_1'] + (1.0 - params['alpha1'])*params['nu_l_1']*params['nu_l_1']
     # rate variance for layer 1
     if(params['lognormal_rate']==1):
         var_r1 = (np.exp(sigma_ln1*sigma_ln1) - 1.0) * np.exp(2.0*mu_ln1 + sigma_ln1*sigma_ln1)
@@ -88,41 +88,41 @@ def get_th_set(path, T):
         var_r1 = rsq1 - rm1*rm1
     
     # variance of k
-    k2 = params['C']*(params['C'] - 1.0)*((1.0 - (2.0 - params['p1'])*params['p1']*params['p2'])**T) - params['C']*(2.0*params['C'] - 1.0)*((1.0 - params['p1']*params['p2'])**T) + params['C']*params['C']
+    k2 = params['C']*(params['C'] - 1.0)*((1.0 - (2.0 - params['alpha1'])*params['alpha1']*params['alpha2'])**T) - params['C']*(2.0*params['C'] - 1.0)*((1.0 - params['alpha1']*params['alpha2'])**T) + params['C']*params['C']
     var_k = k2 - k*k
 
     # theoretical value of Sb
-    Sb = params['Wc']*k*rm1 + params['W0']*(params['C']-k)*rm1
+    Sb = params['Ws']*k*rm1 + params['Wb']*(params['C']-k)*rm1
 
     # theoretical value of S2
-    if(params['change_conn_step']==0):
+    if(params['r']==0):
         # without rewiring
-        S2 = params['rh1']*params['Wc']*params['p1']*params['C'] + params['rl1']*(1.0-params['p1'])*(params['W0']*params['C'] + (params['Wc'] - params['W0'])*k)
+        S2 = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + params['nu_l_1']*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
     else:
         # with rewiring
-        S2 = params['rh1']*params['Wc']*params['p1']*params['C'] + rm1*(1.0-params['p1'])*(params['W0']*params['C'] + (params['Wc'] - params['W0'])*k)
+        S2 = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + rm1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
 
     # if C is constant
     if(params['connection_rule']==0):
         # variance of Sb for C fixed
-        varSb = (params['Wc']*params['Wc']*k + params['W0']*params['W0']*(params['C']-k))*var_r1 + (params['Wc'] - params['W0'])*(params['Wc'] - params['W0'])*rm1*rm1*var_k
+        varSb = (params['Ws']*params['Ws']*k + params['Wb']*params['Wb']*(params['C']-k))*var_r1 + (params['Ws'] - params['Wb'])*(params['Ws'] - params['Wb'])*rm1*rm1*var_k
     # if C is driven from Poisson distribution
     else:
         # average and variance of the Poisson distribution is C
         C_m = params['C']
         var_C = params['C']
         C2_m = params['C']*(params['C'] + 1.0)
-        eta = (1.0 - params['p1']*params['p2'])**T
-        csi = (1.0 - (2.0 - params['p1'])*params['p1']*params['p2'])**T
+        eta = (1.0 - params['alpha1']*params['alpha2'])**T
+        csi = (1.0 - (2.0 - params['alpha1'])*params['alpha1']*params['alpha2'])**T
         # variance of Sb for C variable
-        varSb = ((params['W0'] + p*(params['Wc'] - params['W0']))**2.0)*rm1*rm1*var_C + C_m*(p*params['Wc']*params['Wc'] + eta*params['W0']*params['W0'])*var_r1 + ((params['Wc'] - params['W0'])**2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta)
+        varSb = ((params['Wb'] + p*(params['Ws'] - params['Wb']))**2.0)*rm1*rm1*var_C + C_m*(p*params['Ws']*params['Ws'] + eta*params['Wb']*params['Wb'])*var_r1 + ((params['Ws'] - params['Wb'])**2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta)
 
     # if we add noise on the test patterns
     if(params['noise_flag']==1):
         beta = params['max_noise_dev']
         Z = Phi(beta) - Phi(-beta)
         var_noise = params['rate_noise']*params['rate_noise']*(1.0 - 2.0*beta*phi1(beta)/Z)
-        var_S_noise = (params['Wc']*params['Wc']*k + params['W0']*params['W0']*(params['C'] - k))*var_noise
+        var_S_noise = (params['Ws']*params['Ws']*k + params['Wb']*params['Wb']*(params['C'] - k))*var_noise
         # add noise contribution to the variance of Sb
         varSb += var_S_noise
 

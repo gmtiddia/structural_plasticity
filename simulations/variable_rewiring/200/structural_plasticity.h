@@ -18,7 +18,7 @@ class simulation
   // multapses can be allowed or forbidden
   bool allow_multapses;
   // step (in n. of patterns) for connection recombination (0: no recombination)
-  int change_conn_step;
+  int r;
   // to save memory, patterns can be generated on the fly from their index
   // without storing the whole set in memory
   bool generate_patterns_on_the_fly;
@@ -30,25 +30,25 @@ class simulation
   // connections per layer-2-neuron, i.e. indegree (double needed)
   double C;
   // probability of high rate for layer 1
-  double p1;
+  double alpha1;
   // probability of high rate for layer 2
-  double p2;
+  double alpha2;
   // number of neurons in pop 1
   int N1;
   // number of neurons in pop 2
   int N2;  
   // baseline weight
-  double W0;
+  double Wb;
   // consolidated weight
-  double Wc;
+  double Ws;
   // low rate for layer 1 [Hz]
-  double rl1;
+  double nu_l_1;
   // high rate for layer 1 [Hz]
-  double rh1;
+  double nu_h_1;
   // low rate for layer 2 [Hz]
-  double rl2;
+  double nu_l_2;
   // high rate for layer 2 [Hz]
-  double rh2;
+  double nu_h_2;
   // add noise on test patterns
   bool noise_flag;
   // noise on test patterns (sigma of truncated normal distribution) [Hz]
@@ -117,11 +117,11 @@ class simulation
   // probability of having consolidated the
   // connection for at least one instance
   double p;
-  // complement of p1
+  // complement of alpha1
   double q1;
   // average rate layer 1
   double rm1;
-  // complement of p2
+  // complement of alpha2
   double q2;
   // average rate layer 2
   double rm2;

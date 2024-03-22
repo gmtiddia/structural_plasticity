@@ -235,6 +235,9 @@ int simulation::evalTheoreticalValues()
     - C*(2*C - 1)*pow(1.0 - alpha1*alpha2, T) + C*C;
   var_k = k2 - k*k;
   
+  // calculation for Sc with rewiring enabled
+  
+
   // theoretical estimation of Sb, S2 and sigma^2 Sb
   Sbt = Ws*k*nu_av_1 + Wb*(C-k)*nu_av_1;
   Sct = nu_h_1*Ws*alpha1*C + nu_l_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
@@ -283,22 +286,22 @@ int simulation::evalTheoreticalValues()
   fp_head = fopen(file_name_head, "wt");
   fprintf(fp_head, "Number of openmp threads: %d\n", THREAD_MAXNUM);
   fprintf(fp_head, "p: %.9lf\n", p);
-  fprintf(fp_head, "sigma2r layer 1 (theoretical): %.4lf\n", var_r1);
+  fprintf(fp_head, "sigma2v layer 1 (theoretical): %.4lf\n", var_r1);
   fprintf(fp_head, "sigma2k (theoretical): %.4lf\n", var_k);
-  fprintf(fp_head, "S2 (theoretical): %.4lf\n", Sct);
-  fprintf(fp_head, "S2 with connection recombination (theoretical): %.4lf\n",
+  fprintf(fp_head, "Sc (theoretical): %.4lf\n", Sct);
+  fprintf(fp_head, "Sc with connection recombination (theoretical): %.4lf\n",
 	  Sct_chc);
   fprintf(fp_head, "Sb (theoretical):  %.4lf\n", Sbt);
-  fprintf(fp_head, "sigma2S (theoretical): %.4lf\n", var_St);
-  fprintf(fp_head, "sigma2S with Poisson indegree (theoretical): %.4lf\n",
+  fprintf(fp_head, "sigma2b (theoretical): %.4lf\n", var_St);
+  fprintf(fp_head, "sigma2b with Poisson indegree (theoretical): %.4lf\n",
 	  var_S_poiss);
   if (noise_flag) {
     fprintf(fp_head, "noise variance: %.4lf\n", var_noise);
     fprintf(fp_head, "noise contribution to S variance: %.4lf\n", var_S_noise);
-    fprintf(fp_head, "sigma2S with noise (theoretical): %.4lf\n",
+    fprintf(fp_head, "sigma2b with noise (theoretical): %.4lf\n",
 	    var_St + var_S_noise);
     fprintf(fp_head,
-	    "sigma2S with Poisson indegree and noise (theoretical): %.4lf\n",
+	    "sigma2b with Poisson indegree and noise (theoretical): %.4lf\n",
 	    var_S_poiss + var_S_noise);
   }
 
