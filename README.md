@@ -1,5 +1,5 @@
 # A theoretical framework for learning through structural plasticity
-This repository contains the data and scripts used for the preprint: *A theoretical framework for learning through structural plasticity*.
+This repository contains the data and scripts used for the preprint: *A theoretical framework for learning through structural plasticity*, DOI: https://doi.org/10.48550/arXiv.2307.11735
 
 ## Requirements
 To run the simulations, C++ and GSL library is required. We used C++ version 10.2.0 and GSL 2.7 to obtain the results reported in the work above.
