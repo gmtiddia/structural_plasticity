@@ -292,7 +292,7 @@ def plot_data(data, th_data):
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
-    ax1.set_ylim(1115, 1116.5)
+    ax1.set_ylim(1115, 1116.45)
     ax1.set_xlim(-10, 700)
     ax1.ticklabel_format(style='plain', useOffset=False, axis='y') 
     #ax1.set_xticklabels([])
