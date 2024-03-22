@@ -355,10 +355,10 @@ def plot_data(data, th_data):
 
 
 # values extracted from simulations
-data_t_variable = get_data("../simulations/t_study_w_noise", 10)
+data_t_variable = get_data("../simulations/variable_rewiring", 10)
 
 # theoretical values
-th_data = get_th_data("../simulations/t_study_w_noise")
+th_data = get_th_data("../simulations/variable_rewiring")
 
 
 print("Theor")
