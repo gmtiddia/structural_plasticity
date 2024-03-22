@@ -236,12 +236,15 @@ int simulation::evalTheoreticalValues()
   var_k = k2 - k*k;
   
   // calculation for Sc with rewiring enabled
-  
+  double b = (1.0 - pow(1.0-alpha1*alpha2, T+r))/(1.0 - pow(1.0 - alpha1*alpha2, r));
+  double av_pt = 1.0 - (b*r)/(T+r);
+  double av_kt_first = av_pt*C*(1.0 - alpha1);
 
   // theoretical estimation of Sb, S2 and sigma^2 Sb
   Sbt = Ws*k*nu_av_1 + Wb*(C-k)*nu_av_1;
   Sct = nu_h_1*Ws*alpha1*C + nu_l_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
-  Sct_chc = nu_h_1*Ws*alpha1*C + nu_av_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
+  Sct_chc = nu_h_1*Ws*alpha1*C + nu_av_1*Ws*p*C*(1.0-alpha1) + Wb*nu_av_1*(C*(1.0-alpha1) - p*C*(1.0-alpha1)) - Ws*(nu_av_1-nu_l_1)*av_kt_first;
+  double Sct_chc_approx = nu_h_1*Ws*alpha1*C + nu_av_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
   var_St = (Ws*Ws*k + Wb*Wb*(C-k))*var_r1
     + (Ws - Wb)*(Ws - Wb)*nu_av_1*nu_av_1*var_k;
 
@@ -268,6 +271,7 @@ int simulation::evalTheoreticalValues()
   printf("sigma2k (theoretical): %.4lf\n", var_k);
   printf("Sc (theoretical): %.4lf\n", Sct);
   printf("Sc with connection rewiring (theoretical): %.4lf\n", Sct_chc);
+  printf("Sc with connection rewiring (theoretical, approximation): %.4lf\n", Sct_chc_approx);
   printf("Sb (theoretical):  %.4lf\n", Sbt);
   printf("sigma2b (theoretical): %.4lf\n", var_St);
   printf("sigma2b with Poisson indegree (theoretical): %.4lf\n", var_S_poiss);
