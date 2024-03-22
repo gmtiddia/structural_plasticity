@@ -118,13 +118,13 @@ class simulation
   // connection for at least one instance
   double p;
   // complement of alpha1
-  double q1;
+  double beta1;
   // average rate layer 1
-  double rm1;
+  double nu_av_1;
   // complement of alpha2
-  double q2;
+  double beta2;
   // average rate layer 2
-  double rm2;
+  double nu_av_2;
 
   // rate lognormal distribution parameters for layer 1
   double sigma_ln1;
@@ -150,8 +150,8 @@ class simulation
   
   // theoretical values of Sb, S2 and sigma^2 Sb
   double Sbt;
-  double S2t;
-  double S2t_chc;
+  double Sct;
+  double Sct_chc;
   double var_St;
   
   // Connection index vector

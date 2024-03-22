@@ -187,19 +187,19 @@ int simulation::evalTheoreticalValues()
   p = 1.0 - pow(1.0 - alpha1*alpha2, T);
 
   // complement of alpha1
-  q1 = 1.0 - alpha1;
+  beta1 = 1.0 - alpha1;
   // average rate layer 1
-  rm1 = alpha1*nu_h_1 + q1*nu_l_1;
+  nu_av_1 = alpha1*nu_h_1 + beta1*nu_l_1;
 
   // complement of alpha2
-  q2 = 1.0 - alpha2;
+  beta2 = 1.0 - alpha2;
   // average rate layer 2
-  rm2 = alpha2*nu_h_2 + q2*nu_l_2;
+  nu_av_2 = alpha2*nu_h_2 + beta2*nu_l_2;
 
   // rate lognormal distribution parameters for layer 1
-  sigma_ln1 = erfm1(q1) - erfm1(q1*nu_l_1/rm1);
-  mu_ln1 = log(rm1) - sigma_ln1*sigma_ln1/2.0;
-  yt_ln1 = erfm1(q1)*sigma_ln1 + mu_ln1;
+  sigma_ln1 = erfm1(beta1) - erfm1(beta1*nu_l_1/nu_av_1);
+  mu_ln1 = log(nu_av_1) - sigma_ln1*sigma_ln1/2.0;
+  yt_ln1 = erfm1(beta1)*sigma_ln1 + mu_ln1;
   if(lognormal_rate) {
     rt1 = exp(yt_ln1);
   }
@@ -208,9 +208,9 @@ int simulation::evalTheoreticalValues()
   }
 
   // rate lognormal distribution parameters for layer 2
-  sigma_ln2 = erfm1(q2) - erfm1(q2*nu_l_2/rm2);
-  mu_ln2 = log(rm2) - sigma_ln2*sigma_ln2/2.0;
-  yt_ln2 = erfm1(q2)*sigma_ln2 + mu_ln2;
+  sigma_ln2 = erfm1(beta2) - erfm1(beta2*nu_l_2/nu_av_2);
+  mu_ln2 = log(nu_av_2) - sigma_ln2*sigma_ln2/2.0;
+  yt_ln2 = erfm1(beta2)*sigma_ln2 + mu_ln2;
   if(lognormal_rate) {
     rt2 = exp(yt_ln2);
   }
@@ -228,7 +228,7 @@ int simulation::evalTheoreticalValues()
       * exp(2.0*mu_ln1 + sigma_ln1*sigma_ln1);
   }
   else {
-    var_r1 = rsq1 - rm1*rm1;
+    var_r1 = rsq1 - nu_av_1*nu_av_1;
   }
   // calculation for variance of k
   k2 = C*(C - 1)*pow(1.0 - (2.0 - alpha1)*alpha1*alpha2, T)
@@ -236,11 +236,11 @@ int simulation::evalTheoreticalValues()
   var_k = k2 - k*k;
   
   // theoretical estimation of Sb, S2 and sigma^2 Sb
-  Sbt = Ws*k*rm1 + Wb*(C-k)*rm1;
-  S2t = nu_h_1*Ws*alpha1*C + nu_l_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
-  S2t_chc = nu_h_1*Ws*alpha1*C + rm1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
+  Sbt = Ws*k*nu_av_1 + Wb*(C-k)*nu_av_1;
+  Sct = nu_h_1*Ws*alpha1*C + nu_l_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
+  Sct_chc = nu_h_1*Ws*alpha1*C + nu_av_1*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
   var_St = (Ws*Ws*k + Wb*Wb*(C-k))*var_r1
-    + (Ws - Wb)*(Ws - Wb)*rm1*rm1*var_k;
+    + (Ws - Wb)*(Ws - Wb)*nu_av_1*nu_av_1*var_k;
 
   // Variable n. of connections per target neuron (Poisson distribution)
   double C_m = C;
@@ -249,9 +249,9 @@ int simulation::evalTheoreticalValues()
   double eta = pow(1.0 - alpha1*alpha2, T);
   double csi = pow(1.0 - (2.0 - alpha1)*alpha1*alpha2, T);
   
-  double var_S_poiss = pow(Wb + p*(Ws - Wb), 2.0)*rm1*rm1*var_C
+  double var_S_poiss = pow(Wb + p*(Ws - Wb), 2.0)*nu_av_1*nu_av_1*var_C
     + C_m*(p*Ws*Ws + eta*Wb*Wb)*var_r1
-    + pow(Ws - Wb, 2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta);
+    + pow(Ws - Wb, 2)*nu_av_1*nu_av_1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta);
 
   double beta = max_noise_dev;
   double Z = Phi(beta) - Phi(-beta);
@@ -261,18 +261,18 @@ int simulation::evalTheoreticalValues()
   printf("Number of openmp threads: %d\n", THREAD_MAXNUM);
   // print of theoretical estimations
   printf("p: %.9lf\n", p);
-  printf("sigma2r layer 1 (theoretical): %.4lf\n", var_r1);
+  printf("sigma2v layer 1 (theoretical): %.4lf\n", var_r1);
   printf("sigma2k (theoretical): %.4lf\n", var_k);
-  printf("S2 (theoretical): %.4lf\n", S2t);
-  printf("S2 with connection recombination (theoretical): %.4lf\n", S2t_chc);
+  printf("Sc (theoretical): %.4lf\n", Sct);
+  printf("Sc with connection rewiring (theoretical): %.4lf\n", Sct_chc);
   printf("Sb (theoretical):  %.4lf\n", Sbt);
-  printf("sigma2S (theoretical): %.4lf\n", var_St);
-  printf("sigma2S with Poisson indegree (theoretical): %.4lf\n", var_S_poiss);
+  printf("sigma2b (theoretical): %.4lf\n", var_St);
+  printf("sigma2b with Poisson indegree (theoretical): %.4lf\n", var_S_poiss);
   if (noise_flag) {
     printf("noise variance: %.4lf\n", var_noise);
-    printf("noise contribution to S variance: %.4lf\n", var_S_noise);
-    printf("sigma2S with noise (theoretical): %.4lf\n", var_St + var_S_noise);
-    printf("sigma2S with Poisson indegree and noise (theoretical): %.4lf\n",
+    printf("noise contribution to Sb variance: %.4lf\n", var_S_noise);
+    printf("sigma2b with noise (theoretical): %.4lf\n", var_St + var_S_noise);
+    printf("sigma2b with Poisson indegree and noise (theoretical): %.4lf\n",
 	   var_S_poiss + var_S_noise);
   }
   fflush(stdout);
@@ -285,9 +285,9 @@ int simulation::evalTheoreticalValues()
   fprintf(fp_head, "p: %.9lf\n", p);
   fprintf(fp_head, "sigma2r layer 1 (theoretical): %.4lf\n", var_r1);
   fprintf(fp_head, "sigma2k (theoretical): %.4lf\n", var_k);
-  fprintf(fp_head, "S2 (theoretical): %.4lf\n", S2t);
+  fprintf(fp_head, "S2 (theoretical): %.4lf\n", Sct);
   fprintf(fp_head, "S2 with connection recombination (theoretical): %.4lf\n",
-	  S2t_chc);
+	  Sct_chc);
   fprintf(fp_head, "Sb (theoretical):  %.4lf\n", Sbt);
   fprintf(fp_head, "sigma2S (theoretical): %.4lf\n", var_St);
   fprintf(fp_head, "sigma2S with Poisson indegree (theoretical): %.4lf\n",
