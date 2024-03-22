@@ -101,7 +101,12 @@ def get_th_set(path, T):
         Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + params['nu_l_1']*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
     else:
         # with rewiring
-        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + nu_av_1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
+        r = params['r']
+        b = (1.-(1.-params['alpha1']*params['alpha2'])**(T+r))/(1.-(1.-params['alpha1']*params['alpha2'])**r)
+        av_pt = 1. - (b*r)/(T+r)
+        av_kt_first = av_pt*params['C']*(1.0-params['alpha1'])
+        # w/ rewiring
+        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + nu_av_1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k) - params['Ws']*(nu_av_1 - params['nu_l_1'])*av_kt_first
 
     # if C is constant
     if(params['connection_rule']==0):
