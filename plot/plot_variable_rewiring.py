@@ -32,7 +32,7 @@ def get_params_dict(path):
 
 def get_th_set(path, T):
     """
-    Returns theoretical estimation of Sb, S2 and Var(Sb) given the simulation parameters.
+    Returns theoretical estimation of Sb, Sc and Var(Sb) given the simulation parameters.
 
     Parameters
     ----------
@@ -45,7 +45,7 @@ def get_th_set(path, T):
     
     Returns
     -------
-    dict of the theoretical values for Sb, varSb and S2
+    dict of the theoretical values for Sb, varSb and Sc
     """
 
     def erfm1(x):
@@ -96,17 +96,17 @@ def get_th_set(path, T):
     # theoretical value of Sb
     Sb = params['Ws']*k*rm1 + params['Wb']*(params['C']-k)*rm1
 
-    # theoretical value of S2
+    # theoretical value of Sc
     if(params['r']==0):
         # w/out rewiring
-        S2 = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + params['nu_l_1']*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
+        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + params['nu_l_1']*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
     else:
         r = params['r']
         b = (1.-(1.-params['alpha1']*params['alpha2'])**(T+r))/(1.-(1.-params['alpha1']*params['alpha2'])**r)
         av_pt = 1. - (b*r)/(T+r)
         av_kt_first = av_pt*params['C']*(1.0-params['alpha1'])
         # w/ rewiring
-        S2 = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + rm1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k) - params['Ws']*(rm1 - params['nu_l_1'])*av_kt_first
+        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + rm1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k) - params['Ws']*(rm1 - params['nu_l_1'])*av_kt_first
 
     # if C is constant
     if(params['connection_rule']==0):
@@ -132,12 +132,12 @@ def get_th_set(path, T):
         # add noise contribution to the variance of Sb
         varSb += var_S_noise
 
-    return({"T": T, "Sb": Sb, "varSb": varSb, "S2": S2})
+    return({"T": T, "Sb": Sb, "varSb": varSb, "Sc": Sc})
 
 
 def get_th_data(path):
     """
-    Returns a DataFrame w/ the theoretical estimation of Sb, S2 and Var(Sb) given the simulation parameters.
+    Returns a DataFrame w/ the theoretical estimation of Sb, Sc and Var(Sb) given the simulation parameters.
 
     Parameters
     ----------
@@ -159,24 +159,24 @@ def get_th_data(path):
         return(data)
     else:
         print("Generating csv file")
-        t_list = [ f.name for f in os.scandir(str(path)) if f.is_dir() ]
-        t_list.remove('template')
-        t = [int(step) for step in t_list]
-        t.sort()
+        r_list = [ f.name for f in os.scandir(str(path)) if f.is_dir() ]
+        r_list.remove('template')
+        r = [int(step) for step in r_list]
+        r.sort()
 
-        T = [ 10000 for i in range(len(t))]
+        T = [ 10000 for i in range(len(r))]
 
         dum_Sb = []
         dum_varSb = []
-        dum_S2 = []
+        dum_Sc = []
 
-        for i in range(len(t)):
-            dum_dict = get_th_set(path+"/"+str(t[i]), T[i])
+        for i in range(len(r)):
+            dum_dict = get_th_set(path+"/"+str(r[i]), T[i])
             dum_Sb.append(dum_dict['Sb'])
             dum_varSb.append(dum_dict['varSb'])
-            dum_S2.append(dum_dict['S2'])
+            dum_Sc.append(dum_dict['Sc'])
 
-        dic = {"t": t, "T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "S2_th": dum_S2}
+        dic = {"r": r, "T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "Sc_th": dum_Sc}
 
         data = pd.DataFrame(dic)
         data.to_csv(path+"/th_values.csv", index=False)
@@ -186,7 +186,7 @@ def get_th_data(path):
 
 def get_data(path, seeds):
     """
-    Returns a dataframe w/ averaged values of Sb, S2 and Var(Sb) over the seeds.
+    Returns a dataframe w/ averaged values of Sb, Sc and Var(Sb) over the seeds.
     Needs files mem_out_seed_*.dat contained in path.
 
     Parameters
@@ -214,44 +214,44 @@ def get_data(path, seeds):
         subfolders = [ f.path for f in os.scandir(str(path)) if f.is_dir() ]
         subfolders.remove(str(path)+"/template")
         # extract t values from them
-        t_list = [ f.name for f in os.scandir(str(path)) if f.is_dir() ]
-        t_list.remove('template')
-        t = [int(step) for step in t_list]
-        t.sort()
+        r_list = [ f.name for f in os.scandir(str(path)) if f.is_dir() ]
+        r_list.remove('template')
+        r = [int(step) for step in r_list]
+        r.sort()
         # define arrays to contain average and std values
-        S2_av = np.zeros(len(t)); S2_std = np.zeros(len(t))
-        Sb_av = np.zeros(len(t)); Sb_std = np.zeros(len(t))
-        varSb_av = np.zeros(len(t)); varSb_std = np.zeros(len(t))
-        CNR_av = np.zeros(len(t)); CNR_std = np.zeros(len(t))
+        Sc_av = np.zeros(len(r)); Sc_std = np.zeros(len(r))
+        Sb_av = np.zeros(len(r)); Sb_std = np.zeros(len(r))
+        varSb_av = np.zeros(len(r)); varSb_std = np.zeros(len(r))
+        SDNR_av = np.zeros(len(r)); SDNR_std = np.zeros(len(r))
 
         # extract values from data
         for step, dir in enumerate(subfolders):
             Sb_dum = []
-            S2_dum = []
+            Sc_dum = []
             varSb_dum = []
-            CNR_dum = []
+            SDNR_dum = []
             for i in range(seeds):
-                mem_out = np.loadtxt(path+"/"+str(t[step])+"/mem_out_000"+str(i)+"_0000.dat")
+                mem_out = np.loadtxt(path+"/"+str(r[step])+"/mem_out_000"+str(i)+"_0000.dat")
                 Sb_dum.append(np.average(mem_out[:,1]))
-                S2_dum.append(np.average(mem_out[:,2]))
+                Sc_dum.append(np.average(mem_out[:,2]))
                 varSb_dum.append(np.average(mem_out[:,3]))
-                CNR_dum.append(np.abs(np.average(mem_out[:,2])-np.average(mem_out[:,1]))/np.sqrt(np.average(mem_out[:,3])))
-            S2_av[step]=np.average(S2_dum)
+                SDNR_dum.append(np.abs(np.average(mem_out[:,2])-np.average(mem_out[:,1]))/np.sqrt(np.average(mem_out[:,3])))
+            Sc_av[step]=np.average(Sc_dum)
             Sb_av[step]=np.average(Sb_dum)
             varSb_av[step]=np.average(varSb_dum)
-            CNR_av[step]=np.average(CNR_dum)
+            SDNR_av[step]=np.average(SDNR_dum)
             Sb_std[step]=np.std(Sb_dum)
-            S2_std[step]=np.std(S2_dum)
+            Sc_std[step]=np.std(Sc_dum)
             varSb_std[step]=np.std(varSb_dum)
-            CNR_std[step]=np.std(CNR_dum)
+            SDNR_std[step]=np.std(SDNR_dum)
             
 
         
         # free some memory
-        del mem_out, Sb_dum, S2_dum, varSb_dum
+        del mem_out, Sb_dum, Sc_dum, varSb_dum
 
         # save values on a DataFrame
-        data = {"t": t, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "S2_av": S2_av, "S2_std": S2_std, "CNR_av":CNR_av, "CNR_std":CNR_std}
+        data = {"r": r, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "Sc_av": Sc_av, "Sc_std": Sc_std, "SDNR_av":SDNR_av, "SDNR_std":SDNR_std}
         data = pd.DataFrame(data)
         #print(data)
 
@@ -267,7 +267,7 @@ def plot_data(data, th_data):
     Parameters
     ----------
     data, th_data: pandas DataFrame
-        DataFrame w/ simulation and theoretical values of Sb, varSb and S2 for discrete rate model
+        DataFrame w/ simulation and theoretical values of Sb, varSb and Sc for discrete rate model
 
     """
 
@@ -284,11 +284,11 @@ def plot_data(data, th_data):
     ax5 = axs[0,1]
     ax7 = axs[1,1]
 
-    #ax1.fill_between(data['t'][1:], data['Sb_av'][1:]-data['Sb_std'][1:], data['Sb_av'][1:]+data['Sb_std'][1:], color="blue", alpha=0.2)
+    #ax1.fill_between(data['r'][1:], data['Sb_av'][1:]-data['Sb_std'][1:], data['Sb_av'][1:]+data['Sb_std'][1:], color="blue", alpha=0.2)
     ax1.text(-0.1, 1.05, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
-    ax1.plot(th_data['t'], th_data['Sb_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
-    ax1.errorbar(data['t'][1:], data['Sb_av'][1:], yerr=data['Sb_std'][1:], fmt="o", linestyle="", color="blue", label="w/ rewiring")
-    ax1.errorbar(data['t'][0], data['Sb_av'][0], yerr=data['Sb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
+    ax1.plot(th_data['r'], th_data['Sb_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
+    ax1.errorbar(data['r'][1:], data['Sb_av'][1:], yerr=data['Sb_std'][1:], fmt="o", linestyle="", color="blue", label="w/ rewiring")
+    ax1.errorbar(data['r'][0], data['Sb_av'][0], yerr=data['Sb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
     ax1.set_ylabel(r"$\langle S_b \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax1.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
     ax1.tick_params(labelsize=tick_fs)
@@ -299,12 +299,12 @@ def plot_data(data, th_data):
     ax1.grid()
     #ax1.set_ylim(1069.6,1070.4)
     
-    #ax3.fill_between(data['t'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
+    #ax3.fill_between(data['r'][1:], data['varSb_av'][1:]-data['varSb_std'][1:], data['varSb_av'][1:]+data['varSb_std'][1:], color="blue", alpha=0.2)
     ax3.text(-0.1, 1.05, "C", weight="bold", fontsize=30, color='k', transform=ax3.transAxes)
-    ax3.plot(th_data['t'], th_data['varSb_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
-    ax3.errorbar(data['t'][1:], data['varSb_av'][1:], fmt="o", linestyle="", yerr=data['varSb_std'][1:], color="blue", label="w/ rewiring")
-    ax3.errorbar(data['t'][0], data['varSb_av'][0], yerr=data['varSb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
-    #ax3.plot(data['t'], th_data['varSb_th'], "--", color="red", label="Theory")
+    ax3.plot(th_data['r'], th_data['varSb_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
+    ax3.errorbar(data['r'][1:], data['varSb_av'][1:], fmt="o", linestyle="", yerr=data['varSb_std'][1:], color="blue", label="w/ rewiring")
+    ax3.errorbar(data['r'][0], data['varSb_av'][0], yerr=data['varSb_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
+    #ax3.plot(data['r'], th_data['varSb_th'], "--", color="red", label="Theory")
     #ax3.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax3.set_ylabel(r"$\sigma^2_b$ $\quad [\mathrm{pA}^2 \times \mathrm{Hz}^2]$", fontsize=tick_fs)
     ax3.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
@@ -315,11 +315,11 @@ def plot_data(data, th_data):
     #ax3.legend(fontsize=legend_fs, framealpha=1.0)
 
     ax5.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
-    #ax5.fill_between(data['t'][1:], data['S2_av'][1:]-data['S2_std'][1:], data['S2_av'][1:]+data['S2_std'][1:], color="blue", alpha=0.2)
-    ax5.plot(th_data['t'], th_data['S2_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
-    ax5.errorbar(data['t'][1:], data['S2_av'][1:], fmt="o", linestyle="", yerr=data['S2_std'][1:], color="blue", label="w/ rewiring")
-    ax5.errorbar(data['t'][0], data['S2_av'][0], yerr=data['S2_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
-    #ax5.plot(data['t'], th_data['S2_th'], "--", color="red", label="Theory")
+    #ax5.fill_between(data['r'][1:], data['Sc_av'][1:]-data['Sc_std'][1:], data['Sc_av'][1:]+data['Sc_std'][1:], color="blue", alpha=0.2)
+    ax5.plot(th_data['r'], th_data['Sc_th'], "--", linewidth=2.5, color="orange", label='Theoretical estimation')
+    ax5.errorbar(data['r'][1:], data['Sc_av'][1:], fmt="o", linestyle="", yerr=data['Sc_std'][1:], color="blue", label="w/ rewiring")
+    ax5.errorbar(data['r'][0], data['Sc_av'][0], yerr=data['Sc_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
+    #ax5.plot(data['r'], th_data['Sc_th'], "--", color="red", label="Theory")
     #ax5.legend(title=r"$\langle S_c \rangle$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax5.set_ylabel(r"$\langle S_c \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
@@ -330,11 +330,11 @@ def plot_data(data, th_data):
     #ax5.set_xticklabels([])
 
     ax7.text(-0.1, 1.05, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
-    #ax7.fill_between(data['t'][1:], data['CNR_av'][1:]-data['CNR_std'][1:], data['CNR_av'][1:]+data['CNR_std'][1:], color="blue", alpha=0.2)
-    ax7.plot(th_data['t'], (th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", linewidth=2.5, color="orange", label='Theoretical estimation')
-    ax7.errorbar(data['t'][1:], data['CNR_av'][1:], fmt="o", linestyle="", yerr=data['CNR_std'][1:], color="blue", label="w/ rewiring")
-    ax7.errorbar(data['t'][0], data['CNR_av'][0], yerr=data['CNR_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
-    #ax7.plot(data['t'], np.abs(th_data['S2_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", color="red", label="Theory")
+    #ax7.fill_between(data['r'][1:], data['SDNR_av'][1:]-data['SDNR_std'][1:], data['SDNR_av'][1:]+data['SDNR_std'][1:], color="blue", alpha=0.2)
+    ax7.plot(th_data['r'], (th_data['Sc_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", linewidth=2.5, color="orange", label='Theoretical estimation')
+    ax7.errorbar(data['r'][1:], data['SDNR_av'][1:], fmt="o", linestyle="", yerr=data['SDNR_std'][1:], color="blue", label="w/ rewiring")
+    ax7.errorbar(data['r'][0], data['SDNR_av'][0], yerr=data['SDNR_std'][0], fmt="o", markersize=10, color="red", label="w/out rewiring")
+    #ax7.plot(data['r'], np.abs(th_data['Sc_th']-th_data['Sb_th'])/np.sqrt(th_data['varSb_th']), "--", color="red", label="Theory")
     ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax7.set_xlabel(r"rewiring step $r$", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)

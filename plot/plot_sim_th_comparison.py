@@ -171,7 +171,7 @@ def get_th_data(path):
             dum_varSb.append(dum_dict['varSb'])
             dum_S2.append(dum_dict['S2'])
 
-        dic = {"T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "S2_th": dum_S2}
+        dic = {"T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "Sc_th": dum_S2}
 
         data = pd.DataFrame(dic)
         data.to_csv(path+"/th_values.csv", index=False)
@@ -214,7 +214,7 @@ def get_data(path, seeds):
         T = [int(t) for t in T_list]
         T.sort()
         # define arrays to contain average and std values
-        S2_av = np.zeros(len(T)); S2_std = np.zeros(len(T))
+        Sc_av = np.zeros(len(T)); S2_std = np.zeros(len(T))
         Sb_av = np.zeros(len(T)); Sb_std = np.zeros(len(T))
         varSb_av = np.zeros(len(T)); varSb_std = np.zeros(len(T))
 
@@ -228,7 +228,7 @@ def get_data(path, seeds):
                 Sb_dum.append(np.average(mem_out[:,1]))
                 S2_dum.append(np.average(mem_out[:,2]))
                 varSb_dum.append(np.average(mem_out[:,3]))
-            S2_av[t]=np.average(S2_dum)
+            Sc_av[t]=np.average(S2_dum)
             Sb_av[t]=np.average(Sb_dum)
             varSb_av[t]=np.average(varSb_dum)
             Sb_std[t]=np.std(Sb_dum)
@@ -239,7 +239,7 @@ def get_data(path, seeds):
         del mem_out, Sb_dum, S2_dum, varSb_dum
 
         # save values on a DataFrame
-        data = {"T": T, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "S2_av": S2_av, "S2_std": S2_std}
+        data = {"T": T, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "Sc_av": Sc_av, "S2_std": S2_std}
         data = pd.DataFrame(data)
         #print(data)
 
@@ -399,8 +399,8 @@ def plot_data(ln_noise, th_ln_noise, label, saturation, prob_thr):
 
     ax5.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
     for i in range(len(ln_noise)):
-        ax5.plot(ln_noise[i]['T'], th_ln_noise[i]['S2_th'], "--", color=th_colors[i], label="Th - " + label[i] + " noise")
-        ax5.plot(ln_noise[i]['T'], ln_noise[i]['S2_av'], "^", color=colors[i], label="Sim - " + label[i] + " noise")
+        ax5.plot(ln_noise[i]['T'], th_ln_noise[i]['Sc_th'], "--", color=th_colors[i], label="Th - " + label[i] + " noise")
+        ax5.plot(ln_noise[i]['T'], ln_noise[i]['Sc_av'], "^", color=colors[i], label="Sim - " + label[i] + " noise")
         
     ax5.set_ylabel(r"$\langle S_c \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
@@ -409,7 +409,7 @@ def plot_data(ln_noise, th_ln_noise, label, saturation, prob_thr):
     ax5.set_xticklabels([])
 
     for i in range(len(ln_noise)):
-        ax6.plot(ln_noise[i]['T'], abs(ln_noise[i]['S2_av']-th_ln_noise[i]['S2_th'])/th_ln_noise[i]['S2_th']*100, "--", color=colors[i], label=label[i] + " noise")
+        ax6.plot(ln_noise[i]['T'], abs(ln_noise[i]['Sc_av']-th_ln_noise[i]['Sc_th'])/th_ln_noise[i]['Sc_th']*100, "--", color=colors[i], label=label[i] + " noise")
 
     ax6.set_ylabel(r"$\dfrac{\langle S_{c} \rangle - \langle S_{c}\rangle ^{th}}{\langle S_{c}\rangle ^{th}}\quad$[%]", fontsize=tick_fs)
     ax6.set_xlabel(r'$\mathcal{T}$ training patterns', fontsize=tick_fs)
@@ -419,8 +419,8 @@ def plot_data(ln_noise, th_ln_noise, label, saturation, prob_thr):
 
 
     for i in range(len(ln_noise)):
-        ax7.plot(ln_noise[i]['T'], np.abs(th_ln_noise[i]['S2_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']), "--", color=th_colors[i], label='_nolegend_')
-        ax7.plot(ln_noise[i]['T'], np.abs(ln_noise[i]['S2_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av']), "^", color=colors[i], label='_nolegend_')
+        ax7.plot(ln_noise[i]['T'], np.abs(th_ln_noise[i]['Sc_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']), "--", color=th_colors[i], label='_nolegend_')
+        ax7.plot(ln_noise[i]['T'], np.abs(ln_noise[i]['Sc_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av']), "^", color=colors[i], label='_nolegend_')
     
 
     ax7.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-',color='coral')
@@ -435,7 +435,7 @@ def plot_data(ln_noise, th_ln_noise, label, saturation, prob_thr):
     ax7.set_xticklabels([])
     
     for i in range(len(ln_noise)):
-        ax8.plot(ln_noise[i]['T'], abs(np.abs(ln_noise[i]['S2_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av'])-np.abs(th_ln_noise[i]['S2_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']))/(np.abs(th_ln_noise[i]['S2_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']))*100, "--", color=colors[i], label=label[i] + " noise")
+        ax8.plot(ln_noise[i]['T'], abs(np.abs(ln_noise[i]['Sc_av']-ln_noise[i]['Sb_av'])/np.sqrt(ln_noise[i]['varSb_av'])-np.abs(th_ln_noise[i]['Sc_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']))/(np.abs(th_ln_noise[i]['Sc_th']-th_ln_noise[i]['Sb_th'])/np.sqrt(th_ln_noise[i]['varSb_th']))*100, "--", color=colors[i], label=label[i] + " noise")
     
     ax8.set_ylabel(r"$\dfrac{SDNR - SDNR^{th}}{SDNR^{th}}\quad$[%] ", fontsize=tick_fs)
     ax8.set_xlabel(r'$\mathcal{T}$ training patterns', fontsize=tick_fs)
@@ -480,12 +480,12 @@ label = ["No", "1 Hz", "2 Hz", "3 Hz", "4 Hz", "5 Hz"]
 def sqrt_function(X, a):
     return a / np.sqrt(X) 
 sdnr_thr = erfinv(2*prob_thr-1)*np.sqrt(8)
-sdnr_noise0 = np.asarray([(ln_rate['S2_av'][i]-ln_rate['Sb_av'][i])/np.sqrt(ln_rate['varSb_av'][i]) for i in range(len(ln_rate['T']))])
-sdnr_noise1 = np.asarray([(ln_rate_noise1['S2_av'][i]-ln_rate_noise1['Sb_av'][i])/np.sqrt(ln_rate_noise1['varSb_av'][i]) for i in range(len(ln_rate_noise1['T']))])
-#sdnr_noise2 = np.asarray([(ln_rate_noise2['S2_av'][i]-ln_rate_noise2['Sb_av'][i])/np.sqrt(ln_rate_noise2['varSb_av'][i]) for i in range(len(ln_rate_noise2['T']))])
-#sdnr_noise3 = np.asarray([(ln_rate_noise3['S2_av'][i]-ln_rate_noise3['Sb_av'][i])/np.sqrt(ln_rate_noise3['varSb_av'][i]) for i in range(len(ln_rate_noise3['T']))])
-#sdnr_noise4 = np.asarray([(ln_rate_noise4['S2_av'][i]-ln_rate_noise4['Sb_av'][i])/np.sqrt(ln_rate_noise4['varSb_av'][i]) for i in range(len(ln_rate_noise4['T']))])
-sdnr_noise5 = np.asarray([(ln_rate_noise5['S2_av'][i]-ln_rate_noise5['Sb_av'][i])/np.sqrt(ln_rate_noise5['varSb_av'][i]) for i in range(len(ln_rate_noise5['T']))])
+sdnr_noise0 = np.asarray([(ln_rate['Sc_av'][i]-ln_rate['Sb_av'][i])/np.sqrt(ln_rate['varSb_av'][i]) for i in range(len(ln_rate['T']))])
+sdnr_noise1 = np.asarray([(ln_rate_noise1['Sc_av'][i]-ln_rate_noise1['Sb_av'][i])/np.sqrt(ln_rate_noise1['varSb_av'][i]) for i in range(len(ln_rate_noise1['T']))])
+#sdnr_noise2 = np.asarray([(ln_rate_noise2['Sc_av'][i]-ln_rate_noise2['Sb_av'][i])/np.sqrt(ln_rate_noise2['varSb_av'][i]) for i in range(len(ln_rate_noise2['T']))])
+#sdnr_noise3 = np.asarray([(ln_rate_noise3['Sc_av'][i]-ln_rate_noise3['Sb_av'][i])/np.sqrt(ln_rate_noise3['varSb_av'][i]) for i in range(len(ln_rate_noise3['T']))])
+#sdnr_noise4 = np.asarray([(ln_rate_noise4['Sc_av'][i]-ln_rate_noise4['Sb_av'][i])/np.sqrt(ln_rate_noise4['varSb_av'][i]) for i in range(len(ln_rate_noise4['T']))])
+sdnr_noise5 = np.asarray([(ln_rate_noise5['Sc_av'][i]-ln_rate_noise5['Sb_av'][i])/np.sqrt(ln_rate_noise5['varSb_av'][i]) for i in range(len(ln_rate_noise5['T']))])
 
 T = ln_rate_noise1['T']
 

@@ -176,7 +176,7 @@ def get_th_data(path):
             dum_varSb.append(dum_dict['varSb'])
             dum_S2.append(dum_dict['S2'])
 
-        dic = {"T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "S2_th": dum_S2}
+        dic = {"T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "Sc_th": dum_S2}
 
         data = pd.DataFrame(dic)
         data.to_csv(path+"/th_values.csv", index=False)
@@ -219,7 +219,7 @@ def get_data(path, seeds):
         T = [int(t) for t in T_list]
         T.sort()
         # define arrays to contain average and std values
-        S2_av = np.zeros(len(T)); S2_std = np.zeros(len(T))
+        Sc_av = np.zeros(len(T)); S2_std = np.zeros(len(T))
         Sb_av = np.zeros(len(T)); Sb_std = np.zeros(len(T))
         varSb_av = np.zeros(len(T)); varSb_std = np.zeros(len(T))
 
@@ -233,7 +233,7 @@ def get_data(path, seeds):
                 Sb_dum.append(np.average(mem_out[:,1]))
                 S2_dum.append(np.average(mem_out[:,2]))
                 varSb_dum.append(np.average(mem_out[:,3]))
-            S2_av[t]=np.average(S2_dum)
+            Sc_av[t]=np.average(S2_dum)
             Sb_av[t]=np.average(Sb_dum)
             varSb_av[t]=np.average(varSb_dum)
             Sb_std[t]=np.std(Sb_dum)
@@ -244,7 +244,7 @@ def get_data(path, seeds):
         del mem_out, Sb_dum, S2_dum, varSb_dum
 
         # save values on a DataFrame
-        data = {"T": T, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "S2_av": S2_av, "S2_std": S2_std}
+        data = {"T": T, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "Sc_av": Sc_av, "S2_std": S2_std}
         data = pd.DataFrame(data)
         #print(data)
 
@@ -375,8 +375,8 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax4.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
 
     ax5.text(-0.1, 0.95, "B", weight="bold", fontsize=30, color='k', transform=ax5.transAxes)
-    ax5.plot(ln_noise['T'], ln_noise['S2_av'], "o", color="blue", label="w/ rewiring")
-    ax5.plot(norew_noise['T'], norew_noise['S2_av'], "^", markersize=5, color="red", label="w/out rewiring")
+    ax5.plot(ln_noise['T'], ln_noise['Sc_av'], "o", color="blue", label="w/ rewiring")
+    ax5.plot(norew_noise['T'], norew_noise['Sc_av'], "^", markersize=5, color="red", label="w/out rewiring")
     #ax5.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax5.set_ylabel(r"$\langle S_c \rangle$ [pA $\times$ Hz]", fontsize=tick_fs)
     ax5.tick_params(labelsize=tick_fs)
@@ -387,7 +387,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     #ax5.legend(title=r"$S_c$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=1.0)
     ax5.set_xticklabels([])
 
-    ax6.plot(norew_noise['T'], abs((np.array(ln_noise['S2_av'])-np.array(norew_noise['S2_av']))/np.array(ln_noise['S2_av'])*100), "--", color="green")
+    ax6.plot(norew_noise['T'], abs((np.array(ln_noise['Sc_av'])-np.array(norew_noise['Sc_av']))/np.array(ln_noise['Sc_av'])*100), "--", color="green")
     #ax1.set_xlabel("T (training patterns)", fontsize=tick_fs)
     ax6.set_ylabel(r"$\dfrac{\langle S_c \rangle - \langle S_{c}\rangle ^{nr}}{\langle S_{c} \rangle}\quad$[%] ", fontsize=tick_fs)
     ax6.set_xlabel(r'$\mathcal{T}$ training patterns', fontsize=tick_fs)
@@ -395,10 +395,10 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax6.set_xticks([5000, 25000, 50000, 75000, 100000])
     ax6.set_xticklabels(["5K", "25K", "50K", "75K", "100K"])
 
-    CNR_rew=np.array(np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']))
-    CNR_norew=np.array(np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']))
-    ax7.plot(ln_noise['T'], np.abs(ln_noise['S2_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "o", color="blue", label="w/ rewiring")
-    ax7.plot(norew_noise['T'], np.abs(norew_noise['S2_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "^", markersize=5, color="red", label="w/out rewiring")
+    CNR_rew=np.array(np.abs(ln_noise['Sc_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']))
+    CNR_norew=np.array(np.abs(norew_noise['Sc_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']))
+    ax7.plot(ln_noise['T'], np.abs(ln_noise['Sc_av']-ln_noise['Sb_av'])/np.sqrt(ln_noise['varSb_av']), "o", color="blue", label="w/ rewiring")
+    ax7.plot(norew_noise['T'], np.abs(norew_noise['Sc_av']-norew_noise['Sb_av'])/np.sqrt(norew_noise['varSb_av']), "^", markersize=5, color="red", label="w/out rewiring")
     
     prob_thr=0.95
     SDNR_thr=erfinv(2*prob_thr-1) *2*np.sqrt(2)
@@ -446,8 +446,8 @@ ln_rate_noise = get_data("../simulations/noise_1Hz_simulations", 10)
 
 T = ln_rate['T']
 
-sdnr_rew = np.asarray([(ln_rate['S2_av'][i]-ln_rate['Sb_av'][i])/np.sqrt(ln_rate['varSb_av'][i]) for i in range(len(ln_rate['T']))])
-sdnr_norew = np.asarray([(norew_noise['S2_av'][i]-norew_noise['Sb_av'][i])/np.sqrt(norew_noise['varSb_av'][i]) for i in range(len(norew_noise['T']))])
+sdnr_rew = np.asarray([(ln_rate['Sc_av'][i]-ln_rate['Sb_av'][i])/np.sqrt(ln_rate['varSb_av'][i]) for i in range(len(ln_rate['T']))])
+sdnr_norew = np.asarray([(norew_noise['Sc_av'][i]-norew_noise['Sb_av'][i])/np.sqrt(norew_noise['varSb_av'][i]) for i in range(len(norew_noise['T']))])
 
 
 """
