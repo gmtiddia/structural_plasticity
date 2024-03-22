@@ -59,22 +59,22 @@ def get_th_set(path, T):
 
     params = get_params_dict(path)
     p = 1.0 - (1.0 - params['alpha1']*params['alpha2'])**T
-    q1 = 1.0 - params['alpha1']
-    q2 = 1.0 - params['alpha2']
+    beta1 = 1.0 - params['alpha1']
+    beta2 = 1.0 - params['alpha2']
     # average rate layer 1
-    rm1 = params['alpha1']*params['nu_h_1'] + q1*params['nu_l_1']
+    nu_av_1 = params['alpha1']*params['nu_h_1'] + beta1*params['nu_l_1']
     # average rate layer 2
-    rm2 = params['alpha2']*params['nu_h_2'] + q2*params['nu_l_2']
+    nu_av_2 = params['alpha2']*params['nu_h_2'] + beta2*params['nu_l_2']
 
     # rate threshold for both layers
     if(params['lognormal_rate']==1):
-        sigma_ln1 = erfm1(q1) - erfm1(q1*params['nu_l_1']/rm1)
-        mu_ln1 = math.log(rm1) - sigma_ln1*sigma_ln1/2.0
-        yt_ln1 = erfm1(q1)*sigma_ln1 + mu_ln1
+        sigma_ln1 = erfm1(beta1) - erfm1(beta1*params['nu_l_1']/nu_av_1)
+        mu_ln1 = math.log(nu_av_1) - sigma_ln1*sigma_ln1/2.0
+        yt_ln1 = erfm1(beta1)*sigma_ln1 + mu_ln1
         rt1 = np.exp(yt_ln1)
-        sigma_ln2 = erfm1(q2) - erfm1(q2*params['nu_l_2']/rm2)
-        mu_ln2 = math.log(rm2) - sigma_ln2*sigma_ln2/2.0
-        yt_ln2 = erfm1(q2)*sigma_ln2 + mu_ln2
+        sigma_ln2 = erfm1(beta2) - erfm1(beta2*params['nu_l_2']/nu_av_2)
+        mu_ln2 = math.log(nu_av_2) - sigma_ln2*sigma_ln2/2.0
+        yt_ln2 = erfm1(beta2)*sigma_ln2 + mu_ln2
         rt2 = np.exp(yt_ln2)
     else:
         rt1 = (params['nu_h_1'] + params['nu_l_1']) / 2.0
@@ -87,14 +87,14 @@ def get_th_set(path, T):
     if(params['lognormal_rate']==1):
         var_r1 = (np.exp(sigma_ln1*sigma_ln1) - 1.0) * np.exp(2.0*mu_ln1 + sigma_ln1*sigma_ln1)
     else:
-        var_r1 = rsq1 - rm1*rm1
+        var_r1 = rsq1 - nu_av_1*nu_av_1
     
     # variance of k
     k2 = params['C']*(params['C'] - 1.0)*((1.0 - (2.0 - params['alpha1'])*params['alpha1']*params['alpha2'])**T) - params['C']*(2.0*params['C'] - 1.0)*((1.0 - params['alpha1']*params['alpha2'])**T) + params['C']*params['C']
     var_k = k2 - k*k
 
     # theoretical value of Sb
-    Sb = params['Ws']*k*rm1 + params['Wb']*(params['C']-k)*rm1
+    Sb = params['Ws']*k*nu_av_1 + params['Wb']*(params['C']-k)*nu_av_1
 
     # theoretical value of Sc
     if(params['r']==0):
@@ -106,12 +106,12 @@ def get_th_set(path, T):
         av_pt = 1. - (b*r)/(T+r)
         av_kt_first = av_pt*params['C']*(1.0-params['alpha1'])
         # w/ rewiring
-        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + rm1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k) - params['Ws']*(rm1 - params['nu_l_1'])*av_kt_first
+        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + nu_av_1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k) - params['Ws']*(nu_av_1 - params['nu_l_1'])*av_kt_first
 
     # if C is constant
     if(params['connection_rule']==0):
         # variance of Sb for C fixed
-        varSb = (params['Ws']*params['Ws']*k + params['Wb']*params['Wb']*(params['C']-k))*var_r1 + (params['Ws'] - params['Wb'])*(params['Ws'] - params['Wb'])*rm1*rm1*var_k
+        varSb = (params['Ws']*params['Ws']*k + params['Wb']*params['Wb']*(params['C']-k))*var_r1 + (params['Ws'] - params['Wb'])*(params['Ws'] - params['Wb'])*nu_av_1*nu_av_1*var_k
     # if C is driven from Poisson distribution
     else:
         # average and variance of the Poisson distribution is C
@@ -121,7 +121,7 @@ def get_th_set(path, T):
         eta = (1.0 - params['alpha1']*params['alpha2'])**T
         csi = (1.0 - (2.0 - params['alpha1'])*params['alpha1']*params['alpha2'])**T
         # variance of Sb for C variable
-        varSb = ((params['Wb'] + p*(params['Ws'] - params['Wb']))**2.0)*rm1*rm1*var_C + C_m*(p*params['Ws']*params['Ws'] + eta*params['Wb']*params['Wb'])*var_r1 + ((params['Ws'] - params['Wb'])**2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta)
+        varSb = ((params['Wb'] + p*(params['Ws'] - params['Wb']))**2.0)*nu_av_1*nu_av_1*var_C + C_m*(p*params['Ws']*params['Ws'] + eta*params['Wb']*params['Wb'])*var_r1 + ((params['Ws'] - params['Wb'])**2)*nu_av_1*nu_av_1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta)
 
     # if we add noise on the test patterns
     if(params['noise_flag']==1):

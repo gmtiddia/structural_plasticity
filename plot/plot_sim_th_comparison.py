@@ -31,7 +31,7 @@ def get_params_dict(path):
 
 def get_th_set(path, T):
     """
-    Returns theoretical estimation of Sb, S2 and Var(Sb) given the simulation parameters.
+    Returns theoretical estimation of Sb, Sc and Var(Sb) given the simulation parameters.
 
     Parameters
     ----------
@@ -44,7 +44,7 @@ def get_th_set(path, T):
     
     Returns
     -------
-    dict of the theoretical values for Sb, varSb and S2
+    dict of the theoretical values for Sb, varSb and Sc
     """
 
     def erfm1(x):
@@ -58,22 +58,22 @@ def get_th_set(path, T):
 
     params = get_params_dict(path)
     p = 1.0 - (1.0 - params['alpha1']*params['alpha2'])**T
-    q1 = 1.0 - params['alpha1']
-    q2 = 1.0 - params['alpha2']
+    beta1 = 1.0 - params['alpha1']
+    beta2 = 1.0 - params['alpha2']
     # average rate layer 1
-    rm1 = params['alpha1']*params['nu_h_1'] + q1*params['nu_l_1']
+    nu_av_1 = params['alpha1']*params['nu_h_1'] + beta1*params['nu_l_1']
     # average rate layer 2
-    rm2 = params['alpha2']*params['nu_h_2'] + q2*params['nu_l_2']
+    nu_av_2 = params['alpha2']*params['nu_h_2'] + beta2*params['nu_l_2']
 
     # rate threshold for both layers
     if(params['lognormal_rate']==1):
-        sigma_ln1 = erfm1(q1) - erfm1(q1*params['nu_l_1']/rm1)
-        mu_ln1 = math.log(rm1) - sigma_ln1*sigma_ln1/2.0
-        yt_ln1 = erfm1(q1)*sigma_ln1 + mu_ln1
+        sigma_ln1 = erfm1(beta1) - erfm1(beta1*params['nu_l_1']/nu_av_1)
+        mu_ln1 = math.log(nu_av_1) - sigma_ln1*sigma_ln1/2.0
+        yt_ln1 = erfm1(beta1)*sigma_ln1 + mu_ln1
         rt1 = np.exp(yt_ln1)
-        sigma_ln2 = erfm1(q2) - erfm1(q2*params['nu_l_2']/rm2)
-        mu_ln2 = math.log(rm2) - sigma_ln2*sigma_ln2/2.0
-        yt_ln2 = erfm1(q2)*sigma_ln2 + mu_ln2
+        sigma_ln2 = erfm1(beta2) - erfm1(beta2*params['nu_l_2']/nu_av_2)
+        mu_ln2 = math.log(nu_av_2) - sigma_ln2*sigma_ln2/2.0
+        yt_ln2 = erfm1(beta2)*sigma_ln2 + mu_ln2
         rt2 = np.exp(yt_ln2)
     else:
         rt1 = (params['nu_h_1'] + params['nu_l_1']) / 2.0
@@ -86,27 +86,27 @@ def get_th_set(path, T):
     if(params['lognormal_rate']==1):
         var_r1 = (np.exp(sigma_ln1*sigma_ln1) - 1.0) * np.exp(2.0*mu_ln1 + sigma_ln1*sigma_ln1)
     else:
-        var_r1 = rsq1 - rm1*rm1
+        var_r1 = rsq1 - nu_av_1*nu_av_1
     
     # variance of k
     k2 = params['C']*(params['C'] - 1.0)*((1.0 - (2.0 - params['alpha1'])*params['alpha1']*params['alpha2'])**T) - params['C']*(2.0*params['C'] - 1.0)*((1.0 - params['alpha1']*params['alpha2'])**T) + params['C']*params['C']
     var_k = k2 - k*k
 
     # theoretical value of Sb
-    Sb = params['Ws']*k*rm1 + params['Wb']*(params['C']-k)*rm1
+    Sb = params['Ws']*k*nu_av_1 + params['Wb']*(params['C']-k)*nu_av_1
 
-    # theoretical value of S2
+    # theoretical value of Sc
     if(params['r']==0):
         # without rewiring
-        S2 = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + params['nu_l_1']*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
+        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + params['nu_l_1']*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
     else:
         # with rewiring
-        S2 = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + rm1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
+        Sc = params['nu_h_1']*params['Ws']*params['alpha1']*params['C'] + nu_av_1*(1.0-params['alpha1'])*(params['Wb']*params['C'] + (params['Ws'] - params['Wb'])*k)
 
     # if C is constant
     if(params['connection_rule']==0):
         # variance of Sb for C fixed
-        varSb = (params['Ws']*params['Ws']*k + params['Wb']*params['Wb']*(params['C']-k))*var_r1 + (params['Ws'] - params['Wb'])*(params['Ws'] - params['Wb'])*rm1*rm1*var_k
+        varSb = (params['Ws']*params['Ws']*k + params['Wb']*params['Wb']*(params['C']-k))*var_r1 + (params['Ws'] - params['Wb'])*(params['Ws'] - params['Wb'])*nu_av_1*nu_av_1*var_k
     # if C is driven from Poisson distribution
     else:
         # average and variance of the Poisson distribution is C
@@ -116,7 +116,7 @@ def get_th_set(path, T):
         eta = (1.0 - params['alpha1']*params['alpha2'])**T
         csi = (1.0 - (2.0 - params['alpha1'])*params['alpha1']*params['alpha2'])**T
         # variance of Sb for C variable
-        varSb = ((params['Wb'] + p*(params['Ws'] - params['Wb']))**2.0)*rm1*rm1*var_C + C_m*(p*params['Ws']*params['Ws'] + eta*params['Wb']*params['Wb'])*var_r1 + ((params['Ws'] - params['Wb'])**2)*rm1*rm1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta)
+        varSb = ((params['Wb'] + p*(params['Ws'] - params['Wb']))**2.0)*nu_av_1*nu_av_1*var_C + C_m*(p*params['Ws']*params['Ws'] + eta*params['Wb']*params['Wb'])*var_r1 + ((params['Ws'] - params['Wb'])**2)*nu_av_1*nu_av_1*((C2_m - C_m)*csi + C_m*eta - C2_m*eta*eta)
 
     # if we add noise on the test patterns
     if(params['noise_flag']==1):
@@ -129,12 +129,12 @@ def get_th_set(path, T):
         varSb += var_S_noise
         #print("New varSb: {}".format(varSb))
 
-    return({"T": T, "Sb": Sb, "varSb": varSb, "S2": S2})
+    return({"T": T, "Sb": Sb, "varSb": varSb, "Sc": Sc})
 
 
 def get_th_data(path):
     """
-    Returns a DataFrame with the theoretical estimation of Sb, S2 and Var(Sb) given the simulation parameters.
+    Returns a DataFrame with the theoretical estimation of Sb, Sc and Var(Sb) given the simulation parameters.
 
     Parameters
     ----------
@@ -163,15 +163,15 @@ def get_th_data(path):
 
         dum_Sb = []
         dum_varSb = []
-        dum_S2 = []
+        dum_Sc = []
 
         for i in range(len(T)):
             dum_dict = get_th_set(path+"/5000", T[i])
             dum_Sb.append(dum_dict['Sb'])
             dum_varSb.append(dum_dict['varSb'])
-            dum_S2.append(dum_dict['S2'])
+            dum_Sc.append(dum_dict['Sc'])
 
-        dic = {"T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "Sc_th": dum_S2}
+        dic = {"T": T, "Sb_th": dum_Sb, "varSb_th": dum_varSb, "Sc_th": dum_Sc}
 
         data = pd.DataFrame(dic)
         data.to_csv(path+"/th_values.csv", index=False)
@@ -181,7 +181,7 @@ def get_th_data(path):
 
 def get_data(path, seeds):
     """
-    Returns a dataframe with averaged values of Sb, S2 and Var(Sb) over the seeds.
+    Returns a dataframe with averaged values of Sb, Sc and Var(Sb) over the seeds.
     Needs files mem_out_seed_*.dat contained in path.
 
     Parameters
@@ -214,32 +214,32 @@ def get_data(path, seeds):
         T = [int(t) for t in T_list]
         T.sort()
         # define arrays to contain average and std values
-        Sc_av = np.zeros(len(T)); S2_std = np.zeros(len(T))
+        Sc_av = np.zeros(len(T)); Sc_std = np.zeros(len(T))
         Sb_av = np.zeros(len(T)); Sb_std = np.zeros(len(T))
         varSb_av = np.zeros(len(T)); varSb_std = np.zeros(len(T))
 
         # extract values from data
         for t, dir in enumerate(subfolders):
             Sb_dum = []
-            S2_dum = []
+            Sc_dum = []
             varSb_dum = []
             for i in range(seeds):
                 mem_out = np.loadtxt(path+"/"+str(T[t])+"/mem_out_000"+str(i)+"_0000.dat")
                 Sb_dum.append(np.average(mem_out[:,1]))
-                S2_dum.append(np.average(mem_out[:,2]))
+                Sc_dum.append(np.average(mem_out[:,2]))
                 varSb_dum.append(np.average(mem_out[:,3]))
-            Sc_av[t]=np.average(S2_dum)
+            Sc_av[t]=np.average(Sc_dum)
             Sb_av[t]=np.average(Sb_dum)
             varSb_av[t]=np.average(varSb_dum)
             Sb_std[t]=np.std(Sb_dum)
-            S2_std[t]=np.std(S2_dum)
+            Sc_std[t]=np.std(Sc_dum)
             varSb_std[t]=np.std(varSb_dum)
         
         # free some memory
-        del mem_out, Sb_dum, S2_dum, varSb_dum
+        del mem_out, Sb_dum, Sc_dum, varSb_dum
 
         # save values on a DataFrame
-        data = {"T": T, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "Sc_av": Sc_av, "S2_std": S2_std}
+        data = {"T": T, "Sb_av": Sb_av, "Sb_std": Sb_std, "varSb_av": varSb_av, "varSb_std": varSb_std, "Sc_av": Sc_av, "Sc_std": Sc_std}
         data = pd.DataFrame(data)
         #print(data)
 
@@ -264,9 +264,9 @@ def plot_data(ln_noise, th_ln_noise, label, saturation, prob_thr):
     Parameters
     ----------
     ln, th_ln: pandas DataFrame
-        DataFrame with simulation and theoretical values of Sb, varSb and S2 for lognormal rate model
+        DataFrame with simulation and theoretical values of Sb, varSb and Sc for lognormal rate model
     ln_noise, th_ln_noise: list of pandas DataFrame
-        DataFrame with simulation and theoretical values of Sb, varSb and S2 for lognormal rate model with noise
+        DataFrame with simulation and theoretical values of Sb, varSb and Sc for lognormal rate model with noise
 
     """
 
@@ -286,8 +286,8 @@ def plot_data(ln_noise, th_ln_noise, label, saturation, prob_thr):
     ax2 = axs1[1,0] # residue - Sb
     ax3 = axs1[2,0] # lognormal rate - varSb
     ax4 = axs1[3,0] # residue rate - varSb
-    ax5 = axs1[0,1] # lognormal rate - S2
-    ax6 = axs1[1,1] # residue rate - S2
+    ax5 = axs1[0,1] # lognormal rate - Sc
+    ax6 = axs1[1,1] # residue rate - Sc
     ax7 = axs1[2,1] # lognormal rate - SDNR
     ax8 = axs1[3,1] # residue rate - SDNR
 
