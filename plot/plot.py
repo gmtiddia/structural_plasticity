@@ -22,7 +22,7 @@ def get_params_dict(path):
         Python dictionary containing simulation parameters
     """
 
-    params = np.loadtxt(path+'/params.dat', dtype=np.str)
+    params = np.loadtxt(path+'/params.dat', dtype=str)
     dict_params = dict([[params[i][0], float(params[i][1])] for i in range(len(params))])
     
     return(dict_params)
