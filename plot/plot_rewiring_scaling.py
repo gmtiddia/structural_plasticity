@@ -407,7 +407,7 @@ def plot_data(discr, ln,  ln_noise,  norew_noise):
     ax7.text(-0.1, 1, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
 
     ax7.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-',color='coral')
-    ax7.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=legend_fs+2, s=r'$\text{SDNR}_{\text{thr}}$')
+    ax7.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=legend_fs+2, s=r'SDNR$_{thr}$')
     ax7.set_ylabel(r"SDNR", fontsize=tick_fs)
     ax7.tick_params(labelsize=tick_fs)
     ax7.set_xticks([5000, 25000, 50000, 75000, 100000])

@@ -429,7 +429,7 @@ def plot_data(ln_noise, th_ln_noise, label, saturation, prob_thr):
     
 
     ax7.plot(np.linspace(5000,100000,5),SDNR_thr*np.ones(5), linestyle='-',color='coral')
-    ax7.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=legend_fs+2, s=r'$\text{SDNR}_{\text{thr}}$')
+    ax7.text(80000, y=SDNR_thr+0.2, color='coral', fontsize=legend_fs+2, s=r'SDNR$_{thr}$')
 
 
     ax7.text(-0.1, 1.05, "D", weight="bold", fontsize=30, color='k', transform=ax7.transAxes)
