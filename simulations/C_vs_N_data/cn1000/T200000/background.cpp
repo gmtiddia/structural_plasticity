@@ -36,13 +36,13 @@ int main(int argc, char *argv[])
   int iC = 10000;
   double C = iC;
   // probability of high rate
-  double p1 = 1.0e-3;
+  double alpha1 = 1.0e-3;
   // probability of low rate
-  double p2 = 1.0e-3;
+  double alpha2 = 1.0e-3;
   // baseline weight
-  double W0 = 0.1;
+  double Wb = 0.1;
   // consolidated weight
-  double Wc = 1.0;
+  double Ws = 1.0;
 
   // low rate [Hz]
   double rl = 2.0;
@@ -53,20 +53,20 @@ int main(int argc, char *argv[])
 
   // probability of having consolidated the
   // connection at least for one instance
-  double p = 1.0 - pow(1.0 - p1*p2, T);
+  double p = 1.0 - pow(1.0 - alpha1*alpha2, T);
   // rate
-  double r = p1*rh + (1.0 - p1)*rl;
+  double r = alpha1*rh + (1.0 - alpha1)*rl;
   double k = p*C;
-  double r2 = p1*rh*rh + (1.0 - p1)*rl*rl;
+  double r2 = alpha1*rh*rh + (1.0 - alpha1)*rl*rl;
   double sigma2r = r2 - r*r;
-  double k2 = C*(C - 1)*pow(1.0 - (2.0 - p1)*p1*p2, T)
-    - C*(2*C - 1)*pow(1.0 - p1*p2, T) + C*C;
+  double k2 = C*(C - 1)*pow(1.0 - (2.0 - alpha1)*alpha1*alpha2, T)
+    - C*(2*C - 1)*pow(1.0 - alpha1*alpha2, T) + C*C;
   double sigma2k = k2 - k*k;
   
-  double Sbt = Wc*k*r + W0*(C-k)*r;
-  double S2t = rh*Wc*p1*C + rl*(1.0-p1)*(W0*C + (Wc - W0)*k);
-  double sigma2St = (Wc*Wc*k + W0*W0*(C-k))*sigma2r
-    + (Wc - W0)*(Wc - W0)*r*r*sigma2k;
+  double Sbt = Ws*k*r + Wb*(C-k)*r;
+  double S2t = rh*Ws*alpha1*C + rl*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
+  double sigma2St = (Ws*Ws*k + Wb*Wb*(C-k))*sigma2r
+    + (Ws - Wb)*(Ws - Wb)*r*r*sigma2k;
 
   // print of theoretical estimations
   printf("p: %.9lf\n", p);
@@ -75,8 +75,8 @@ int main(int argc, char *argv[])
   printf("S2 (theoretical): %.4lf\n", S2t);
   printf("Sb (theoretical):  %.4lf\n", Sbt);
   printf("sigma2S (theoretical): %.4lf\n", sigma2St);
-  //std::cout << (Wc*Wc*k + W0*W0*(C-k))*sigma2r << "\n";
-  //std::cout << (Wc - W0)*(Wc - W0)*r*r*sigma2k << "\n";
+  //std::cout << (Ws*Ws*k + Wb*Wb*(C-k))*sigma2r << "\n";
+  //std::cout << (Ws - Wb)*(Ws - Wb)*r*r*sigma2k << "\n";
 
   // same but saved in the header file
   fprintf(fp_head, "p: %.9lf\n", p);
@@ -105,12 +105,12 @@ int main(int argc, char *argv[])
   
   for (int i=0; i<N; i++) {
     for (int i1=0; i1<iC; i1++) {
-      w[i1] = W0;
+      w[i1] = Wb;
     }
 
     for (int ie=0; ie<T; ie++) {
       for (int i1=0; i1<iC; i1++) {
-	if (rnd_uniform(rnd_gen) < p1) {
+	if (rnd_uniform(rnd_gen) < alpha1) {
 	  rate_L1[ie][i1] = rh;
 	}
 	else {
@@ -118,11 +118,11 @@ int main(int argc, char *argv[])
 	}
       }
       
-      if (rnd_uniform(rnd_gen) < p2) {
+      if (rnd_uniform(rnd_gen) < alpha2) {
 	//rate_L2[ie] = rh;
 	for (int i1=0; i1<iC; i1++) {
 	  if (rate_L1[ie][i1] > rh - eps) {
-	    w[i1] = Wc;
+	    w[i1] = Ws;
 	  }
 	}
       }
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
     }
     
     for (int i1=0; i1<iC; i1++) {
-      if (rnd_uniform(rnd_gen) < p1) {
+      if (rnd_uniform(rnd_gen) < alpha1) {
 	rate_L1_test[i1] = rh;
       }
       else {

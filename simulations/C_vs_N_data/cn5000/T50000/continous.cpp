@@ -61,9 +61,9 @@ int main(int argc, char *argv[])
   int iC = 5000;
   double C = iC;
   // probability of high rate
-  double p1 = 1.0e-3;
+  double alpha1 = 1.0e-3;
   // probability of low rate
-  double p2 = 1.0e-3;
+  double alpha2 = 1.0e-3;
   // number of neurons in pop 1
   int N1 = 50000;
   // number of neurons in pop 2
@@ -73,9 +73,9 @@ int main(int argc, char *argv[])
   std::uniform_int_distribution<> rnd_int(0, N1-1);
   
   // baseline weight
-  double W0 = 0.1;
+  double Wb = 0.1;
   // consolidated weight
-  double Wc = 1.0;
+  double Ws = 1.0;
 
   // low rate [Hz]
   double rl = 2.0;
@@ -86,11 +86,11 @@ int main(int argc, char *argv[])
 
   // probability of having consolidated the
   // connection at least for one instance
-  double p = 1.0 - pow(1.0 - p1*p2, T);
+  double p = 1.0 - pow(1.0 - alpha1*alpha2, T);
   // rate
-  double rm1 = p1*rh + (1.0 - p1)*rl;
+  double rm1 = alpha1*rh + (1.0 - alpha1)*rl;
 
-  double q1 = 1.0 - p1;
+  double q1 = 1.0 - alpha1;
   double sigma_ln1 = erfm1(q1) - erfm1(q1*rl/rm1);
   double mu_ln1 = log(rm1) - sigma_ln1*sigma_ln1/2.0;
   double yt_ln1 = erfm1(q1)*sigma_ln1 + mu_ln1;
@@ -101,21 +101,21 @@ int main(int argc, char *argv[])
   // average consolidated connections
   double k = p*C;
   // <r^2>
-  //double r2 = p1*rh*rh + (1.0 - p1)*rl*rl;
+  //double r2 = alpha1*rh*rh + (1.0 - alpha1)*rl*rl;
   // rate variance
   //double sigma2r = r2 - rm1*rm1;
   double sigma2r = (exp(sigma_ln1*sigma_ln1) -1.0)
     * exp(2.0*mu_ln1 + sigma_ln1*sigma_ln1);
   // calculation for variance og k
-  double k2 = C*(C - 1)*pow(1.0 - (2.0 - p1)*p1*p2, T)
-    - C*(2*C - 1)*pow(1.0 - p1*p2, T) + C*C;
+  double k2 = C*(C - 1)*pow(1.0 - (2.0 - alpha1)*alpha1*alpha2, T)
+    - C*(2*C - 1)*pow(1.0 - alpha1*alpha2, T) + C*C;
   double sigma2k = k2 - k*k;
   
   // theoretical estimation of Sb, S2 and sigma^2 Sb
-  double Sbt = Wc*k*rm1 + W0*(C-k)*rm1;
-  double S2t = rh*Wc*p1*C + rl*(1.0-p1)*(W0*C + (Wc - W0)*k);
-  double sigma2St = (Wc*Wc*k + W0*W0*(C-k))*sigma2r
-    + (Wc - W0)*(Wc - W0)*rm1*rm1*sigma2k;
+  double Sbt = Ws*k*rm1 + Wb*(C-k)*rm1;
+  double S2t = rh*Ws*alpha1*C + rl*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k);
+  double sigma2St = (Ws*Ws*k + Wb*Wb*(C-k))*sigma2r
+    + (Ws - Wb)*(Ws - Wb)*rm1*rm1*sigma2k;
 
   // print of theoretical estimations
   printf("p: %.9lf\n", p);
@@ -124,8 +124,8 @@ int main(int argc, char *argv[])
   printf("S2 (theoretical): %.4lf\n", S2t);
   printf("Sb (theoretical):  %.4lf\n", Sbt);
   printf("sigma2S (theoretical): %.4lf\n", sigma2St);
-  //std::cout << (Wc*Wc*k + W0*W0*(C-k))*sigma2r << "\n";
-  //std::cout << (Wc - W0)*(Wc - W0)*r*r*sigma2k << "\n";
+  //std::cout << (Ws*Ws*k + Wb*Wb*(C-k))*sigma2r << "\n";
+  //std::cout << (Ws - Wb)*(Ws - Wb)*r*r*sigma2k << "\n";
 
   // same but saved in the header file
   fprintf(fp_head, "p: %.9lf\n", p);
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
     if (allow_multapses) {
       for (int ic=0; ic<iC; ic++) {
 	ci.push_back(rnd_int(rnd_gen));
-	w[i2][ic] = W0;
+	w[i2][ic] = Wb;
       }
     }
     else {
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
 	int j1 = rnd_j1(rnd_gen);
 	std::swap(int_range[ic], int_range[j1]);
 	ci.push_back(int_range[ic]);
-	w[i2][ic] = W0;
+	w[i2][ic] = Wb;
       }
     }
     conn_index.push_back(ci);
@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
 	  // if r > rt for this neuron of pop 2
 	  if (rate_L1[ie][i1] > rt1) {
 	    // synaptic consolidation
-	    w[i2][ic] = Wc;
+	    w[i2][ic] = Ws;
 	  }
 	}
       }

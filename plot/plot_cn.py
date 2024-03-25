@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 import matplotlib.gridspec as gridspec
 import math
 
@@ -116,30 +115,30 @@ for j in [0,1,2,3]:
      for i in range(1,10001,1):
 
           T = 1000
-          p1 = 1.0e-3
-          p2 = 1.0e-3;
+          alpha1 = 1.0e-3
+          alpha2 = 1.0e-3;
           C = i
-          W0 = 0.1
-          Wc = 1.0
-          q1 = 1.0 - p1
+          Wb = 0.1
+          Ws = 1.0
+          q1 = 1.0 - alpha1
           rl = 2.0
           rh = 50.0
 
-          p = 1.0 - np.power(1.0 - p1*p2, T)
-          r = p1*rh + (1.0 - p1)*rl
+          p = 1.0 - np.power(1.0 - alpha1*alpha2, T)
+          r = alpha1*rh + (1.0 - alpha1)*rl
           sigma_ln1=1.12015;
           mu_ln1=0.0894999;
           k = p*C
-          k2 = C*(C - 1)*np.power(1.0 - (2.0 - p1)*p1*p2, T) - C*(2*C - 1)*np.power(1.0 - p1*p2, T) + C*C
+          k2 = C*(C - 1)*np.power(1.0 - (2.0 - alpha1)*alpha1*alpha2, T) - C*(2*C - 1)*np.power(1.0 - alpha1*alpha2, T) + C*C
           sigma2k = k2 - k*k
 
           sigma2r = (math.exp(sigma_ln1*sigma_ln1) -1.0)* math.exp(2.0*mu_ln1 + sigma_ln1*sigma_ln1)
           k=p*C
-          k2 = C*(C - 1)*np.power(1.0 - (2.0 - p1)*p1*p2, T) - C*(2*C - 1)*np.power(1.0 - p1*p2, T) + C*C
+          k2 = C*(C - 1)*np.power(1.0 - (2.0 - alpha1)*alpha1*alpha2, T) - C*(2*C - 1)*np.power(1.0 - alpha1*alpha2, T) + C*C
           
-          vart = (Wc*Wc*k + W0*W0*(C-k))*sigma2r + (Wc - W0)*(Wc - W0)*r*r*sigma2k
+          vart = (Ws*Ws*k + Wb*Wb*(C-k))*sigma2r + (Ws - Wb)*(Ws - Wb)*r*r*sigma2k
           sigma2k = k2 - k*k
-          Sbt = Wc*k*r + W0*(C-k)*r
+          Sbt = Ws*k*r + Wb*(C-k)*r
 
           if j==0:
               varSb_t_10k.append(vart)
@@ -154,10 +153,10 @@ for j in [0,1,2,3]:
           if j==3:
               varSb_t_200k.append(vart)
               C_frac_200.append(C/N[j])
-#S2t = rh*Wc*p1*C + rl*(1.0-p1)*(W0*C + (Wc - W0)*k)
-#vart = (Wc*Wc*k + W0*W0*(C-k))*sigma2r + (Wc - W0)*(Wc - W0)*r*r*sigma2k
+#S2t = rh*Ws*alpha1*C + rl*(1.0-alpha1)*(Wb*C + (Ws - Wb)*k)
+#vart = (Ws*Ws*k + Wb*Wb*(C-k))*sigma2r + (Ws - Wb)*(Ws - Wb)*r*r*sigma2k
 
-
+ax1.text(-0.1, 1.05, "A", weight="bold", fontsize=30, color='k', transform=ax1.transAxes)
 ax1.plot(R10K, [varSb_exp_1[0], varSb_exp_2[0], varSb_exp_5[0], varSb_exp[0] ], "o", linewidth=2, color="blue", label="Sim N=10K")
 ax1.plot(R50K, [varSb_exp_1[1], varSb_exp_2[1], varSb_exp_5[1], varSb_exp[1]], "o", linewidth=2, color="red", label="Sim N=50K")
 ax1.plot(R100K, [varSb_exp_1[2], varSb_exp_2[2], varSb_exp_5[2], varSb_exp[2]], "o", linewidth=2, color="black", label="Sim N=100K")
@@ -170,7 +169,7 @@ ax1.set_xscale('log')
 ax1.set_xlim(0.001,1.1)
 
 
-ax1.set_xlabel("C/N ratio", fontsize=tick_fs)
+ax1.set_xlabel(r'$\mathcal{C}/\mathcal{N}$ ratio', fontsize=tick_fs)
 ax1.set_ylabel(r"$\sigma_{b}^2$ [$pA^2$ $\times$ $Hz^2$]", fontsize=tick_fs)
 #ax1.set_ylabel(r"$\frac{S2-S2_{th}}{S2_{th}}$ (%)  ", fontsize=tick_fs)
 ax1.tick_params(labelsize=tick_fs)
@@ -178,7 +177,7 @@ ax1.tick_params(labelsize=tick_fs)
 #ax1.legend(title=r"$\sigma^2_b$", fontsize=legend_fs, title_fontsize=legend_fs, framealpha=0.5)
 ax1.legend(fontsize=legend_fs, framealpha=0.5)
 
-
+ax2.text(-0.1, 1.05, "B", weight="bold", fontsize=30, color='k', transform=ax2.transAxes)
 ax2.plot(R10K, [abs(varSb_exp_1[0]-varSb_t_10k[999])/varSb_t_10k[999]*100, abs(varSb_exp_2[0]-varSb_t_10k[1999])/varSb_t_10k[1999]*100,abs( varSb_exp_5[0]-varSb_t_10k[4999])/varSb_t_10k[4999]*100, abs(varSb_exp[0]-varSb_t_10k[9999])/varSb_t_10k[9999]*100 ], "-.", color="blue", linewidth=2, label="N=10K")
 ax2.plot(R50K, [abs(varSb_exp_1[1]-varSb_t_50k[999])/varSb_t_50k[999]*100, abs(varSb_exp_2[1]-varSb_t_50k[1999])/varSb_t_50k[1999]*100,abs( varSb_exp_5[1]-varSb_t_50k[4999])/varSb_t_50k[4999]*100, abs(varSb_exp[1]-varSb_t_50k[9999])/varSb_t_50k[9999]*100 ], "--", color="red", linewidth=2, label="N=50K")
 ax2.plot(R100K,[abs((varSb_exp_1[2]-varSb_t_100k[999])/varSb_t_100k[999]*100),abs( (varSb_exp_2[2]-varSb_t_100k[1999])/varSb_t_100k[1999]*100),abs( (varSb_exp_5[2]-varSb_t_100k[4999])/varSb_t_100k[4999]*100), abs((varSb_exp[2]-varSb_t_100k[9999])/varSb_t_100k[9999]*100)], "-", color="black", linewidth=2, label="N=100K")
@@ -189,7 +188,7 @@ ax2.plot(R200K, [abs(varSb_exp_1[3]-varSb_t_200k[999])/varSb_t_200k[999]*100, ab
 
 
 
-ax2.set_xlabel("C/N ratio", fontsize=tick_fs)
+ax2.set_xlabel(r'$\mathcal{C}/\mathcal{N}$ ratio', fontsize=tick_fs)
 ax2.set_ylabel(r"Relative error $\quad$[%]", fontsize=tick_fs)                                                                    
 ax2.tick_params(labelsize=tick_fs)
 ax2.set_xscale('log')
