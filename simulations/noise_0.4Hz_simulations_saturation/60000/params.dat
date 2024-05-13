@@ -1,0 +1,60 @@
+#connection rule (0: fixed_indegree, 1: poisson_indegree,
+# 2: fixed_total_number, 3: poisson_total_number
+connection_rule 1
+# use discrete rates or lognormal distribution (0:false, 1:true)
+lognormal_rate 1
+# multapses can be allowed or forbidden (0:false, 1:true)
+allow_multapses 1
+# step (in n. of patterns) for connection recombination (0: no recombination)
+r 100
+# number of training patterns
+T 60000
+# number of test patterns
+n_test 1000
+# connections per layer-2-neuron, i.e. indegree
+C 5000
+# probability of high rate for layer 1
+alpha1 1.0e-3
+# probability of high rate for layer 2
+alpha2 1.0e-3
+# number of neurons in pop 1
+N1 100000
+# number of neurons in pop 2
+N2 100000  
+# baseline weight
+Wb 0.1
+# consolidated weight
+Ws 1.0
+# low rate for layer 1 [Hz]
+nu_l_1 2.0
+# high rate for layer 1 [Hz]
+nu_h_1 50.0
+# low rate for layer 2 [Hz]
+nu_l_2 2.0
+# high rate for layer 2 [Hz]
+nu_h_2 50.0
+# add noise on test patterns (0:false, 1:true)
+noise_flag 1
+# noise on test patterns (sigma of truncated normal distribution) [Hz]
+rate_noise 0.4
+# noise from normal distribution is truncated at +-rate_noise*max_noise_dev
+max_noise_dev 2.0
+# handle negative values of rate after noise contribution
+# 0: do not modify, 1: truncate, 2: saturate
+corr_neg_rate 2
+# master seed for random number generation
+master_seed 123456
+# load network from file (0:false, 1:true)
+load_network 0
+# perform training
+train_flag 1
+# perform test
+test_flag 1
+#save network to file after training (0:false, 1:true)
+save_network 0
+# test pattern indexes can be ordered sequentially (0) or randomly (1) 
+random_test_order 1
+# number of training patterns between saving network and status
+train_block_size 200000
+# number of test patterns between saving the status
+test_block_size 200000

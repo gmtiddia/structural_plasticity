@@ -1,0 +1,3766 @@
+connection_rule: poisson_indegree
+lognormal_rate: true
+allow_multapses: true
+r: 100
+T: 90000
+n_test: 1000
+C: 5000
+alpha1: 0.001
+alpha2: 0.001
+N1: 100000
+N2: 100000
+Wb: 0.1
+Ws: 1
+nu_l_1: 2
+nu_h_1: 50
+nu_l_2: 2
+nu_h_2: 50
+noise_flag: true
+rate_noise: 0.4
+max_noise_dev: 2
+corr_neg_rate: 2
+master_seed: 123456
+load_network: false
+train_flag: true
+test_flag: true
+save_network: false
+random_test_order: true
+train_block_size: 200000
+test_block_size: 200000
+Number of openmp threads: 128
+p: 0.086068856
+sigma2r layer 1 (theoretical): 10.5146
+sigma2k (theoretical): 2270.4963
+S2 (theoretical): 2022.8451
+S2 with connection recombination (theoretical): 2065.3934
+Sb (theoretical):  1817.2106
+sigma2S (theoretical): 12719.1457
+sigma2S with Poisson indegree (theoretical): 13380.8723
+noise variance: 0.1238
+noise contribution to S variance: 58.9332
+sigma2S with noise (theoretical): 12778.0789
+sigma2S with Poisson indegree and noise (theoretical): 13439.8055
+Allocating arrays for network...
+	Done.
+Creating network...
+	Using fixed_indegree or poisson_indegree rule...
+	Create network 0 / 100000
+	Create network 10000 / 100000
+	Create network 20000 / 100000
+	Create network 30000 / 100000
+	Create network 40000 / 100000
+	Create network 50000 / 100000
+	Create network 60000 / 100000
+	Create network 70000 / 100000
+	Create network 80000 / 100000
+	Create network 90000 / 100000
+	Done.
+Done creating network.
+Training...
+	Training pattern n. 1 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 25901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 26901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 27901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 28901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 29901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 30901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 31901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 32901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 33901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 34901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 35901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 36901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 37901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 38901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 39901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 40901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 41901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 42901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 43901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 44901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 45901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 46901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 47901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 48901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 49901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 50901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 51901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 52901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 53901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 54901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 55901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 56901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 57901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 58901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 59901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 60901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 61901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 62901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 63901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 64901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 65901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 66901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 67901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 68901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 69901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 70901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 71901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 72901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 73901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 74901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 75901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 76901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 77901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 78901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 79901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 80901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 81901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 82901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 83901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 84901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 85901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 86901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 87901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 88901 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89001 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89101 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89201 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89301 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89401 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89501 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89601 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89701 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89801 / 90000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 89901 / 90000
+Rewiring connections...
+Done rewiring connections.
+Done training.
+Extracting test pattern indexes...
+Done.
+Testing...
+Simulated
+ie	Sb	S2	sigma2S
+55950	1823.6	2022.9	12996.6
+28361	1839.7	2098.8	13491.1
+52411	1821.2	2034.0	12946.3
+8254	1809.3	2037.3	13058.3
+15215	1837.8	2085.8	13530.1
+26420	1831.0	2138.7	13626.7
+27558	1819.4	2072.5	13344.0
+75064	1816.7	2010.9	13004.8
+31454	1845.6	2084.5	13847.3
+68227	1822.0	2047.2	13250.0
+53111	1819.2	2022.8	13149.6
+16814	1840.8	2129.0	13846.9
+86569	1836.0	2055.1	13661.9
+3684	1817.4	2049.9	13257.0
+38896	1825.8	2010.2	12962.3
+37525	1836.5	2050.1	13257.6
+59515	1827.9	2038.9	13175.8
+35183	1821.7	2060.1	13229.1
+56987	1816.8	2027.1	13016.1
+61326	1833.3	2088.4	13560.6
+19868	1821.2	2066.0	13290.8
+56874	1824.9	2036.8	13220.4
+1898	1828.6	2062.0	13299.4
+54049	1825.2	2060.4	13307.4
+80311	1828.2	2048.4	13364.3
+57171	1836.1	2086.8	13535.0
+10915	1826.3	2030.1	13301.0
+30633	1823.6	2092.3	13438.7
+76273	1821.3	2026.4	13358.3
+37170	1822.6	2047.0	13256.6
+84704	1822.9	2028.8	13232.1
+79977	1836.7	2109.0	13374.1
+16549	1839.8	2135.3	13810.8
+61552	1826.7	2097.5	13414.2
+72299	1835.0	2046.1	13226.2
+71911	1837.2	2075.8	14003.7
+58059	1827.9	2051.4	13266.5
+10737	1834.4	2091.1	13404.4
+55457	1839.1	2100.6	13693.2
+17868	1821.3	2135.7	13609.7
+61534	1827.9	2043.0	13293.7
+71239	1841.0	2055.3	13535.1
+66752	1839.4	2087.9	13624.9
+78749	1830.4	2019.1	13384.7
+18249	1825.7	2052.8	13190.0
+4807	1828.9	2065.8	13652.1
+84970	1831.0	2066.0	13347.4
+1161	1821.5	2129.4	13145.4
+33606	1841.9	2111.4	13872.6
+64284	1817.3	2036.5	13000.1
+19054	1829.9	2075.6	13259.7
+19172	1834.8	2077.2	13493.4
+45626	1819.6	2038.4	13153.7
+36292	1835.7	2087.0	13500.1
+73487	1849.5	2106.3	13917.5
+29672	1838.1	2125.4	13623.7
+35849	1823.8	2057.5	13305.2
+9886	1848.3	2144.5	14060.7
+89905	1835.9	2116.4	13961.7
+12178	1822.9	2039.5	13126.5
+20841	1806.7	1996.3	12698.9
+43468	1819.3	2084.9	13324.6
+13448	1813.2	2063.1	12918.5
+16043	1840.8	2112.2	13927.0
+67292	1816.5	2034.6	12976.6
+72316	1823.7	2035.2	13233.9
+81601	1846.2	2153.8	13983.1
+87118	1822.7	2048.6	13014.2
+89847	1818.9	2026.7	13270.7
+52570	1826.4	2091.7	13462.3
+64625	1816.6	2007.7	13146.3
+46888	1834.6	2083.5	13630.6
+67698	1831.6	2099.5	13616.2
+27126	1839.6	2148.8	13697.8
+73170	1828.7	2057.8	13421.2
+39758	1830.1	2087.5	13189.7
+86645	1823.0	2029.2	13105.6
+44668	1821.4	2047.3	13359.8
+25333	1830.2	2049.9	13458.0
+85198	1850.0	2100.6	14111.6
+5071	1816.5	2050.4	13268.6
+87031	1832.4	2051.2	13569.8
+13834	1820.5	2064.7	13274.4
+65216	1821.5	2073.8	13393.1
+22586	1819.9	2095.5	13606.7
+54492	1822.5	2071.6	13312.3
+82104	1842.4	2106.0	13937.8
+30286	1835.3	2072.5	13381.3
+55442	1825.2	2073.1	13317.5
+70581	1830.2	2094.8	13483.1
+79949	1830.8	2032.4	13275.9
+5212	1831.1	2092.8	13420.3
+57920	1814.9	2021.8	13104.6
+28143	1813.3	2059.9	13242.2
+39851	1803.3	2017.9	12688.9
+48019	1821.3	2041.0	13050.4
+3843	1819.8	2123.1	13328.2
+64613	1820.5	1995.0	13294.6
+26890	1828.3	2058.3	13358.1
+83437	1828.8	2050.8	13745.2
+1775	1831.2	2130.8	13490.6
+83144	1846.6	2109.9	13980.3
+23123	1822.8	2088.1	13467.0
+48397	1832.4	2052.7	13389.8
+31494	1834.0	2061.5	13832.3
+68453	1841.8	2080.6	14239.8
+33349	1825.5	2118.9	13433.7
+80910	1838.0	2088.2	14141.7
+41796	1823.0	2069.1	13478.5
+2644	1838.4	2062.7	13361.3
+66966	1833.6	2093.3	14074.8
+57123	1839.4	2066.4	13241.9
+88830	1837.7	2084.1	13519.2
+34255	1829.0	2079.8	13393.9
+47631	1816.3	2039.5	13164.9
+13844	1815.9	2040.0	13167.2
+85947	1813.8	2084.8	13143.3
+28228	1833.7	2053.3	13299.2
+63439	1835.9	2103.1	13689.2
+12602	1812.5	2031.4	13006.1
+47270	1814.2	2038.0	13095.8
+35278	1819.8	2050.9	13001.9
+39524	1813.3	2062.3	13312.0
+75763	1820.7	2042.3	13051.9
+6983	1829.6	2064.1	13299.4
+53958	1832.8	2091.2	13818.0
+38480	1821.2	2039.7	13202.2
+72758	1829.5	2045.5	13311.6
+22816	1818.2	2101.4	13689.0
+16685	1841.1	2115.5	13446.8
+47093	1830.5	2076.6	13774.0
+83568	1820.4	2050.4	13516.1
+65936	1816.0	2049.6	13310.8
+64650	1829.9	2083.4	13403.1
+4123	1834.3	2102.3	13520.1
+47299	1827.8	2055.7	13274.0
+61258	1843.6	2088.6	13677.3
+60082	1818.9	2078.9	13362.2
+34220	1841.0	2104.1	13706.4
+52538	1839.6	2106.2	13756.7
+89608	1815.0	2037.7	13044.7
+32573	1818.8	2026.9	13138.8
+26538	1829.6	2072.4	13349.5
+58763	1827.0	2068.1	13246.8
+7620	1826.1	2118.9	13772.0
+39678	1821.9	2050.3	13225.5
+20639	1824.8	2068.0	13255.8
+38095	1828.8	2101.5	13774.7
+57532	1815.3	2002.6	12901.5
+74826	1848.3	2134.4	14112.5
+59136	1818.2	2004.3	12934.5
+26935	1812.8	1992.6	12911.7
+48235	1822.7	2050.4	13208.6
+86506	1829.8	2074.5	13548.0
+18501	1828.1	2043.0	13405.9
+26077	1823.0	2027.7	13175.1
+72066	1822.2	2060.3	13412.5
+28475	1814.9	2021.7	12952.2
+24494	1833.5	2100.1	13502.2
+87134	1817.3	2065.4	13323.1
+5599	1844.9	2094.0	13664.2
+39951	1821.0	2005.3	13034.5
+30149	1827.6	2068.8	13193.6
+58424	1830.1	2082.9	13695.8
+72688	1832.5	2049.1	13747.4
+55669	1819.8	2047.5	13465.4
+46797	1823.9	2028.7	13192.6
+51103	1832.6	2027.4	13353.0
+71634	1841.7	2099.4	13633.4
+28435	1834.5	2133.1	13677.7
+31120	1825.9	2103.5	13682.4
+7685	1835.1	2105.4	13849.0
+89308	1827.7	2064.5	13514.1
+82077	1826.0	2048.2	13428.0
+45575	1826.6	2052.5	13398.1
+54348	1816.3	2021.7	13126.5
+69476	1818.8	1971.6	12865.3
+65488	1822.1	2073.1	13706.5
+20441	1841.7	2064.9	13492.0
+613	1825.9	2071.9	13354.3
+64527	1827.9	2031.0	13307.3
+60745	1836.1	2070.5	13954.8
+68765	1827.0	2071.6	13440.9
+29985	1833.5	2098.6	13669.0
+75890	1842.2	2079.4	13738.2
+13367	1827.2	2063.0	13197.1
+13740	1836.1	2065.8	13725.3
+32178	1828.8	2075.9	13350.0
+62999	1840.2	2100.2	13714.9
+42044	1811.8	2016.0	12962.4
+40914	1831.3	2032.8	13520.3
+34787	1818.0	2030.8	12784.5
+72271	1835.4	2129.8	13515.9
+83898	1829.9	2080.1	13923.3
+45811	1838.0	2056.3	13519.1
+49631	1827.0	2038.6	13246.3
+71354	1836.3	2087.0	13481.0
+61395	1830.5	2094.5	13468.5
+28320	1820.3	2066.1	13274.4
+26977	1825.0	2040.0	13404.1
+82321	1804.7	2014.8	12675.1
+22771	1815.4	2049.4	13054.8
+4892	1812.9	2036.0	13082.3
+78171	1828.0	2053.6	13411.2
+89623	1816.7	2019.9	13148.9
+61721	1836.4	2109.3	13702.4
+50189	1823.9	2068.9	13620.0
+74463	1823.2	1999.1	13036.9
+36858	1810.2	1996.0	12921.3
+527	1828.8	2078.4	13337.2
+78631	1828.2	2056.2	13425.8
+6545	1824.2	2050.3	13222.6
+30023	1844.2	2081.6	14290.3
+44647	1818.9	2046.1	13174.0
+1573	1833.2	2126.7	13865.1
+46990	1834.5	2082.3	13852.8
+56843	1826.3	2054.8	13173.2
+75566	1827.6	2089.9	13583.4
+27314	1831.6	2055.7	13265.6
+3355	1817.0	2038.6	13291.3
+75264	1807.7	2030.7	12827.2
+59212	1829.4	2058.0	13373.1
+41701	1831.0	2159.0	13565.0
+55530	1835.4	2096.0	13638.6
+25781	1817.8	2067.2	13209.7
+56975	1833.8	2098.9	13808.0
+77803	1819.3	2021.6	13102.1
+27098	1825.1	2093.5	13292.6
+61043	1834.1	2090.3	13693.9
+39363	1821.0	2045.5	13020.9
+65214	1831.9	2066.6	13367.0
+4206	1831.1	2104.7	13379.2
+12408	1839.1	2079.0	13578.6
+56476	1821.5	2021.6	13025.2
+15304	1840.2	2098.7	13467.9
+21663	1811.3	2010.0	12852.4
+46492	1837.6	2124.1	13808.5
+62159	1816.7	2037.9	13270.1
+40899	1819.5	2026.6	12957.7
+81378	1815.4	2084.0	13305.3
+32932	1817.6	2041.2	13134.7
+3789	1820.6	2015.9	13019.6
+71237	1820.4	2028.0	13322.9
+4297	1821.0	2059.3	13094.8
+35973	1835.4	2062.4	14009.5
+56640	1819.6	2054.4	13283.7
+2865	1824.5	2017.8	13078.9
+64750	1821.5	2010.2	13160.2
+7809	1833.2	2041.0	13186.4
+7758	1828.5	2091.1	13320.5
+9070	1833.8	2110.3	13669.8
+78852	1837.8	2046.8	13439.6
+87223	1811.2	1976.1	12842.7
+27627	1825.8	2095.9	13406.9
+34384	1834.2	2078.1	13674.3
+19624	1826.6	2092.7	13542.9
+61710	1825.4	2063.3	13236.3
+51885	1824.2	2084.6	13648.9
+16779	1825.9	2109.1	13502.5
+40179	1820.4	2119.6	13371.8
+30259	1816.6	2051.7	13096.9
+33026	1832.1	2059.8	13401.7
+27978	1815.2	2029.3	13030.4
+17770	1829.8	2120.0	13623.7
+89974	1830.2	2063.1	13345.9
+50148	1820.3	2026.7	12948.9
+88822	1834.7	2067.1	13569.1
+30932	1826.5	2055.6	13101.2
+7242	1826.9	2106.6	13347.1
+24826	1819.9	2019.2	13168.2
+3510	1831.3	2077.4	13370.4
+17674	1840.3	2074.9	13433.0
+8626	1827.6	2122.8	14173.6
+73160	1816.0	2047.3	13388.0
+5419	1822.2	2073.5	13047.4
+1263	1839.5	2103.9	13747.0
+64661	1826.0	2057.1	13277.2
+51179	1831.6	2008.0	13145.8
+71889	1824.9	2047.2	13166.0
+60030	1817.4	2056.0	13126.0
+17586	1830.9	2063.4	13354.3
+21154	1828.6	2099.5	14152.7
+52987	1833.5	2074.6	13374.0
+19029	1825.2	2085.2	13431.6
+56318	1820.3	2022.5	12915.9
+50324	1806.9	2003.0	12678.1
+85109	1840.7	2137.1	13869.2
+81942	1823.7	2013.2	13089.3
+31147	1832.3	2076.7	13768.0
+87683	1824.5	2093.9	13444.5
+13895	1832.8	2068.1	13459.5
+15232	1829.1	2060.8	13201.8
+42796	1826.4	2072.1	13267.8
+61406	1827.2	2079.8	13467.0
+48033	1822.2	2032.4	13149.9
+22686	1830.2	2086.2	13412.0
+21263	1835.6	2107.8	13793.3
+38530	1840.8	2112.4	13561.0
+37241	1825.1	2101.7	14420.9
+24228	1827.3	2053.4	13527.9
+75615	1821.8	2086.1	13303.6
+67311	1814.1	2040.4	13043.5
+12180	1828.3	2041.8	13160.0
+68433	1826.4	2017.4	13269.0
+38606	1847.3	2102.9	13861.6
+13282	1825.9	2048.7	13224.5
+4150	1838.6	2047.7	13551.0
+27432	1806.4	2041.9	12958.0
+88762	1837.9	2101.4	13704.4
+230	1826.8	2057.7	13780.4
+11319	1832.8	2075.3	13301.5
+87384	1838.9	2122.9	13699.9
+42156	1819.2	1987.9	13167.3
+12979	1836.1	2099.7	13621.0
+84892	1824.5	2086.2	13263.9
+50370	1833.0	2031.6	13397.8
+27137	1818.8	2020.0	13152.7
+18661	1848.6	2127.9	13877.5
+52395	1827.9	2102.4	13663.2
+40594	1832.3	2106.0	13853.7
+14656	1829.4	2089.3	13234.8
+74483	1832.5	2072.3	13477.0
+55915	1828.0	2019.9	13211.9
+79048	1817.2	2039.4	13076.7
+52453	1831.3	2056.7	13438.1
+67789	1831.7	2087.3	13614.6
+76828	1813.4	2013.6	13230.1
+61003	1833.4	2095.3	13484.9
+41230	1824.9	2046.7	13067.8
+49405	1833.7	2080.4	13406.6
+49170	1836.1	2096.2	13483.4
+41897	1838.0	2081.2	13552.1
+77196	1830.3	2003.2	13216.6
+82787	1847.4	2125.3	13956.4
+58728	1814.4	2006.8	13019.6
+44371	1830.9	2108.6	13391.3
+5072	1806.2	2044.1	13000.7
+68371	1840.1	2084.7	13788.6
+70200	1828.9	2068.2	13408.8
+15691	1820.7	2043.0	13840.1
+52381	1813.9	2083.4	13486.4
+87491	1824.3	2094.6	13475.4
+72181	1832.1	2036.6	13211.7
+50915	1830.6	2090.0	13466.7
+63855	1826.5	2043.9	13226.2
+11178	1823.3	2049.7	13332.9
+69612	1840.6	2112.9	13833.2
+62703	1818.3	2022.5	13142.9
+66813	1820.2	2067.8	13288.5
+4870	1824.1	2076.5	13397.4
+63457	1819.4	2068.9	13537.6
+52981	1826.4	2023.3	13174.4
+38149	1844.2	2123.2	13482.9
+37134	1818.3	2019.7	12834.5
+30620	1823.2	2014.8	13142.1
+37411	1821.9	2047.1	13393.2
+75423	1839.3	2051.9	13300.9
+39147	1850.9	2065.8	13706.6
+16971	1813.9	2012.1	13331.0
+32758	1801.0	1929.8	12396.9
+72532	1840.4	2072.2	13584.0
+39226	1829.6	2067.1	13517.8
+49167	1832.9	2042.4	13161.9
+49018	1818.8	2020.8	13022.5
+25653	1823.9	2122.6	13458.7
+13784	1813.2	1982.2	12847.7
+40742	1836.5	2062.4	13677.9
+83915	1836.0	2059.3	13525.5
+28853	1834.3	2090.7	13593.9
+77161	1823.1	2046.5	13984.8
+84451	1840.4	2083.1	13522.0
+37467	1823.7	2047.0	13050.6
+25364	1813.5	2050.6	13061.2
+42264	1810.3	2039.6	12752.0
+64822	1822.7	2034.0	13914.3
+53499	1833.7	2099.3	13732.8
+16885	1832.0	2068.7	13209.6
+26526	1832.7	2088.6	13543.0
+9017	1830.4	2076.2	13245.4
+64802	1836.4	2096.0	13617.7
+89064	1824.3	2025.2	13267.4
+31817	1815.9	2063.7	12948.2
+31217	1813.5	2035.6	12962.5
+19048	1848.5	2097.6	13696.4
+87292	1835.3	2060.7	13585.8
+35592	1825.9	2048.0	13155.0
+54977	1832.9	2134.8	13822.6
+70577	1823.9	2043.4	13553.9
+72955	1825.7	2025.2	13120.3
+2825	1823.8	2008.2	13147.3
+38993	1836.3	2115.8	13420.2
+27266	1834.1	2123.7	13576.2
+37984	1815.4	2020.3	12946.2
+52750	1823.5	2053.4	13258.2
+58126	1830.9	2071.4	13490.7
+89955	1824.4	2027.8	13200.4
+27758	1822.8	2090.3	13802.1
+16277	1835.2	2145.4	14516.6
+52407	1833.4	2099.4	13488.2
+78408	1828.6	2104.2	13449.2
+81558	1834.0	2024.1	13345.9
+6338	1828.7	2085.9	13210.4
+76297	1832.5	2129.0	13555.8
+49669	1825.0	2051.4	13292.7
+10174	1817.0	2042.7	13470.0
+32251	1831.5	2060.2	13477.7
+32426	1826.6	2080.3	13254.7
+27540	1834.1	2084.0	13389.3
+15172	1823.6	2051.4	12903.9
+74010	1832.9	2040.5	13254.8
+61762	1833.1	2085.1	13379.1
+8903	1830.0	2093.0	13500.1
+5410	1839.3	2096.6	13537.2
+74817	1834.0	2080.8	13641.4
+414	1819.3	2040.8	13154.5
+17410	1832.6	2108.7	13622.0
+4291	1820.6	2041.7	13288.0
+22794	1832.3	2101.0	13518.6
+49540	1844.4	2134.3	13717.3
+24044	1832.0	2035.2	13206.3
+563	1825.2	2096.1	13489.4
+50219	1816.6	2012.9	12778.4
+22458	1832.5	2080.1	13549.2
+84667	1818.5	2025.1	13460.2
+10440	1820.4	2072.4	13210.2
+68653	1835.2	2082.5	13878.5
+34303	1813.6	2026.8	13137.4
+87289	1830.9	2061.7	13416.4
+78894	1829.1	2039.6	13327.4
+13980	1836.7	2074.4	13656.9
+24802	1825.6	2087.8	13231.1
+27553	1839.6	2050.5	13405.1
+37201	1829.1	2133.7	13389.4
+68590	1830.2	2059.2	13346.3
+15597	1823.6	2063.2	13292.7
+55798	1820.1	2044.1	13069.6
+45481	1828.5	2046.6	13267.7
+15655	1831.7	2105.7	13703.2
+89074	1828.2	2043.1	13331.6
+73478	1834.9	2090.4	13531.7
+89687	1834.9	2064.7	13522.3
+73062	1822.5	2078.4	13285.2
+29222	1810.3	2038.6	12935.1
+6030	1832.2	2096.6	13464.2
+85521	1820.3	2034.1	13041.1
+12056	1829.0	2038.9	13226.5
+39351	1812.7	2011.9	13103.5
+57889	1836.0	2079.1	13502.8
+88601	1828.8	2059.6	13236.4
+56884	1817.8	2028.6	13142.7
+48933	1842.8	2086.4	13790.3
+89123	1827.7	2087.2	13393.7
+79863	1816.0	1995.1	12966.2
+19313	1835.1	2055.0	13459.5
+88113	1817.7	2031.6	13148.4
+50136	1839.5	2107.0	13603.2
+67249	1832.8	2034.2	13344.7
+68813	1820.2	2051.7	13377.2
+88235	1844.9	2076.3	13989.4
+8274	1809.4	2003.1	12795.8
+47579	1824.0	2013.6	13231.5
+87196	1832.8	2071.0	13488.9
+16574	1841.1	2142.3	13738.0
+72761	1814.6	1997.9	12850.1
+15096	1843.4	2087.1	13767.3
+9690	1842.3	2123.7	13855.9
+28396	1828.0	2049.0	13286.1
+84700	1797.1	2008.6	12601.1
+58662	1840.0	2062.5	13407.5
+12127	1803.7	1996.7	12909.3
+45668	1841.1	2113.9	13833.9
+84307	1814.7	2026.7	13078.5
+58744	1834.0	2077.2	13446.8
+40669	1827.8	2045.1	13110.2
+32770	1807.4	2047.6	12811.1
+25617	1822.5	2094.9	13318.9
+31825	1828.3	2071.2	13259.1
+86290	1830.0	2090.6	13688.1
+23344	1829.8	2109.5	13453.3
+84868	1816.4	2040.0	13050.0
+20316	1830.3	2091.3	13453.6
+74914	1818.6	2011.9	13049.8
+42439	1832.0	2084.1	14634.1
+49480	1831.8	2084.4	13277.4
+52621	1830.7	2096.4	13492.4
+26549	1821.8	2009.3	13059.6
+70792	1829.8	2103.9	13432.3
+57333	1822.4	2033.3	13092.1
+72690	1825.6	2046.6	13196.0
+43732	1833.6	2047.2	13055.5
+23248	1822.9	2073.5	13402.0
+20332	1848.1	2106.3	13909.7
+48914	1829.6	2082.7	13443.7
+71120	1835.9	2067.5	13661.9
+77720	1833.1	2158.5	13799.1
+34157	1829.1	2093.6	13409.9
+3978	1807.0	2003.9	12922.2
+68160	1813.7	2038.2	12942.5
+45551	1818.5	2036.8	13119.2
+46711	1837.6	2089.1	13621.9
+89332	1835.2	2099.8	13767.6
+13501	1839.5	2094.6	13401.9
+441	1849.6	2095.5	13550.1
+2729	1829.7	2067.2	13114.1
+3651	1828.0	2055.3	13345.1
+12211	1809.5	2013.9	12845.5
+67251	1828.0	2044.5	13410.9
+67580	1826.5	2081.7	13237.0
+27261	1821.2	2057.2	13394.0
+81366	1812.3	1998.0	12992.8
+76126	1829.1	2065.8	13386.8
+708	1831.9	2128.0	13638.4
+61623	1824.7	2112.7	13475.2
+25016	1817.6	2050.2	12926.7
+6663	1823.1	2080.5	13258.5
+45245	1819.5	2042.0	13133.6
+66674	1825.2	2052.2	13359.0
+42046	1835.3	2036.3	13476.0
+74807	1834.4	2048.9	13448.7
+36469	1837.8	2077.3	13320.1
+61654	1823.5	2091.1	13438.3
+70190	1836.3	2119.0	13538.3
+28945	1831.8	2043.1	13293.6
+19392	1831.5	2069.5	13512.3
+37875	1816.1	2032.6	12992.3
+47654	1826.3	2027.6	13350.3
+39821	1822.7	2013.6	13124.6
+14173	1838.3	2097.2	13460.1
+82937	1821.1	2034.6	12983.3
+1691	1827.0	2027.9	13137.7
+2727	1830.6	2083.0	13660.5
+31883	1824.3	2097.3	13379.9
+60072	1834.4	2035.7	13410.7
+14424	1825.0	2079.8	13475.5
+9209	1827.6	2052.6	13261.8
+60231	1837.6	2113.4	13687.3
+79263	1825.4	2055.0	13409.6
+33567	1806.3	2020.4	12770.9
+13896	1817.5	2038.1	13126.1
+20376	1818.2	2039.2	13028.1
+53491	1827.4	2035.3	13310.3
+73833	1827.0	2070.0	13474.9
+14622	1824.7	2078.3	13480.3
+71960	1831.3	2030.3	13248.1
+73118	1806.1	2055.4	13023.6
+38509	1823.5	2026.2	13323.9
+72861	1827.2	2036.0	13423.7
+68383	1836.2	2071.1	13414.8
+13422	1827.1	2072.7	13266.5
+6576	1825.6	2092.5	13450.4
+75347	1833.5	2091.1	14180.9
+79968	1811.7	1998.5	12919.1
+40274	1825.6	2055.4	13408.5
+4294	1831.0	2076.4	13534.8
+30965	1828.8	2069.3	13330.4
+26460	1828.3	2050.4	13561.7
+12753	1832.2	2117.8	13440.2
+24316	1823.2	2083.2	13475.7
+61271	1829.9	2078.2	13847.8
+44443	1824.6	2096.9	13409.2
+77824	1824.7	2091.7	13232.4
+67896	1839.8	2105.4	13548.9
+35629	1824.5	2030.6	13523.7
+10333	1820.8	2067.6	13960.5
+27980	1820.9	2038.0	13112.4
+33878	1830.2	2042.8	13352.1
+65466	1813.0	2004.2	12931.8
+12070	1827.7	2074.2	13171.6
+12532	1821.0	2026.4	13418.3
+37376	1844.7	2144.8	14013.3
+45460	1818.5	2034.1	12845.5
+78173	1829.0	2034.2	13083.8
+68527	1831.4	2087.2	13366.0
+36130	1838.2	2069.7	13389.6
+39031	1831.7	2106.6	13770.9
+77550	1815.6	2064.6	13032.3
+35694	1824.6	2090.1	13271.1
+42227	1827.7	2057.9	13478.8
+17920	1825.7	2057.2	13132.6
+56814	1845.1	2161.4	14647.3
+62840	1823.4	2087.3	13487.4
+51051	1807.9	1974.1	12626.8
+49135	1836.6	2097.0	13657.8
+48823	1825.0	2034.3	13075.6
+33023	1836.4	2090.4	13633.0
+64182	1833.0	2060.1	13434.8
+75042	1830.5	2046.1	13224.6
+75236	1844.2	2040.2	13283.2
+61004	1827.0	2028.9	13166.3
+18376	1817.7	2019.0	12978.6
+39675	1840.6	2108.3	13675.5
+11931	1822.7	2030.4	13224.1
+59916	1826.1	2085.5	13176.1
+52594	1822.2	2046.2	13220.2
+43987	1832.2	2076.0	13448.8
+71127	1827.0	2011.3	12856.7
+19449	1820.4	2102.1	13280.0
+48820	1830.6	2078.3	13511.1
+85718	1839.1	2086.6	13402.4
+57530	1826.9	2027.7	13213.5
+11000	1841.5	2115.0	13565.1
+65414	1836.8	2081.9	13349.2
+75268	1830.5	2061.9	13439.5
+63671	1828.4	2059.6	13299.8
+86455	1823.7	2030.4	13317.2
+79425	1832.1	2093.5	13314.2
+83824	1842.0	2086.1	14006.1
+52997	1819.1	2023.5	13022.6
+89937	1838.2	2042.8	13425.4
+72040	1825.6	2060.7	13069.8
+68545	1824.4	2063.7	13074.5
+68016	1846.2	2120.6	13769.6
+60024	1826.7	2050.9	13475.4
+39059	1830.6	2083.8	13318.6
+47171	1829.4	2047.2	13311.6
+56969	1830.1	2051.7	13140.1
+40298	1832.5	2069.3	13403.8
+15745	1837.2	2128.6	13908.0
+61299	1826.8	2075.8	13570.7
+22321	1827.4	2081.5	13278.9
+25741	1834.1	2074.4	13483.7
+25274	1847.9	2136.9	13903.4
+7593	1824.8	2108.8	13568.5
+65018	1820.0	2054.4	13473.1
+23470	1842.7	2128.9	13787.0
+43414	1832.3	2120.3	13540.7
+29502	1830.3	2052.2	13277.7
+67875	1808.2	1993.6	12683.8
+5166	1806.9	2043.4	12747.5
+63055	1823.9	2048.7	13306.4
+47697	1835.6	2041.2	13563.1
+60493	1839.1	2112.5	13684.1
+59727	1836.4	2043.0	13410.7
+88880	1842.2	2078.5	13655.8
+48574	1809.9	1998.3	12880.4
+48086	1823.6	1995.3	13186.4
+42084	1835.3	2116.3	13672.8
+72548	1820.0	2068.6	13163.6
+44281	1824.6	2046.0	13239.3
+19962	1802.9	2024.3	12927.4
+28985	1829.4	2072.0	13425.0
+53416	1844.8	2128.0	13930.1
+25426	1816.7	2032.2	13000.6
+89185	1829.2	2028.7	13549.5
+48735	1826.2	2096.8	13473.2
+10748	1830.8	2106.9	13548.6
+71400	1820.9	2054.6	13289.2
+81797	1822.8	2084.1	13344.2
+18034	1831.3	2109.0	13666.6
+67029	1831.3	2088.8	14168.8
+42318	1821.6	2028.8	13027.1
+18425	1815.6	2000.4	12876.7
+56207	1847.7	2127.3	14057.2
+9875	1833.4	2074.4	13330.1
+67642	1828.3	2010.6	13065.2
+38675	1822.7	2016.4	13144.1
+11478	1830.5	2065.3	13439.4
+50339	1832.8	2078.5	13605.6
+63663	1827.3	2033.8	13124.5
+26885	1836.0	2049.2	13535.5
+15148	1844.3	2121.1	13940.5
+52375	1818.3	2056.7	13153.1
+72442	1826.9	2039.1	13164.9
+37006	1824.1	2045.8	13135.8
+35135	1824.8	2083.3	13279.5
+73437	1842.6	2058.6	13475.8
+75246	1819.4	2035.4	12894.5
+75876	1830.9	2063.1	13342.9
+42784	1845.4	2151.7	13989.5
+1933	1849.4	2110.1	13599.8
+43162	1829.5	2086.6	13263.7
+63892	1836.9	2092.5	13888.5
+6648	1817.0	2048.5	13310.0
+7977	1830.4	2116.4	13444.7
+81612	1809.0	2048.4	13027.5
+77368	1830.8	2085.6	13751.4
+74937	1821.0	2029.2	13159.2
+7315	1824.8	2053.6	13531.3
+31900	1813.7	2002.5	13007.6
+38730	1821.1	2035.7	13264.5
+43330	1822.3	2052.9	13060.3
+70818	1829.3	2063.4	13372.7
+22456	1821.8	2051.9	13300.5
+55722	1831.7	2081.1	13497.3
+5601	1819.1	2025.6	12961.3
+58011	1842.8	2178.9	13955.1
+42459	1831.1	2046.7	13255.1
+83367	1821.6	2065.0	13329.3
+80568	1822.2	2007.3	13013.3
+77264	1799.3	1964.5	12554.9
+22240	1831.1	2051.4	13255.3
+51498	1843.3	2108.4	13939.1
+89616	1821.9	2044.5	13372.5
+78792	1818.0	2020.0	12986.1
+58953	1825.9	2019.8	13117.2
+60285	1826.7	2071.0	13502.9
+73869	1827.0	2047.1	13342.2
+33314	1817.5	2009.2	12870.1
+5075	1824.9	2109.7	13522.3
+75697	1828.6	2090.4	13655.0
+5895	1847.1	2151.9	14880.4
+70548	1831.8	2068.4	13298.4
+27246	1837.9	2062.7	13656.2
+57217	1829.2	2059.7	13569.9
+13885	1826.2	2075.2	13325.5
+78035	1824.0	2025.4	12883.9
+79573	1825.6	2022.9	13168.0
+66349	1854.0	2148.7	14463.4
+68980	1836.1	2053.5	13273.2
+79303	1823.5	2027.9	13172.3
+75931	1834.8	2072.8	13394.4
+76458	1849.2	2074.7	13943.5
+82054	1829.1	2021.7	13298.7
+20671	1842.1	2171.3	14220.9
+69354	1819.1	2027.7	13063.3
+54416	1811.6	2011.0	13043.6
+75249	1824.5	2006.9	13382.1
+79016	1825.3	2076.7	13268.4
+70419	1823.4	2055.2	13284.6
+13466	1834.2	2081.5	13587.1
+5195	1835.4	2098.4	13736.1
+49956	1820.0	2012.9	13006.4
+16266	1815.1	2050.0	13282.3
+79365	1824.2	2057.8	13254.4
+5047	1818.8	2062.0	13208.5
+48765	1828.2	2098.2	13274.7
+84523	1825.6	2082.7	13429.8
+33832	1829.3	2085.7	13419.2
+5118	1841.7	2079.7	13373.8
+59432	1839.9	2082.6	13642.3
+31029	1831.4	2083.2	13749.1
+38200	1828.5	2070.2	13217.2
+55831	1823.8	2068.5	13099.7
+36028	1825.3	2026.8	13140.7
+25446	1828.7	2041.9	13097.0
+69688	1831.2	2086.4	13705.8
+25714	1824.7	2004.0	12939.7
+48575	1845.4	2131.3	13764.0
+1140	1837.8	2074.8	13543.2
+29548	1828.5	2096.2	13354.7
+4796	1834.7	2108.1	13538.5
+4480	1843.4	2130.5	13816.7
+20726	1823.2	2011.9	13225.4
+50409	1820.6	2038.9	13204.8
+66632	1824.5	2044.8	13272.7
+22886	1836.5	2085.1	13648.8
+2316	1847.4	2129.2	13677.8
+67181	1825.4	1999.7	12824.4
+82980	1823.9	2033.7	13165.6
+45501	1814.3	2037.4	13093.9
+18884	1841.0	2120.1	14307.2
+18652	1824.0	2059.3	13177.1
+20631	1823.8	2061.6	13239.4
+87768	1831.4	2064.2	13521.0
+1718	1830.5	2064.4	13231.2
+23762	1834.3	2072.5	13564.3
+54961	1808.5	2042.2	13166.6
+51164	1818.0	2000.4	12957.3
+36960	1832.2	2057.4	13435.9
+51572	1834.2	2121.5	13593.6
+75123	1832.1	2083.4	13623.2
+45683	1819.9	2028.6	13108.2
+84741	1831.5	2057.6	13535.1
+61701	1815.3	2013.1	13147.5
+57100	1817.8	2044.9	13332.8
+59860	1827.3	2054.7	13844.7
+51568	1825.5	2115.7	13415.0
+36734	1822.9	2100.3	13412.3
+81817	1831.0	2052.7	13273.6
+7824	1828.5	2078.9	13539.7
+72083	1817.4	2006.4	12807.4
+2960	1836.1	2071.7	13321.5
+75569	1820.5	2045.2	13318.7
+3308	1823.1	2094.9	13403.3
+83949	1814.8	2029.4	13277.1
+78827	1821.2	2068.9	13249.1
+50470	1838.3	2092.1	13752.7
+5959	1822.7	2055.3	13227.6
+12558	1845.9	2076.2	13587.5
+4936	1822.1	2099.4	13468.2
+64280	1832.5	2084.9	13310.3
+48098	1830.7	2030.1	13482.5
+67701	1809.2	1970.5	12634.4
+41682	1845.0	2099.3	13930.1
+67183	1812.0	1986.5	12884.2
+8226	1824.9	2090.7	13332.4
+69687	1817.8	2017.7	13330.4
+29483	1835.9	2093.5	13744.1
+39436	1846.6	2181.1	16456.6
+52247	1832.6	2010.4	13369.9
+47970	1828.6	2096.0	13303.5
+48658	1827.9	2063.7	13195.0
+43285	1823.5	2060.5	13339.2
+20504	1835.9	2076.1	13480.6
+66910	1828.0	2050.7	13332.9
+42779	1832.4	1997.0	13166.9
+45382	1834.4	2057.3	13411.4
+18209	1844.1	2056.0	13617.3
+19695	1822.6	2117.3	13452.1
+58006	1822.9	2025.9	13420.9
+45448	1815.3	2039.8	13055.9
+29101	1832.7	2093.1	13711.9
+87162	1824.8	2085.4	13478.6
+83705	1826.7	2039.8	13301.8
+10112	1824.3	2098.0	13304.7
+3243	1841.9	2083.2	13585.7
+60873	1829.5	2042.2	13349.9
+84541	1824.2	2006.5	13142.3
+26141	1836.9	2115.3	13732.7
+42955	1817.0	2027.5	12986.8
+82069	1816.2	1981.4	12991.3
+83796	1831.5	2038.0	13355.7
+86133	1830.5	2108.6	13514.2
+16910	1826.4	2058.6	13368.0
+10533	1820.8	2081.5	13343.1
+73647	1832.1	2049.4	14096.6
+66716	1815.1	1988.7	12837.6
+28872	1824.6	2082.3	13338.2
+77265	1823.4	2011.7	13167.6
+61599	1830.1	2037.0	13390.7
+81523	1836.7	2044.1	13382.9
+81327	1825.8	2054.0	13128.6
+11807	1832.1	2055.7	13344.4
+62934	1833.6	2151.8	13855.1
+89521	1816.2	2017.5	12992.2
+45610	1821.1	2046.5	13641.8
+58139	1848.9	2154.4	14168.8
+54982	1822.0	2093.4	13315.2
+73279	1818.6	1991.1	12815.0
+15197	1823.1	2056.0	13076.7
+53919	1841.9	2062.0	13657.0
+3477	1828.4	2071.3	13502.5
+66550	1810.6	1946.1	12697.5
+65673	1835.0	2077.0	13658.0
+50436	1819.0	2079.5	13149.6
+29154	1837.4	2073.1	13351.6
+25091	1827.3	2081.8	13391.7
+16518	1830.6	2066.3	13349.8
+42314	1837.7	2137.1	14201.0
+67449	1828.9	2061.3	13511.0
+63652	1830.5	2097.0	13408.0
+41035	1820.3	2018.5	12996.2
+35405	1820.4	2025.4	13040.2
+35299	1821.3	2062.2	13177.9
+59584	1816.5	2005.3	13236.2
+45116	1828.0	2108.7	13612.2
+75281	1846.6	2110.0	13842.2
+65222	1806.3	2003.0	12799.2
+7138	1824.6	2073.2	13225.1
+19167	1843.4	2099.3	13559.4
+71018	1824.3	2038.2	13209.9
+61947	1812.7	2049.3	13136.8
+46465	1807.1	1993.9	12708.5
+22491	1825.5	2067.0	13642.2
+7697	1827.2	2080.4	13195.2
+74244	1828.3	2075.1	13344.2
+38023	1816.3	2061.2	12981.6
+30625	1833.8	2084.8	13406.3
+51395	1826.7	2040.5	13350.1
+48074	1826.8	2058.0	13375.0
+80916	1831.3	2063.8	13483.2
+67645	1832.9	2031.7	13270.1
+30642	1836.0	2068.1	13583.5
+61313	1826.4	2034.4	13346.7
+39313	1809.9	2025.8	12750.3
+77011	1827.8	2104.5	13390.0
+49219	1845.6	2107.1	14555.6
+24713	1835.6	2082.6	13393.5
+85276	1838.5	2064.6	13760.5
+47440	1826.8	2010.9	13500.0
+86999	1845.3	2135.3	13888.3
+85184	1829.7	2038.1	13626.7
+41428	1831.2	2029.6	13393.0
+38963	1819.2	2043.2	13065.1
+51772	1836.8	2072.5	13644.7
+52671	1834.7	2127.0	14976.9
+55890	1833.6	2035.1	13357.2
+24918	1823.2	2049.7	13171.6
+16256	1840.8	2141.7	13717.8
+89972	1838.2	2008.9	13503.4
+35992	1834.6	2114.4	13569.3
+702	1828.9	2043.9	13166.8
+19037	1815.3	2032.4	13096.1
+21406	1843.5	2149.7	13958.4
+10000	1824.5	2069.1	13256.9
+2959	1826.6	2117.4	13450.5
+80565	1825.5	2094.6	13268.1
+2162	1835.8	2074.5	13635.0
+70909	1826.3	2038.9	13500.3
+4131	1844.6	2089.6	14173.2
+75312	1813.3	2058.5	13145.6
+89178	1847.9	2074.7	13492.3
+79684	1812.1	2010.6	12772.2
+8826	1842.3	2150.0	13746.5
+1049	1831.4	2040.7	13363.6
+47186	1823.4	2045.6	13229.0
+22081	1829.8	2079.6	13390.9
+38137	1839.0	2164.1	14129.9
+87365	1821.7	2044.2	13140.0
+24351	1830.6	2083.4	13560.4
+63164	1829.6	2127.6	13818.2
+8693	1831.1	2081.4	13413.7
+63046	1822.4	2073.1	13419.9
+37282	1818.4	2073.8	13365.1
+33526	1824.6	2050.8	13170.9
+56444	1810.2	1993.5	12992.0
+10833	1818.2	2045.5	13026.3
+47906	1822.7	2049.6	13112.8
+62595	1830.8	1996.8	12922.5
+53511	1812.1	2047.6	13402.7
+34630	1835.4	2169.1	13972.3
+8952	1831.0	2075.8	14134.8
+45400	1826.6	2069.6	13238.5
+86157	1845.5	2097.3	13968.2
+68944	1821.9	2035.2	13358.7
+32064	1827.7	2066.8	13356.3
+67685	1832.8	2084.0	13432.7
+8733	1825.3	2091.5	13748.2
+36058	1828.3	2042.6	13296.8
+52417	1815.8	2085.0	13282.1
+46602	1827.8	2080.0	13466.8
+59520	1835.4	2095.3	13715.3
+37564	1818.8	2035.2	13108.7
+72509	1816.0	2032.9	12919.1
+31767	1817.2	2010.4	13159.5
+52850	1825.2	2034.6	13257.4
+28323	1817.4	2047.7	13397.4
+38289	1817.3	2016.1	12907.1
+57725	1840.4	2106.3	13592.5
+77917	1820.2	2071.2	13262.9
+24184	1835.1	2167.8	14021.0
+10880	1822.3	2065.7	13254.3
+43441	1826.2	2019.5	13238.5
+138	1830.8	2076.7	13358.6
+7155	1828.1	2093.2	13378.5
+85668	1840.4	2108.9	13793.0
+86749	1825.9	2043.6	13289.9
+46341	1826.7	2034.6	13218.8
+53713	1823.6	2073.2	13267.1
+79661	1851.6	2154.5	14125.2
+53839	1826.7	2045.8	13080.9
+57286	1842.2	2108.7	14068.3
+12981	1828.0	2048.8	13196.2
+72644	1833.3	2067.5	13648.5
+50822	1830.8	2066.0	13435.4
+85134	1831.7	2067.9	13352.1
+1897	1828.7	2067.7	13289.1
+26403	1831.2	2102.9	13849.7
+13644	1824.1	2085.2	13252.7
+87071	1834.3	2141.8	13721.8
+50093	1832.7	2073.3	13489.5
+37840	1827.6	2041.3	13751.1
+62077	1852.8	2082.7	13660.9
+10149	1819.0	2049.1	13487.6
+22963	1827.7	2030.4	13166.7
+28995	1820.7	2083.0	13294.6
+60905	1823.0	2052.0	13405.3
+80025	1834.4	2066.3	13385.7
+30155	1817.2	2088.1	13424.5
+32746	1823.0	2040.3	13839.9
+61555	1818.6	2034.1	13339.4
+22815	1824.5	2056.8	13430.6
+22399	1824.5	2099.8	13659.7
+33381	1850.7	2139.9	13891.3
+24955	1842.8	2070.9	13348.9
+41600	1835.4	2024.9	13337.1
+81825	1828.6	2042.7	13358.3
+73680	1820.7	1977.1	13048.8
+315	1833.3	2088.0	13538.6
+75451	1817.0	2054.1	13381.0
+79212	1825.5	2041.8	13575.9
+82847	1826.3	2036.3	13136.6
+68808	1812.6	2009.0	13194.4
+18163	1812.0	2016.2	12902.5
+6920	1835.0	2058.1	13499.8
+7879	1815.8	2072.9	13318.6
+87513	1841.6	2146.7	14324.8
+66666	1829.4	2049.2	13443.5
+14980	1825.5	2041.5	13012.2
+29501	1831.8	2110.0	13498.4
+46863	1819.4	2048.0	13147.0
+77077	1841.2	2057.9	13486.1
+69992	1842.3	2104.3	13640.1
+7950	1818.2	2071.3	13377.7
+65732	1827.8	2072.5	13080.6
+22194	1825.0	2027.6	12876.1
+25618	1828.6	2081.7	13489.9
+22119	1830.4	2052.1	13350.1
+46148	1834.5	2121.2	13726.1
+68209	1848.1	2099.4	13562.5
+3647	1818.7	2033.8	12963.0
+66536	1802.1	2005.5	12712.8
+59367	1828.3	2086.6	13381.3
+20585	1838.5	2102.6	13596.8
+73460	1843.2	2100.1	13428.5
+29262	1833.6	2054.7	13285.8
+70126	1823.7	2058.8	13466.9
+56971	1824.0	2071.5	13393.2
+34702	1837.5	2091.5	13371.4
+52301	1819.7	2027.4	12955.2
+Done testing.
