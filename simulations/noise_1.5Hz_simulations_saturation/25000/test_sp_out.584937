@@ -1,0 +1,1816 @@
+connection_rule: poisson_indegree
+lognormal_rate: true
+allow_multapses: true
+r: 100
+T: 25000
+n_test: 1000
+C: 5000
+alpha1: 0.001
+alpha2: 0.001
+N1: 100000
+N2: 100000
+Wb: 0.1
+Ws: 1
+nu_l_1: 2
+nu_h_1: 50
+nu_l_2: 2
+nu_h_2: 50
+noise_flag: true
+rate_noise: 1.5
+max_noise_dev: 2
+corr_neg_rate: 2
+master_seed: 123456
+load_network: false
+train_flag: true
+test_flag: true
+save_network: false
+random_test_order: true
+train_block_size: 200000
+test_block_size: 200000
+Number of openmp threads: 128
+p: 0.024690100
+sigma2r layer 1 (theoretical): 10.5146
+sigma2k (theoretical): 714.2162
+S2 (theoretical): 1470.9887
+S2 with connection recombination (theoretical): 1500.2924
+Sb (theoretical):  1251.5440
+sigma2S (theoretical): 4237.2557
+sigma2S with Poisson indegree (theoretical): 4550.9317
+noise variance: 1.7409
+noise contribution to S variance: 299.8139
+sigma2S with noise (theoretical): 4537.0696
+sigma2S with Poisson indegree and noise (theoretical): 4850.7456
+Allocating arrays for network...
+	Done.
+Creating network...
+	Using fixed_indegree or poisson_indegree rule...
+	Create network 0 / 100000
+	Create network 10000 / 100000
+	Create network 20000 / 100000
+	Create network 30000 / 100000
+	Create network 40000 / 100000
+	Create network 50000 / 100000
+	Create network 60000 / 100000
+	Create network 70000 / 100000
+	Create network 80000 / 100000
+	Create network 90000 / 100000
+	Done.
+Done creating network.
+Training...
+	Training pattern n. 1 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 1901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 2901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 3901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 4901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 5901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 6901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 7901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 8901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 9901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 10901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 11901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 12901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 13901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 14901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 15901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 16901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 17901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 18901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 19901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 20901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 21901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 22901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 23901 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24001 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24101 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24201 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24301 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24401 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24501 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24601 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24701 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24801 / 25000
+Rewiring connections...
+Done rewiring connections.
+	Training pattern n. 24901 / 25000
+Rewiring connections...
+Done rewiring connections.
+Done training.
+Extracting test pattern indexes...
+Done.
+Testing...
+Simulated
+ie	Sb	S2	sigma2S
+22234	1357.6	1641.3	5198.2
+16289	1364.8	1626.6	5145.8
+16536	1375.1	1667.2	5331.6
+5155	1354.8	1578.2	5010.2
+22703	1361.9	1602.1	5226.4
+11096	1350.8	1585.1	5100.9
+21274	1359.4	1563.0	5056.6
+18249	1371.1	1630.3	5172.7
+22864	1364.4	1560.2	5148.9
+3819	1355.2	1562.3	5008.5
+22644	1362.9	1604.9	5123.0
+22369	1359.9	1600.8	5082.4
+23378	1359.0	1587.7	5134.4
+15252	1345.1	1577.7	4957.8
+18462	1374.3	1687.7	5435.2
+5138	1367.4	1614.7	5148.9
+15973	1357.6	1596.5	5166.3
+10880	1365.7	1647.2	5339.9
+17084	1361.0	1604.5	5161.9
+3205	1360.6	1618.5	5158.0
+3959	1356.0	1622.7	5181.2
+7345	1361.9	1628.9	5250.0
+18970	1354.7	1621.4	5184.0
+20150	1377.3	1664.8	5315.9
+19385	1355.1	1563.4	5030.4
+21612	1360.2	1618.1	5115.7
+5981	1359.0	1584.5	5144.8
+10908	1360.6	1637.6	5157.5
+748	1364.2	1690.1	5318.2
+19902	1363.6	1607.9	5141.2
+9991	1367.7	1619.7	5183.0
+21868	1354.6	1581.0	4989.1
+12464	1360.7	1599.6	5043.1
+24509	1348.7	1592.8	5036.7
+11023	1356.5	1603.5	5127.9
+328	1364.1	1594.1	5096.2
+7945	1362.7	1626.3	5217.3
+6342	1354.6	1571.8	4986.7
+11285	1363.2	1619.9	5134.3
+21764	1363.6	1560.8	5125.6
+19658	1368.1	1579.7	5194.8
+13938	1366.2	1607.0	5229.3
+23084	1362.1	1626.5	5257.0
+13925	1361.5	1592.2	5091.3
+9033	1368.7	1654.1	5335.1
+532	1368.1	1646.0	5186.7
+5183	1365.9	1633.7	5250.0
+5815	1353.7	1582.2	5080.8
+23862	1360.3	1589.1	5166.4
+828	1358.2	1573.5	4988.5
+20345	1363.6	1647.5	5152.9
+24139	1372.9	1644.9	5237.9
+13590	1366.4	1591.3	5178.8
+20129	1360.5	1594.3	5096.3
+23550	1376.6	1663.7	5325.6
+16426	1361.2	1619.6	5194.5
+8662	1360.6	1596.1	5151.5
+21966	1360.1	1620.0	5206.0
+9535	1353.7	1580.8	5062.6
+21723	1357.5	1589.1	5047.2
+23216	1361.8	1615.2	5180.6
+21305	1351.8	1620.7	5107.4
+18763	1358.3	1617.9	5293.1
+19223	1358.9	1579.6	5113.3
+18224	1366.1	1624.7	5236.9
+6722	1357.2	1626.6	5136.8
+4633	1369.6	1633.7	5180.3
+10820	1356.9	1632.5	5166.4
+2655	1362.6	1583.9	5078.7
+4522	1361.7	1608.9	5133.5
+3707	1364.3	1571.8	5028.4
+10227	1373.4	1653.4	5410.6
+19154	1359.5	1620.0	5035.5
+8824	1371.3	1696.7	5342.7
+173	1360.5	1659.8	5204.4
+14092	1355.6	1562.1	5009.0
+18815	1366.6	1646.1	5181.9
+14505	1371.7	1651.3	5287.5
+19800	1368.5	1612.7	5239.2
+4422	1358.2	1586.5	5003.4
+17448	1351.8	1573.1	4899.7
+22044	1367.4	1609.5	5192.9
+19195	1370.7	1636.9	5245.5
+8915	1360.0	1675.4	5387.4
+22963	1362.4	1644.4	5172.7
+19153	1360.1	1612.3	5074.1
+9508	1350.5	1599.6	5022.9
+20823	1363.9	1604.1	5189.8
+6049	1355.7	1564.8	5088.8
+19286	1360.8	1591.9	5078.3
+3381	1357.0	1566.0	5044.0
+14892	1366.5	1644.7	5171.7
+5851	1366.1	1563.3	5135.0
+8264	1366.0	1589.8	5220.2
+10858	1355.8	1588.9	5045.8
+4491	1369.5	1612.4	5242.9
+2417	1357.6	1589.6	5102.3
+20	1359.3	1641.0	5142.9
+1451	1363.7	1592.9	5146.8
+15405	1346.5	1641.4	5144.6
+57	1357.2	1638.1	5169.8
+612	1367.1	1650.7	5354.2
+21043	1356.4	1625.1	5131.6
+22776	1361.1	1622.5	5145.2
+7703	1370.2	1623.5	5220.3
+9581	1378.0	1678.9	5575.7
+23762	1364.8	1640.4	5279.3
+2035	1367.2	1637.9	5214.9
+19213	1372.1	1641.2	5269.8
+2288	1362.1	1636.5	5180.6
+5406	1371.1	1626.4	5226.5
+24622	1363.3	1638.9	5215.6
+15746	1355.2	1583.0	5060.0
+10935	1361.5	1678.8	5263.4
+17330	1363.6	1645.0	5218.4
+17871	1364.8	1602.1	5142.9
+13852	1362.4	1575.8	5083.4
+7056	1373.0	1640.6	5333.3
+10629	1364.3	1584.9	5255.1
+18897	1356.7	1598.3	5067.5
+2202	1367.6	1636.7	5338.4
+15063	1360.3	1597.5	5122.9
+24447	1363.9	1615.6	5189.1
+8184	1351.8	1617.4	5093.7
+19747	1358.5	1611.7	5220.4
+744	1366.3	1638.9	5437.9
+22897	1358.7	1594.3	5054.6
+136	1367.7	1612.4	5204.0
+17807	1362.4	1642.0	5336.4
+3774	1365.7	1669.2	5216.1
+3760	1368.3	1628.6	5131.8
+12076	1355.1	1562.0	5039.9
+9112	1367.3	1597.4	5201.3
+1120	1366.1	1621.3	5114.4
+17743	1351.2	1596.9	5088.3
+9148	1374.6	1632.2	5345.5
+13690	1362.2	1599.9	5189.2
+5490	1367.0	1634.1	5144.0
+13987	1366.3	1638.9	5307.2
+22816	1364.1	1592.5	5209.1
+5661	1359.0	1662.5	5215.5
+3771	1362.4	1664.1	5289.6
+14658	1368.7	1653.0	5315.3
+23124	1369.5	1612.5	5206.9
+22001	1367.7	1617.5	5148.6
+13048	1357.9	1587.5	5057.3
+9064	1349.1	1585.0	4985.8
+16221	1372.9	1657.2	5268.3
+9813	1361.7	1636.9	5352.9
+10326	1368.3	1619.5	5290.0
+14916	1357.1	1574.8	5034.1
+17955	1366.0	1605.3	5147.4
+12073	1353.6	1574.9	5059.4
+15594	1364.3	1591.4	5091.4
+24360	1363.7	1650.8	5178.5
+52	1349.6	1607.6	5059.0
+12893	1359.5	1587.2	5120.6
+1216	1358.0	1537.2	5093.4
+20464	1366.6	1588.9	5048.7
+21316	1369.4	1620.6	5138.1
+12495	1366.0	1631.1	5217.1
+17077	1363.4	1650.8	5407.7
+22104	1363.2	1625.2	5284.4
+19487	1363.2	1613.1	5196.8
+11936	1362.6	1574.0	5087.6
+732	1363.3	1627.6	5128.8
+6463	1361.0	1623.7	5070.2
+22223	1359.7	1578.1	5105.3
+20357	1365.8	1582.7	5199.2
+24599	1360.7	1580.6	5122.0
+15913	1358.6	1596.8	5198.3
+22748	1356.3	1600.0	5114.9
+10975	1363.3	1589.5	5178.4
+91	1364.3	1607.9	5165.3
+17235	1365.1	1597.4	5171.1
+5393	1367.3	1661.3	5320.4
+7551	1362.5	1617.9	5122.9
+916	1364.8	1625.0	5170.3
+23922	1361.0	1566.3	5043.5
+18890	1357.1	1611.6	5116.5
+14905	1362.0	1638.4	5190.4
+1651	1354.4	1562.9	4995.5
+8230	1368.5	1649.9	5167.1
+16895	1353.9	1546.8	5051.7
+8681	1356.1	1598.5	5123.9
+8653	1368.0	1648.6	5311.3
+5581	1361.5	1594.8	5045.4
+4989	1377.2	1650.2	5321.9
+16372	1356.5	1565.3	5014.5
+16030	1364.6	1557.4	5040.2
+24973	1357.5	1575.4	5025.3
+13986	1361.5	1607.2	5134.2
+17651	1360.6	1595.2	5035.7
+20296	1368.4	1689.2	5373.4
+3652	1362.2	1632.7	5207.0
+4695	1359.4	1579.5	5027.4
+7758	1364.7	1611.2	5125.6
+4998	1356.1	1618.8	5143.1
+2459	1377.7	1633.9	5405.7
+21253	1357.5	1532.9	4959.7
+11279	1371.3	1631.6	5193.2
+19878	1364.1	1604.0	5237.3
+16188	1372.5	1634.4	5315.2
+14677	1353.0	1513.7	4941.2
+14966	1357.8	1595.7	5087.1
+13244	1368.9	1600.1	5232.8
+8826	1366.8	1648.5	5232.5
+11690	1354.1	1574.6	4979.0
+11421	1360.7	1646.8	5098.9
+18213	1366.5	1683.9	5319.3
+3718	1358.0	1603.4	5111.0
+15954	1356.5	1555.6	5085.7
+19617	1368.4	1678.5	5563.7
+1237	1361.7	1630.9	5186.5
+13640	1359.4	1563.2	5053.6
+8748	1356.9	1590.5	5042.5
+11243	1368.9	1572.1	5116.4
+20983	1382.1	1683.4	5425.5
+3096	1353.7	1564.3	4987.6
+22942	1361.5	1635.8	5443.5
+11459	1362.3	1616.7	5077.5
+4554	1364.5	1585.4	5136.7
+24143	1356.6	1635.3	5179.1
+17421	1360.7	1673.1	5138.9
+13335	1358.0	1581.9	4969.2
+4466	1357.3	1636.7	5084.3
+24202	1351.5	1575.1	5005.5
+1804	1370.1	1617.1	5231.6
+8467	1372.0	1609.2	5266.2
+20932	1361.0	1626.2	5217.7
+23622	1358.4	1576.2	5231.8
+18624	1349.4	1528.5	4993.0
+7223	1353.1	1623.1	5098.0
+16205	1367.2	1625.1	5207.1
+24925	1375.5	1590.7	5204.1
+4788	1366.6	1635.2	5206.1
+17594	1372.0	1654.6	5448.1
+9261	1365.3	1581.1	5136.6
+4475	1350.3	1610.4	5100.2
+13563	1355.1	1602.3	5022.3
+23835	1359.9	1619.7	5092.4
+17540	1355.0	1554.9	5014.8
+24868	1361.1	1634.6	5270.5
+19093	1361.7	1552.4	5095.3
+24691	1358.1	1563.0	5282.6
+9931	1373.9	1624.2	5200.3
+20208	1365.4	1616.6	5184.7
+6142	1347.2	1563.3	5029.7
+4224	1364.6	1645.9	5289.9
+20547	1364.5	1613.4	5108.3
+13802	1366.7	1551.8	5139.0
+22782	1372.0	1587.9	5155.3
+21156	1362.5	1625.0	5409.3
+24472	1355.7	1599.9	5037.0
+21922	1363.6	1635.9	5124.7
+19149	1366.1	1619.9	5146.8
+18786	1363.9	1606.7	5227.0
+2678	1366.1	1610.2	5168.8
+5380	1347.5	1611.2	5014.5
+10464	1349.5	1593.8	4994.0
+252	1355.6	1618.4	5093.3
+11651	1350.1	1526.0	4929.2
+20448	1370.4	1600.9	5357.5
+19243	1370.5	1627.6	5226.9
+8584	1364.7	1647.6	5207.5
+15238	1357.8	1623.4	5130.3
+16219	1370.4	1627.6	5277.8
+17469	1358.0	1628.2	5187.4
+24206	1378.4	1642.9	5394.2
+5719	1350.3	1562.9	4967.6
+813	1356.0	1530.1	5000.0
+23458	1362.9	1594.4	5072.3
+4371	1343.1	1579.4	4932.9
+8425	1361.0	1619.8	5130.8
+11287	1354.4	1575.3	5033.5
+108	1357.4	1613.6	5160.0
+14890	1367.8	1606.4	5189.2
+8350	1362.7	1607.3	5118.3
+10069	1365.9	1637.6	5253.9
+18358	1359.6	1613.9	5051.3
+16222	1362.7	1620.7	5178.0
+18862	1367.5	1589.5	5145.4
+14156	1359.6	1636.6	5162.7
+23384	1363.5	1590.2	5121.2
+3453	1358.3	1579.3	5075.5
+14744	1355.0	1599.6	5021.7
+23846	1372.6	1640.7	5276.7
+9906	1362.4	1613.4	5144.7
+16641	1362.6	1580.3	5220.4
+17462	1351.1	1563.7	5020.0
+3674	1349.8	1565.0	4994.0
+23403	1362.2	1582.6	5119.1
+2739	1365.3	1626.6	5225.2
+4534	1353.7	1599.1	5121.4
+8618	1349.6	1585.6	4954.5
+24119	1365.7	1570.9	5199.6
+20535	1353.7	1573.9	4966.8
+12002	1347.4	1570.4	5173.8
+12130	1354.2	1611.9	5150.3
+13135	1363.7	1578.9	5105.3
+7720	1349.6	1569.0	5068.7
+17965	1365.6	1616.8	5204.2
+14197	1364.8	1573.6	5057.2
+4713	1366.9	1610.2	5132.5
+19548	1364.6	1584.6	5095.9
+734	1363.5	1616.6	5211.1
+20652	1366.7	1615.1	5204.3
+22846	1362.4	1596.8	5109.5
+4221	1358.8	1583.4	5033.2
+2733	1349.6	1608.9	5127.4
+19059	1350.1	1571.9	5010.2
+20695	1348.8	1591.6	5106.3
+24200	1369.9	1618.2	5339.4
+12361	1366.3	1628.8	5125.7
+6329	1361.1	1605.0	5111.4
+19569	1356.7	1657.5	5201.7
+18613	1345.1	1539.2	4925.2
+5706	1363.6	1599.3	5200.4
+8236	1363.9	1630.9	5224.1
+24489	1364.8	1599.4	5105.6
+13446	1351.6	1566.2	4961.5
+20028	1369.2	1602.7	5120.3
+9885	1369.9	1628.8	5201.0
+1050	1347.3	1509.8	4983.9
+7643	1357.2	1607.3	5088.0
+19671	1349.8	1571.0	5063.6
+497	1367.8	1577.3	5248.8
+21084	1366.1	1604.5	5296.0
+10052	1363.0	1643.9	5149.2
+18305	1345.1	1568.9	4920.9
+11328	1358.0	1571.4	5115.1
+3078	1368.3	1683.1	5719.5
+23630	1362.1	1594.2	5126.2
+20584	1357.7	1571.9	5027.5
+13068	1357.5	1604.7	5062.9
+4369	1353.8	1577.5	5113.5
+1134	1360.7	1632.2	5070.8
+9189	1370.2	1576.6	5357.9
+24321	1369.9	1658.9	5215.8
+6034	1363.0	1611.4	5189.8
+16157	1360.0	1568.7	4986.2
+9380	1356.4	1552.3	5035.3
+19451	1359.9	1670.9	5181.6
+4465	1359.2	1580.0	5061.0
+2475	1363.5	1633.8	5363.0
+12959	1359.4	1605.7	5162.5
+11393	1361.8	1572.1	5074.2
+21850	1363.1	1592.1	5175.0
+11715	1365.0	1655.5	5238.1
+19107	1361.4	1653.3	5135.1
+7709	1367.1	1656.8	5172.5
+6739	1362.3	1603.5	5114.3
+23894	1360.1	1614.5	5128.4
+13109	1372.5	1625.8	5263.0
+13427	1362.0	1576.4	5092.3
+15163	1369.7	1629.0	5270.8
+2270	1364.8	1633.1	5215.1
+9381	1360.7	1640.3	5145.7
+16021	1360.8	1578.6	5080.5
+617	1360.5	1611.7	5238.4
+20662	1354.7	1617.1	5068.2
+378	1359.7	1600.7	5122.3
+8458	1357.1	1550.9	5065.4
+15473	1371.6	1648.6	5514.6
+2545	1363.1	1603.2	5182.1
+20617	1359.2	1605.7	5133.8
+6494	1357.4	1595.3	5150.1
+22940	1363.9	1630.3	5095.0
+2286	1349.0	1554.7	5035.9
+19777	1365.0	1606.0	5137.2
+13415	1367.8	1616.8	5148.8
+11955	1358.3	1629.2	5301.0
+15523	1365.9	1659.3	5380.4
+9945	1373.7	1600.4	5254.2
+12226	1355.6	1610.3	5217.4
+21905	1355.9	1611.2	5087.6
+18112	1367.7	1613.1	5142.9
+24690	1361.2	1591.9	5085.7
+22021	1367.6	1642.6	5196.1
+8249	1361.5	1589.5	5110.7
+23076	1356.2	1610.8	5100.1
+24650	1363.2	1634.0	5137.0
+5667	1364.4	1646.2	5217.4
+725	1376.3	1586.4	5219.4
+2073	1367.9	1635.8	5267.2
+9439	1365.3	1592.9	5168.8
+14485	1371.3	1637.3	5238.6
+9810	1360.1	1649.1	5166.9
+5187	1352.5	1590.1	5132.9
+6524	1364.2	1620.8	5107.9
+6237	1375.7	1621.0	5277.3
+9128	1361.2	1621.4	5211.7
+8846	1365.7	1604.0	5141.0
+4020	1359.8	1587.5	5077.2
+7176	1359.2	1618.3	5077.7
+10363	1365.7	1616.2	5169.4
+292	1346.9	1542.7	4940.6
+10372	1374.9	1641.6	5265.8
+860	1369.6	1651.0	5282.3
+6502	1366.1	1608.0	5166.4
+16925	1362.8	1645.2	5159.4
+1888	1362.0	1629.3	5260.7
+14721	1357.8	1555.0	5082.2
+6478	1366.7	1598.5	5209.7
+8197	1355.6	1608.4	5149.4
+3567	1378.8	1663.6	6159.8
+11425	1348.0	1547.8	4890.5
+6369	1371.5	1690.7	5318.3
+6282	1361.2	1608.1	5127.1
+772	1372.1	1653.5	5399.3
+21474	1369.0	1592.8	5179.2
+1805	1356.0	1577.3	5023.6
+23251	1363.6	1653.0	5194.4
+11984	1356.9	1595.8	5265.7
+14454	1354.6	1572.8	5076.8
+14614	1355.4	1523.9	5003.6
+18742	1369.1	1614.1	5196.2
+23099	1359.3	1597.1	5112.4
+16428	1358.7	1577.3	5042.7
+14467	1360.1	1542.7	5094.9
+2244	1353.8	1614.8	5036.8
+6729	1365.0	1630.6	5232.1
+6274	1360.9	1629.2	5174.9
+14932	1362.5	1622.5	5159.0
+457	1355.8	1621.3	5169.4
+24976	1368.4	1596.9	5133.9
+11929	1363.5	1594.1	5153.4
+5626	1358.1	1641.2	5204.6
+6690	1375.5	1667.2	5514.3
+10454	1367.1	1641.1	5215.5
+2729	1369.9	1613.6	5270.8
+11014	1356.3	1625.8	5185.5
+6680	1365.8	1607.6	5314.5
+22502	1374.0	1644.6	5223.1
+16122	1363.5	1655.8	5137.5
+7076	1359.6	1558.2	5085.5
+16037	1363.8	1630.9	5237.4
+15845	1360.3	1618.5	5165.0
+15561	1357.4	1554.5	5159.0
+12470	1371.4	1599.6	5197.0
+20862	1361.0	1564.5	5007.2
+22699	1360.6	1579.4	5105.9
+16900	1375.0	1641.5	5376.8
+24428	1370.6	1605.3	5198.3
+17371	1366.0	1623.5	5322.1
+8648	1364.0	1617.2	5164.9
+18421	1350.4	1542.6	4910.0
+9575	1365.3	1615.7	5184.6
+15797	1362.5	1600.6	5054.6
+14104	1359.6	1565.7	5027.1
+24148	1365.6	1608.6	5150.2
+22953	1369.8	1649.0	5334.8
+5740	1363.4	1610.2	5182.5
+23372	1361.8	1590.9	5142.2
+23295	1364.4	1614.1	5122.4
+19609	1362.7	1595.9	5222.3
+5591	1363.1	1585.1	5086.3
+3516	1365.8	1627.0	5213.0
+8964	1355.6	1589.9	5122.2
+3070	1370.2	1645.2	5230.3
+5059	1363.1	1571.9	5149.0
+4136	1359.8	1601.4	5091.4
+20227	1368.4	1677.6	5375.8
+21229	1357.5	1594.0	5075.9
+22519	1369.4	1629.4	5155.9
+5857	1350.6	1589.9	5069.0
+16709	1352.4	1590.5	5160.3
+14672	1366.3	1625.9	5235.6
+6994	1360.5	1649.4	5194.5
+5205	1360.4	1585.3	5111.0
+22477	1360.3	1556.0	5103.5
+5185	1368.1	1640.1	5256.1
+14140	1370.9	1671.6	5328.4
+20611	1373.9	1647.0	5217.6
+15959	1363.3	1601.7	5079.4
+1506	1354.2	1611.7	5190.1
+24290	1355.9	1566.3	5014.9
+2010	1357.4	1583.7	5019.8
+21449	1354.7	1581.6	5036.1
+8732	1372.7	1622.6	5267.1
+11873	1347.6	1548.8	4914.4
+2490	1361.2	1576.5	5178.6
+24788	1355.8	1554.0	5094.0
+3785	1353.7	1577.1	4990.6
+16815	1358.2	1610.4	5046.6
+1607	1380.3	1628.0	5308.5
+17734	1362.8	1609.0	5196.4
+23969	1366.1	1597.0	5166.9
+21261	1366.2	1624.4	5269.8
+1057	1359.4	1586.8	5090.4
+7359	1360.2	1583.7	5123.5
+6861	1366.2	1654.6	5369.0
+8913	1366.3	1587.7	5216.8
+6613	1356.8	1579.8	5043.5
+16038	1359.5	1614.9	5100.6
+15926	1352.2	1591.7	5090.5
+14043	1356.7	1549.3	5020.8
+5809	1369.8	1650.1	5292.3
+17019	1377.0	1679.8	5363.4
+18644	1366.1	1613.0	5274.1
+14497	1363.5	1611.8	5358.1
+6810	1364.5	1608.6	5110.7
+9048	1361.5	1610.4	5136.7
+9180	1366.4	1613.1	5122.7
+8349	1369.0	1634.7	5219.7
+22529	1367.2	1669.1	5288.5
+7637	1364.7	1599.6	5168.3
+23186	1371.8	1628.7	5351.3
+13158	1353.9	1621.9	5021.4
+22326	1358.7	1562.1	5037.0
+19967	1357.8	1630.5	5211.7
+12145	1366.1	1642.8	5335.3
+18743	1360.6	1635.6	5174.4
+2070	1356.8	1592.5	5089.0
+8629	1354.0	1527.4	5001.9
+12430	1362.5	1605.8	5099.4
+17383	1370.3	1672.5	5258.9
+2062	1363.7	1631.6	5220.1
+13693	1363.6	1614.5	5262.7
+5460	1370.5	1677.4	5314.3
+1354	1365.7	1621.9	5186.7
+20549	1345.9	1597.4	5030.1
+10791	1371.8	1634.2	5236.3
+5716	1371.0	1614.8	5168.1
+18008	1356.2	1571.7	5074.0
+10202	1362.5	1622.5	5091.3
+5354	1363.8	1620.5	5115.3
+3494	1376.1	1674.4	5398.3
+1323	1361.3	1611.9	5251.8
+7829	1353.7	1577.3	5025.4
+3767	1360.3	1655.8	5158.0
+7776	1360.3	1569.1	5043.9
+22546	1367.2	1642.2	5316.1
+24407	1349.6	1617.1	4999.9
+13295	1363.0	1582.1	5072.0
+19338	1358.3	1585.0	5064.3
+24397	1367.8	1648.8	5200.0
+20153	1357.3	1595.9	5075.2
+20519	1368.9	1612.8	5191.8
+24531	1354.5	1558.4	4951.0
+21337	1353.3	1589.9	5029.3
+13679	1365.3	1643.0	5219.0
+7733	1356.0	1573.5	5049.2
+18630	1372.5	1603.4	5193.7
+24142	1363.5	1602.4	5091.7
+11521	1369.2	1644.3	5240.8
+11796	1358.2	1555.3	4962.8
+24296	1354.9	1557.8	5043.1
+19564	1371.3	1606.2	5213.5
+19068	1367.6	1665.1	5220.8
+7434	1364.4	1605.5	5186.5
+20079	1351.9	1532.0	4935.2
+24529	1366.1	1634.0	5207.5
+7814	1357.4	1621.5	5192.1
+14157	1355.7	1594.4	5078.9
+7032	1353.0	1603.9	5050.0
+3841	1354.2	1619.3	5120.7
+9851	1364.8	1607.9	5138.6
+24634	1360.1	1602.8	5161.6
+3715	1364.7	1671.8	5200.2
+5228	1357.4	1577.9	5057.0
+23405	1359.5	1588.0	5043.5
+16361	1366.5	1629.3	5275.2
+7618	1361.1	1664.3	5297.9
+11432	1353.6	1573.8	5042.1
+23879	1366.0	1615.0	5147.2
+2775	1353.1	1553.0	5020.0
+7139	1356.9	1592.9	5066.0
+15424	1365.1	1634.4	5195.8
+17388	1362.0	1566.0	5092.1
+7496	1363.6	1628.4	5108.2
+323	1364.0	1601.0	5083.8
+21854	1376.6	1632.6	5320.9
+18272	1377.2	1631.4	5290.0
+13046	1357.8	1604.5	5114.1
+18502	1356.7	1589.0	5043.0
+28	1363.3	1596.7	5234.1
+17766	1351.7	1572.2	5026.6
+16887	1362.4	1568.5	4970.8
+14241	1367.8	1633.4	5282.5
+9397	1357.3	1579.9	5062.1
+13575	1363.1	1641.4	5111.5
+8771	1359.8	1597.3	5121.1
+22	1367.4	1686.0	5361.1
+1983	1371.3	1591.2	5100.0
+8574	1341.0	1556.3	4896.2
+17296	1360.2	1574.2	5210.2
+22995	1371.6	1585.4	5161.1
+10418	1347.9	1548.8	4948.5
+5894	1365.1	1598.9	5160.2
+16380	1371.0	1660.5	5221.3
+6523	1352.2	1628.7	5106.3
+2896	1358.9	1600.4	5085.4
+3515	1359.2	1685.8	5418.7
+1820	1360.0	1631.8	5102.8
+7997	1354.2	1570.4	4910.9
+5158	1378.0	1666.0	5453.4
+3822	1363.6	1610.2	5228.8
+14192	1361.2	1574.8	5067.6
+11841	1365.5	1662.0	5301.2
+6408	1344.6	1548.4	4974.7
+18662	1359.4	1540.3	5035.3
+11255	1352.9	1553.5	4952.9
+17692	1370.1	1620.3	5308.9
+15171	1360.8	1655.5	5109.6
+4937	1356.5	1553.2	5037.9
+12902	1353.6	1652.5	5235.8
+16035	1358.6	1599.0	5084.5
+23109	1361.8	1621.3	5159.6
+14298	1354.2	1611.3	5126.6
+18204	1366.4	1607.8	5146.5
+1743	1356.1	1621.0	5066.3
+3608	1357.5	1595.7	5097.3
+24817	1372.7	1566.0	5169.7
+12798	1369.7	1623.1	5285.1
+9573	1367.1	1610.4	5271.6
+8369	1355.0	1591.1	5096.8
+21085	1357.7	1592.0	5101.5
+14695	1372.2	1655.6	5225.7
+18747	1364.7	1579.9	5132.2
+733	1368.8	1646.9	5182.2
+20222	1368.6	1629.7	5262.7
+3020	1371.5	1634.2	5199.3
+7783	1376.4	1696.0	5329.8
+337	1362.3	1605.8	5161.8
+21598	1367.0	1605.7	5149.2
+3916	1361.1	1585.1	5117.6
+539	1362.0	1620.2	5173.3
+11293	1368.1	1632.2	5181.8
+16863	1364.2	1585.3	5138.5
+15158	1364.8	1618.6	5171.5
+13900	1363.6	1611.2	5140.6
+18607	1357.4	1593.6	5151.2
+15979	1361.9	1647.2	5222.9
+4592	1358.8	1587.8	5130.1
+24581	1365.3	1646.9	5147.2
+1566	1365.3	1573.0	5150.8
+24978	1366.0	1658.6	5222.1
+14685	1361.2	1630.0	5189.5
+5859	1352.9	1590.4	5084.5
+15649	1360.4	1605.9	5197.2
+21102	1357.2	1646.5	5162.7
+12235	1364.3	1557.4	5040.2
+24499	1363.4	1587.4	5154.9
+1142	1361.6	1625.2	5101.9
+976	1356.7	1573.5	4995.9
+13421	1363.8	1620.9	5083.0
+4444	1361.1	1577.7	5207.8
+9536	1358.2	1587.5	5184.4
+21306	1365.0	1591.7	5214.6
+16054	1358.6	1612.4	5053.9
+12601	1372.0	1620.4	5222.5
+21694	1361.6	1590.2	5244.0
+22208	1365.9	1664.6	5247.0
+19074	1366.7	1644.5	5304.7
+3813	1362.4	1592.0	5072.6
+9418	1361.5	1613.8	5132.6
+22381	1361.6	1592.4	5043.1
+7890	1363.9	1599.8	5067.1
+23097	1352.3	1595.3	5143.1
+15261	1348.4	1567.7	4999.3
+14209	1358.8	1648.8	5186.3
+1674	1357.4	1553.6	4941.8
+6527	1358.9	1579.5	5040.7
+8418	1371.0	1630.0	5201.3
+19094	1366.8	1644.6	5262.9
+15763	1366.4	1639.6	5228.1
+22678	1368.7	1572.3	5081.9
+24508	1362.8	1620.3	5094.3
+6780	1360.3	1592.5	5102.4
+19475	1363.5	1571.2	5123.1
+3151	1363.8	1556.8	5042.7
+1922	1360.2	1587.2	5025.2
+4237	1362.4	1595.1	5105.1
+5726	1365.4	1606.2	5231.2
+5092	1366.5	1598.1	5162.7
+17009	1350.4	1537.5	5006.1
+2845	1348.5	1567.7	4963.1
+12016	1369.0	1613.0	5358.6
+16353	1363.2	1600.7	5142.8
+15676	1369.8	1694.7	5388.3
+19897	1372.5	1713.8	5407.5
+8891	1363.5	1573.3	5136.5
+18495	1367.0	1624.3	5186.2
+11698	1365.0	1631.8	5156.3
+24912	1371.6	1611.3	5321.0
+12333	1365.7	1643.3	5316.2
+18194	1366.4	1573.2	5101.8
+6566	1355.1	1625.7	5133.7
+11153	1370.5	1604.6	5222.5
+19457	1369.9	1627.9	5167.6
+17164	1362.0	1581.3	5168.8
+9151	1362.8	1628.5	5129.6
+8402	1357.1	1630.3	5146.5
+4416	1361.2	1608.6	5153.1
+12129	1357.1	1596.2	5089.1
+7213	1365.3	1615.8	5250.2
+17739	1355.7	1621.6	5177.1
+14728	1359.0	1613.0	5078.4
+12521	1361.5	1598.1	5144.4
+10611	1360.0	1646.7	5202.6
+24341	1365.9	1605.4	5210.3
+20362	1373.4	1618.4	5233.0
+692	1365.8	1617.6	5173.0
+13189	1362.8	1604.3	5121.8
+19414	1364.8	1652.3	5175.8
+9661	1362.7	1560.3	5039.9
+6641	1358.6	1620.8	5152.6
+2002	1365.0	1652.0	5249.9
+21334	1368.8	1674.6	5322.8
+18456	1379.2	1674.0	5374.5
+11666	1364.3	1607.2	5178.5
+1102	1367.7	1643.0	5128.2
+15600	1357.6	1568.8	5116.5
+24601	1368.9	1631.0	5351.2
+22882	1358.1	1595.1	5079.4
+13079	1344.7	1569.1	5003.8
+24899	1355.5	1587.9	5095.4
+2539	1357.4	1602.8	5062.8
+18453	1360.3	1621.4	5188.4
+11957	1356.5	1551.5	4972.1
+13222	1361.7	1592.0	5131.4
+17198	1356.6	1580.2	5018.9
+14836	1363.2	1650.4	5248.0
+23849	1358.0	1615.4	5125.1
+10920	1360.4	1569.8	5099.8
+24763	1355.5	1572.0	5027.9
+24588	1362.3	1567.6	5067.6
+16589	1349.9	1573.8	5018.0
+12467	1360.7	1576.9	5085.4
+13784	1358.3	1600.9	5153.3
+21559	1356.7	1596.5	5029.3
+19293	1364.5	1666.0	5203.0
+619	1362.6	1585.2	5201.4
+16866	1356.5	1620.8	5112.7
+7099	1362.4	1595.9	5140.9
+12810	1363.6	1539.3	5084.5
+22504	1363.0	1625.3	5176.1
+3375	1364.5	1583.7	5116.1
+2106	1359.3	1608.6	5173.9
+3506	1350.8	1573.4	5121.1
+15315	1349.5	1504.3	4940.9
+8483	1351.7	1575.5	5095.9
+22224	1366.8	1604.2	5169.1
+17232	1361.1	1628.8	5240.3
+6519	1366.9	1687.3	5268.8
+5388	1368.2	1689.4	5401.9
+17175	1370.0	1676.2	5289.2
+1428	1359.0	1582.2	5056.9
+19254	1361.9	1651.7	5344.9
+6445	1348.3	1575.0	4972.5
+18778	1357.4	1645.4	5108.9
+655	1372.9	1631.9	5261.5
+18517	1353.8	1584.4	5066.2
+21665	1356.6	1566.2	5033.8
+13775	1366.7	1599.1	5172.9
+24258	1355.5	1557.1	5030.6
+491	1362.9	1569.7	5192.8
+7745	1359.0	1608.7	5202.8
+22709	1376.1	1641.6	5325.7
+16593	1361.3	1574.4	5204.7
+22510	1360.9	1658.9	5169.3
+22500	1366.3	1622.4	5191.7
+7019	1362.2	1610.9	5209.1
+14182	1363.5	1598.4	5116.3
+16164	1368.4	1632.0	5259.0
+2726	1364.1	1627.5	5216.8
+9709	1365.5	1587.5	5147.9
+14952	1359.8	1584.9	5133.8
+14091	1356.1	1568.2	5043.0
+18527	1368.3	1580.3	5087.8
+11682	1366.4	1631.7	5252.9
+21518	1362.7	1590.9	5157.0
+6498	1356.3	1591.7	5032.7
+21251	1373.7	1617.8	5368.1
+7570	1370.4	1690.4	5364.6
+13561	1358.1	1554.9	5074.0
+22482	1352.5	1575.6	5127.4
+13763	1360.9	1622.1	5049.5
+22922	1362.9	1613.5	5168.7
+1648	1367.5	1622.6	5156.1
+20371	1369.3	1594.6	5185.6
+15768	1361.1	1606.1	5125.4
+2653	1359.1	1604.0	5096.3
+12424	1359.1	1591.6	5135.5
+14365	1353.4	1559.0	4956.8
+23707	1370.0	1614.5	5233.9
+6315	1366.3	1621.4	5200.0
+6636	1359.1	1637.0	5248.0
+13853	1365.2	1615.9	5102.6
+3232	1360.5	1603.4	5114.1
+23716	1362.0	1591.2	5104.4
+10298	1348.0	1563.6	4987.8
+19063	1374.1	1628.5	5245.5
+5589	1368.7	1649.2	5193.1
+5518	1357.7	1591.3	5072.0
+23158	1360.1	1602.4	5116.4
+9597	1357.9	1566.4	5038.1
+7731	1370.2	1639.2	5265.5
+19455	1366.1	1617.3	5131.4
+15667	1353.1	1566.3	5022.0
+5721	1364.8	1660.0	5237.7
+13912	1358.0	1546.7	5098.7
+14147	1366.6	1576.4	5111.2
+24014	1361.7	1572.1	5126.2
+14020	1354.6	1594.8	5105.0
+5329	1361.9	1593.7	5094.1
+5231	1369.3	1603.4	5234.4
+17317	1361.9	1586.7	5132.3
+21970	1361.6	1611.3	5260.2
+19922	1365.4	1602.3	5095.8
+12595	1359.6	1643.2	5188.7
+23683	1373.1	1638.5	5267.1
+5224	1361.8	1656.4	5418.6
+22979	1363.4	1656.1	5259.2
+4469	1369.3	1632.9	5236.1
+2011	1361.0	1604.9	5173.5
+6606	1345.1	1497.4	4874.1
+11506	1362.3	1601.9	5098.0
+10505	1355.5	1604.0	5055.5
+23394	1353.2	1577.8	5050.3
+18367	1352.0	1587.2	5022.3
+21891	1358.3	1618.9	5193.3
+4987	1359.3	1585.0	5068.0
+16656	1347.9	1568.8	4973.4
+10800	1367.5	1649.0	5152.6
+1266	1363.9	1609.0	5108.1
+21920	1370.4	1637.9	5347.5
+17850	1370.9	1610.0	5213.4
+21319	1367.2	1574.7	5136.4
+13764	1369.7	1689.8	5326.2
+7001	1372.4	1662.8	5415.0
+2457	1365.5	1633.2	5119.4
+9272	1353.9	1625.8	5184.9
+6151	1374.5	1632.0	5217.9
+10875	1365.7	1570.7	5103.7
+7909	1364.8	1588.8	5138.9
+5052	1363.3	1584.8	5094.3
+10063	1355.8	1596.9	5078.9
+15201	1354.6	1552.4	5074.7
+8528	1361.8	1579.8	5081.0
+14627	1362.1	1605.0	5106.2
+19534	1365.1	1590.5	5182.7
+2822	1354.7	1616.6	5106.2
+13758	1364.8	1596.0	5263.6
+18871	1374.7	1651.5	5289.5
+19283	1366.0	1675.3	5232.8
+23025	1365.4	1611.0	5203.4
+9818	1363.4	1601.3	5250.9
+3336	1366.9	1623.3	5131.1
+14294	1366.4	1624.7	5113.3
+7201	1356.2	1611.9	5142.5
+4282	1374.0	1641.6	5338.8
+22876	1348.6	1562.9	4970.7
+474	1360.6	1606.0	5103.1
+21320	1354.8	1582.4	5035.2
+10733	1361.9	1586.4	5069.6
+22128	1354.2	1567.6	5257.7
+5977	1356.5	1569.7	5059.8
+20936	1363.3	1553.9	5045.7
+12037	1357.8	1600.9	5102.7
+15395	1379.1	1648.2	5391.3
+24027	1356.5	1571.5	5049.5
+16385	1367.9	1665.2	5184.8
+24099	1354.6	1615.7	5030.9
+16716	1365.0	1627.6	5269.4
+19376	1353.7	1551.1	5021.1
+18701	1362.5	1595.3	5152.6
+23776	1363.0	1613.5	5144.8
+4627	1353.0	1570.2	5151.6
+8802	1363.9	1583.8	5131.2
+23314	1366.1	1602.4	5210.3
+15906	1363.1	1660.9	5296.7
+1968	1368.1	1660.3	5228.6
+10648	1364.0	1642.5	5204.2
+18931	1358.8	1562.9	5005.4
+6650	1349.6	1546.4	4967.6
+20810	1350.7	1617.2	5109.8
+13242	1379.9	1748.5	5841.5
+1360	1356.6	1602.1	5076.7
+10980	1364.5	1622.6	5195.9
+10333	1358.4	1611.8	5124.1
+24227	1370.5	1647.6	5191.7
+20875	1362.2	1595.6	5109.8
+19966	1359.3	1585.5	5076.7
+8686	1363.4	1625.0	5165.9
+11974	1369.7	1639.3	5197.9
+22247	1349.8	1555.2	5000.6
+22858	1365.2	1606.5	5153.1
+14641	1364.1	1561.2	5088.7
+10057	1366.5	1614.0	5166.9
+797	1363.9	1620.1	5215.3
+9516	1367.4	1633.0	5214.2
+20008	1369.3	1598.8	5162.2
+4208	1352.9	1586.1	5018.8
+12694	1356.0	1601.1	5040.6
+7488	1356.6	1623.7	5075.4
+11007	1358.1	1582.5	5132.3
+24196	1360.2	1613.6	5208.4
+1097	1373.0	1662.2	5227.7
+12974	1363.1	1602.3	5147.7
+3037	1361.5	1606.1	5223.6
+23901	1355.0	1548.7	4945.7
+12918	1354.6	1558.5	5013.4
+2427	1361.2	1555.0	4992.6
+4029	1354.8	1611.1	5068.4
+3108	1363.4	1638.5	5225.8
+23831	1361.9	1621.9	5126.7
+13946	1359.4	1580.5	5094.8
+11374	1357.3	1597.3	4997.8
+3455	1366.9	1657.1	5159.4
+21618	1366.2	1640.3	5254.1
+8672	1363.6	1639.4	5225.1
+4453	1368.1	1675.7	5271.7
+20152	1380.2	1664.2	5341.9
+4349	1367.4	1626.3	5297.0
+23390	1363.9	1644.3	5293.8
+2383	1367.9	1625.0	5252.6
+21343	1357.0	1589.2	5090.2
+20204	1354.8	1586.6	5182.6
+14458	1361.7	1603.0	5186.8
+24688	1365.8	1596.2	5110.3
+10662	1359.7	1565.7	5061.5
+13544	1360.8	1645.1	5247.8
+12979	1365.5	1592.6	5089.3
+15053	1367.5	1622.6	5103.5
+16965	1351.6	1561.1	5012.8
+4326	1363.9	1646.9	5354.2
+23463	1365.1	1611.4	5057.9
+11329	1362.4	1578.0	5035.5
+16561	1374.7	1658.5	5298.1
+17820	1353.8	1627.5	5058.5
+1976	1360.7	1607.2	5217.4
+21757	1365.3	1572.9	5057.2
+13414	1356.0	1567.9	5065.5
+7871	1366.9	1630.3	5155.6
+10391	1364.8	1643.6	5245.7
+22355	1363.9	1560.2	5104.6
+19531	1358.6	1596.3	5078.4
+4570	1354.7	1612.5	5053.3
+12588	1367.4	1589.2	5155.2
+6769	1352.8	1538.4	4982.7
+15519	1363.5	1617.3	5198.8
+17550	1355.2	1581.2	5095.9
+13680	1365.9	1619.1	5227.4
+11533	1360.5	1550.0	5026.2
+7165	1360.5	1636.0	5092.4
+7676	1359.2	1571.3	5037.8
+11166	1357.6	1550.0	5025.3
+19532	1348.3	1518.3	4934.6
+4482	1364.6	1588.4	5100.0
+416	1366.6	1601.3	5177.8
+8099	1348.0	1615.2	5038.6
+17714	1363.3	1594.9	5120.2
+24250	1361.0	1575.8	5075.8
+11996	1358.8	1601.6	5075.6
+18473	1360.3	1593.6	5069.2
+7530	1373.2	1666.4	5278.5
+18814	1355.3	1582.1	5037.0
+24980	1377.9	1637.1	5220.7
+9728	1362.2	1657.8	5242.7
+7819	1358.5	1634.8	5118.6
+11317	1368.9	1606.0	5146.3
+22653	1354.4	1548.7	5030.2
+14442	1355.2	1592.9	4980.5
+10287	1369.4	1629.4	5216.3
+17017	1346.7	1541.7	4945.5
+13006	1365.9	1599.1	5377.4
+14366	1363.3	1609.1	5099.5
+16417	1359.9	1576.6	5077.4
+13298	1357.7	1618.3	5082.5
+13082	1359.7	1595.6	5133.0
+21317	1370.5	1684.0	5306.1
+3270	1359.0	1604.0	5087.4
+7183	1366.4	1639.2	5183.6
+17593	1363.3	1582.5	5047.1
+11365	1359.7	1619.5	5203.7
+3311	1355.9	1598.9	5035.0
+22974	1356.7	1591.1	5039.7
+23298	1355.6	1557.9	5051.8
+18483	1365.9	1665.9	5200.0
+3972	1354.3	1563.8	5048.8
+16192	1362.3	1646.3	5247.8
+20056	1364.2	1625.3	5097.1
+21704	1358.8	1605.3	5179.4
+7900	1367.8	1616.0	5177.1
+8142	1364.8	1643.5	5165.5
+3676	1360.4	1609.6	5097.3
+8101	1361.9	1607.4	5120.4
+1193	1361.7	1645.0	5179.5
+14608	1364.4	1586.5	5166.7
+14829	1365.6	1631.7	5371.5
+469	1367.0	1623.1	5223.1
+5191	1357.5	1588.8	5067.9
+13275	1365.4	1619.5	5185.1
+3790	1376.9	1696.7	5373.2
+17500	1365.4	1651.8	5162.7
+6576	1360.1	1578.0	5102.6
+17869	1352.9	1546.1	5053.6
+23549	1362.4	1621.5	5182.6
+Done testing.
